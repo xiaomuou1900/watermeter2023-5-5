@@ -78,7 +78,7 @@
         
         if(event2!=null){
  			document.getElementById(this.名称).addEventListener("keydown", function (e) {
-                var keynum = window.event ? e.keyCode : e.which;
+                var keynum = window.event ? e.code : e.key;
                 event2(keynum);//按下某键事件
             });       	
         } 

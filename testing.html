@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testing</title>
+    <link rel="stylesheet" href="./lib/LuLu-UI-master/theme/modern/css/common/ui.css">
+    <!-- <link rel="stylesheet" href="./lib/LuLu-UI-master/theme/modern/css/common/table.css"> -->
+</head>
+<body>
+    <div class="table-x table-checkbox">
+        <div class="table-size">
+            <table id="testtable-mix" class="ui-table">
+                <thead>
+                  <tr>
+                    <th scope="col"><input type="checkbox" id="chkAll_mix"><label class="ui-checkbox" for="chkAll_mix"></label></th>
+                    <th scope="col">文章标题</th>
+                    <th scope="col" width="200">发布时间</th>
+                    <th scope="col" width="100">评论数</th>
+                    <th scope="col" width="80" class="tc">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <!-- 列表无数据的占位 -->
+            <!-- <div class="table-null-x dn">
+                <div class="table-null">
+                    <img src="delete.png" width="69" height="80">
+                    <h2>文章列表为空</h2>
+                    <p>系统将在用户删除文章一个工作日后，<br>自动彻底清理</p>
+                </div>
+            </div> -->
+            <!-- 列表加载loading -->
+            <!-- <div class="ui-loading"><i class="ui-loading-icon"></i></div> -->
+        </div>
+        <!-- 底部分页 -->
+        <div class="table-page-x">
+            <div class="table-page-data dn">
+                共<span class="table-num-length">0</span>名成员, 每页显示<a href="javascript:;" class="table-page-every"><span class="table-num-every">15</span><i class="ui-droplist-arrow"></i></a>
+            </div>
+            <div class="table-page"></div>
+        </div>
+    </div>
+
+    <script src="./lib/jquery.js"></script>
+    <script src="./lib/LuLu-UI-master/theme/modern/js/common/all.js"></script>
+    <!-- <script src="./lib/LuLu-UI-master/theme/modern/js/common/comp/Table.js"></script> -->
+    <!-- <script src="./js/testing.js"></script> -->
+</body>
+</html>

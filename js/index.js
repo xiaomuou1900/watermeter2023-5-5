@@ -1,3 +1,12 @@
+(function(){
+	var data1 = localStorage.getItem('user')
+	var data2 = sessionStorage.getItem('user')
+	if((data1 == null) || (data2 == null)){
+		window.location.href = './login.html'
+	}
+	window.localStorage.removeItem('user')
+    window.sessionStorage.removeItem('user')
+})()
 mui.init({swipeBack: false
 ,gestureConfig: {tap:true,doubletap:true,longtap:true,hold:true,release:true}});
 
@@ -53,14 +62,4 @@ function 左侧分类导航1_分类被单击(分类索引){
 
 function 左侧分类导航1_子项被单击(分类索引,子项索引){
 	console.log(分类索引,子项索引);
-
-
-
-
-
-
-
-
-
-
 }

@@ -1,11 +1,13 @@
+window.localStorage.removeItem('user')
+window.sessionStorage.removeItem('user')
 mui.init({swipeBack: false
 ,gestureConfig: {tap:true,doubletap:true,longtap:true,hold:true,release:true}});
 
 var 自由面板1 = new 自由面板("自由面板1","825px");
 var 图片框1 = new 图片框("图片框1",null);
 var 图片框2 = new 图片框("图片框2",null);
-var 编辑框1 = new 编辑框("编辑框1",null,null,null,null,null);
-var 编辑框2 = new 编辑框("编辑框2",null,null,null,null,null);
+var 编辑框1 = new 编辑框("编辑框1", null, 编辑框1_按下某键, null, null, null);
+var 编辑框2 = new 编辑框("编辑框2", null, 编辑框2_按下某键, null, null, null);
 var 按钮1 = new 按钮("按钮1",按钮1_被单击,null,null);
 var 图片框3 = new 图片框("图片框3",null);
 if(mui.os.plus){
@@ -80,25 +82,46 @@ function 按钮1_被单击(){
 		alert("用户名、密码不能为空！");
 		return;
 	}else{
-	  $('#form_login').on('submit', function(e) {  //监听注册表单时间
-      e.preventDefault()   //阻止表单默认提交行为
+	var username = 编辑框1.取内容();
+	var password = 编辑框2.取内容();
 	  $.ajax({
 		url: './api/login.php',
 		method: 'post',
-		data: $(this).serialize(),
+        data:{
+			username: username,
+			password: password
+		},
         success: function(res) {
-		  console.log(res)
           if(res.status != 200) {
 			alert('登录失败')
 		  }
-		  alert('登录成功')
+		  try {
+			localStorage.setItem('user', JSON.stringify(res));
+			window.sessionStorage.setItem('user', JSON.stringify(res));
+		  } catch (e){
+			alert("请取消隐私浏览模式。");
+		  }
 		  location.href="./index.html"
 		}
 
 	  })
-	})
-	    // 窗口操作.切换窗口("index.html",1);
 	}
+	    // 窗口操作.切换窗口("index.html",1);
+}
 
 
+
+
+function 编辑框1_按下某键(键代码) {
+    if (键代码 == 13) {
+        //alert("编辑框1回车键被按下了");
+        编辑框2.获取焦点();
+    }
+}
+
+function 编辑框2_按下某键(键代码) {
+    if (键代码 == 13) {
+        //alert("编辑框2回车键被按下了");
+        按钮1_被单击();
+    }
 }
