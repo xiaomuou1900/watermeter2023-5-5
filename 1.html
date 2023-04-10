@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testing</title>
+    <link rel="stylesheet" href="./lib/LuLu-UI-master/theme/modern/css/common/ui.css">
+    <link rel="stylesheet" href="./lib/LuLu-UI-master/theme/modern/css/common/table.css">
+    <link rel="stylesheet" href="./lib/layui/css/layui.css">
+</head>
+<body>
+    <h1>当前测试批次</h1>
+    <div class="table-x table-checkbox">
+        <div class="table-size">
+            <table id="testtable-mix" class="ui-table">
+                <thead>
+                  <tr>
+                    <th scope="col"><input type="checkbox" id="chkAll_mix"><label class="ui-checkbox" for="chkAll_mix"></label></th>
+                    <th scope="col">序号</th>
+                    <th scope="col">设备编号</th>
+                    <th scope="col">ICCID</th>
+                    <th scope="col">电池电压</th>
+                    <th scope="col">信号强度</th>
+                    <th scope="col">累计用量</th>
+                    <th scope="col">当前测试用量</th>
+                    <th scope="col" width="200">最近上报时间</th>
+                    <th scope="col">版本号</th>
+                    <th scope="col" width="100">评测试结果</th>
+                    <th scope="col" width="80" class="tc">操作&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <!-- 列表无数据的占位 -->
+            <!-- <div class="table-null-x dn">
+                <div class="table-null">
+                    <img src="delete.png" width="69" height="80">
+                    <h2>文章列表为空</h2>
+                    <p>系统将在用户删除文章一个工作日后，<br>自动彻底清理</p>
+                </div>
+            </div> -->
+            <!-- 列表加载loading -->
+            <!-- <div class="ui-loading"><i class="ui-loading-icon"></i></div> -->
+        </div>
+        <!-- 底部分页 -->
+        
+    </div>
+    <script src="./lib/LuLu-UI-master/theme/modern/js/plugin/jquery.js"></script>
+    <script src="./lib/LuLu-UI-master/theme/modern/js/common/all.js"></script>
+    <script src="./lib/LuLu-UI-master/theme/modern/js/common/comp/Table.js"></script>
+    <script src="./lib/layui/layui.all.js"></script>
+    <script src="./lib/require.js"></script>
+    <script src="./1.js"></script>
+</body>
+</html>

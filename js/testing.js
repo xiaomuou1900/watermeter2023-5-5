@@ -1,120 +1,91 @@
-$(function(){
-    var testJson = {
-         data:[
-            {id:1,
-             title:'设备编号',
-             time: new Date(),
-             comment:2
-            },
-            {id:1,
-                title:'设备编号',
-                time: new Date(),
-                comment:2
-               }
-        ]
-    };
-    
-    function addTr(json) {
-        // 返回对应的HTML
-        // 这里应该使用模板技术
-        // 然不同团队使用模板方式不一样
-        // 我这里就按照比较传统的遍历方式拼接演示
-        var html = '';
-        $.each(json.data.data, function(index, obj) {
-            html = html + '\
-                <tr>\
-                    <td><input type="checkbox" id="mixChk'+ obj.id +'"><label class="ui-checkbox" for="mixChk'+ obj.id +'"></label></td>\
-                    <td><div class="ell">'+ obj.title +'</div></td>\
-                    <td>'+ obj.time +'</td>\
-                    <td>'+ obj.comment +'</td>\
-                    <td class="tc"><a href="javascript:;" class="icon icon_del ui-tips" title="删除评论"></a></td>\
-                </tr>\
-            ';
-        });
-        return html;
-    }; 
-    var tr = $(addTr(testJson));
-    $('#testtable-mix tbody').append(tr);
-    // var mixTable = new Table($('#testtable-mix'), {
-    //     ajaxOptions: {
-    //         url: '/table',
-    //         data: function() {
-    //             // 列表外的动态Ajax参数
-    //             return {
-    //                 key: encodeURIComponent($('#mixSearchForm input').val())
-    //             }
-    //         }
-    //     },
-    
-    //     parse: function(json) {
-    //         // 返回对应的HTML
-    //         // 这里应该使用模板技术
-    //         // 然不同团队使用模板方式不一样
-    //         // 我这里就按照比较传统的遍历方式拼接演示
-    //         var html = '';
-    //         $.each(json.data.data, function(index, obj) {
-    //             html = html + '\
-    //                 <tr>\
-    //                     <td><input type="checkbox" id="mixChk'+ obj.id +'"><label class="ui-checkbox" for="mixChk'+ obj.id +'"></label></td>\
-    //                     <td><div class="ell">'+ obj.title +'</div></td>\
-    //                     <td>'+ obj.time +'</td>\
-    //                     <td>'+ obj.comment +'</td>\
-    //                     <td class="tc"><a href="javascript:;" class="icon icon_del ui-tips" title="删除评论"></a></td>\
-    //                 </tr>\
-    //             ';
-    //         });
-    //         return html;
-    //     },
-    //     events: {
-    //         'a.icon_del:click': function() {
-    //             new Dialog().confirm('确认删除该评论？');
-    //         }
-    //     },
-    //     onCheck: function(allChecked, allUnchecked, container) {
-    //         var opt = $('#testOpt_mix');
-    //         if (allUnchecked == true) {
-    //             opt.addClass('disabled');
-    //         } else {
-    //             opt.removeClass('disabled');
-    //         }
-    //     }
+layui.use(['laypage', 'layer','table'], function(){
+  var table = layui.table; 
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  table.render({
+    elem: '#testDevice'
+    ,url:'api/testing.php'
+    ,limit:25
+    // ,request: {
+    //   pageName: 'curr' //页码的参数名称，默认：page
+    //   ,limitName: 'nums' //每页数据量的参数名，默认：limit
+    // }
+    // ,where: {page:0}
+    ,parseData: function(res){ //res 即为原始返回的数据
+      return {
+        "code": res.status, //解析接口状态
+        "msg": res.message, //解析提示文本
+        "count": res.total, //解析数据长度
+        "data": res.data //解析数据列表
+      };
+    }
+    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+    ,cols: [[
+      {type: 'checkbox', fixed: 'left'}
+      ,{field:'id', title: '序号',width:'4%'}
+      ,{field:'meterID', title: '设备编号',width:120} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+      ,{field:'ICCID', title: 'ICCID'}
+      ,{field:'VDD', title: '电池电压'}
+      ,{field:'SS', title: '信号强度'}
+      ,{field:'totalFlow', title: '累计用量'} //单元格内容水平居中
+      ,{field:'testFlow', title: '当前测试用量'} //单元格内容水平居右
+      ,{field:'reportTime', title: '最近上报时间'}
+      ,{field:'V', title: '版本号'}
+      ,{field:'testResult', title: '测试结果'}
+      ,{field:'testTime', title: '测试时间'}
+      ,{field:'operate', title: '操作', width: 125, minWidth: 125, toolbar: 'default'}
+    ]]
 
-    // });
     
-    // 删除全部评论
-    $('#delAllComment').click(function() {
-        var self = this;
-    
-        if ($(this).parent().hasClass('disabled')) return false;
-    
-        var dialog = new Dialog().confirm('确认删除选中的这些评论？', {
-            buttons: [{
-                value: '删除',
-                events: {
-                    click: function() {
-                        mixTable.ajax({
-                            data: {
-                                action: 'empty',
-                                current: 1
-                            },
-                            success: function() {
-                                $(self).parent().addClass('disabled')
-                            }
-                        });
-                        dialog.remove();
-                    }
-                }
-            }, {}]
-        });
-    });
-    
-    // 搜索示意
-    new Validate($('#mixSearchForm'), function() {
-        mixTable.ajax({
-            data: {
-                action: 'search',
-                current: 1
-            }
-        });
-    });
+    // ,method: get
+    // ,where:{
+    //   page:0,
+    //   pageNum:25
+    // }  //请求时带的参数
+    // ,parseData: function(res){ //res 即为原始返回的数据
+    //   return {
+    //     "code": res.status, //解析接口状态
+    //     "msg": res.msg, //解析提示文本
+    //     "count": res.count, //解析数据长度
+    //     "data": res.data.item //解析数据列表
+    //   };  
+    // }
+
+    // ,data: [
+    //   {
+    //     "id":1, 
+    //     "meterID": 21031001,
+    //     "ICCID": 89861119264006003353,
+    //     "IMEI":861001051498679,
+    //     "VDD": 3.66,
+    //     "SS": 20,
+    //     "totalFlow": 1.224,
+    //     "testFlow": 0.001,
+    //     "reportTime": "2023-04-10 03:41:20",
+    //     "version": "11.35",
+    //     "testResult":"正在测试" ,
+    //     "testTime": "",
+    //     // "operate":
+    //   }
+  //  ]
+   ,even: true
+  });
+  laypage.render({
+      elem: 'paging'
+      ,count: 1000
+      ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+      ,jump: function(obj){
+        console.log(obj)
+      }
+  });
 })
+
+var testSumData = {
+  testingNum: 10,
+  testPaseNum:9,
+  testFailNum:1,
+  totalTestNum:20,
+  startTime: 2023
+};
+var htmlTestSum = template('tpl-testSum',testSumData);
+$('#testSum').html(htmlTestSum);

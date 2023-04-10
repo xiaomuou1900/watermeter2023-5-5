@@ -4,48 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>testing</title>
-    <link rel="stylesheet" href="./lib/LuLu-UI-master/theme/modern/css/common/ui.css">
-    <!-- <link rel="stylesheet" href="./lib/LuLu-UI-master/theme/modern/css/common/table.css"> -->
+    <title>testing2</title>
+    <link rel="stylesheet" href="./lib/layui/css/layui.css">
+    <link rel="stylesheet" href="./lib/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./lib/iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/testing.css">
 </head>
 <body>
-    <div class="table-x table-checkbox">
-        <div class="table-size">
-            <table id="testtable-mix" class="ui-table">
-                <thead>
-                  <tr>
-                    <th scope="col"><input type="checkbox" id="chkAll_mix"><label class="ui-checkbox" for="chkAll_mix"></label></th>
-                    <th scope="col">文章标题</th>
-                    <th scope="col" width="200">发布时间</th>
-                    <th scope="col" width="100">评论数</th>
-                    <th scope="col" width="80" class="tc">&nbsp;</th>
-                  </tr>
-                </thead>
+    <div class="pannel"> 
+        <header class="title">当前测试批次</header>
+        <div class="content pre-scrollable">
+           <div class="box-header pannel2">
+                <div class="introduction">
+                    <i class="iconfont icon-xinxi"></i> 您可以通过点击标题旁的按钮进行设备编号、ICCID的筛选，点击复选框按钮可以进行单个或多个设备的重新测试或强制失败操作，可点击“开始测试”按钮，进行当前批次的设备测试，点击“结束测试”按钮，可以结束当前测试批次，可打印、导出。
+                </div>
+                <div class="operate">
+                    <a href="#" class="btn btn-success" role="button">导出</a>
+                    <a href="#" class="btn btn-success" role="button">打印</a>
+                    <a href="#" class="btn btn-warning" role="button">结束测试</a>
+                </div>
+           </div>
+            <table class="testSum" id="testSum">
                 <tbody></tbody>
             </table>
-            <!-- 列表无数据的占位 -->
-            <!-- <div class="table-null-x dn">
-                <div class="table-null">
-                    <img src="delete.png" width="69" height="80">
-                    <h2>文章列表为空</h2>
-                    <p>系统将在用户删除文章一个工作日后，<br>自动彻底清理</p>
-                </div>
-            </div> -->
-            <!-- 列表加载loading -->
-            <!-- <div class="ui-loading"><i class="ui-loading-icon"></i></div> -->
-        </div>
-        <!-- 底部分页 -->
-        <div class="table-page-x">
-            <div class="table-page-data dn">
-                共<span class="table-num-length">0</span>名成员, 每页显示<a href="javascript:;" class="table-page-every"><span class="table-num-every">15</span><i class="ui-droplist-arrow"></i></a>
-            </div>
-            <div class="table-page"></div>
-        </div>
+            <table class="layui-hide" id="testDevice"></table>   
+        </div> 
+        <div id="paging"></div>  
     </div>
-
-    <script src="./lib/jquery.js"></script>
-    <script src="./lib/LuLu-UI-master/theme/modern/js/common/all.js"></script>
-    <!-- <script src="./lib/LuLu-UI-master/theme/modern/js/common/comp/Table.js"></script> -->
-    <!-- <script src="./js/testing.js"></script> -->
+    <script type="text/html" id="tpl-testSum">
+        <tr>
+            <td>正在测试：{{testingNum}}</td>
+            <td>测试通过：{{testPaseNum}}</td>
+            <td>测试失败：{{testFailNum}}</td>
+            <td>测试设备总数：{{totalTestNum}}</td>
+            <td>当前批次起始时间：{{startTime}}</td>
+        </tr>
+    </script>
+    <script src="./lib/layui/layui.all.js"></script>
+    <script src="./lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
+    <script src="./lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="./lib/iconfont/iconfont.js"></script>
+    <script src="./lib/template-web.js"></script>
+    <script src="./js/testing.js"></script>
 </body>
 </html>
