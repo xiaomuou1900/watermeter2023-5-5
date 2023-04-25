@@ -1,13 +1,13 @@
 <?php 
 if(isset($_GET['page'])){
-    if(($_GET['page'] > 1) || ($_GET['page'] == 0))
+    if($_GET['page'] == 0)
     {
         $data = '{"status":0,"msg":"该页无数据！","count":0,"data":null}';
         header('Content-Type:application/json;charset=utf-8');
         $arr = json_decode($data,true);
         exit(json_encode($arr));
     }
-    else
+    else if($_GET['page'] > 0)
     {
         if(isset($_GET['meterID'])||isset($_GET['ICCID']))
         {
@@ -65,12 +65,12 @@ if(isset($_GET['page'])){
             $arr = json_decode($data,true);
             exit(json_encode($arr));
         }
-        else
+        else if($_GET['page'] == 1)
         {
             $data = '{
                 "status":0,
                 "msg":"成功",
-                "count":2,
+                "count":2000,
                 "data":[
                     {
                         "meterID":"12345678",
@@ -98,6 +98,59 @@ if(isset($_GET['page'])){
                         "testResult":"正在测试",
                         "testTime":"2023-04-10 08:30:00"
                     }
+                ]
+            }';
+            header('Content-Type:application/json;charset=utf-8');
+            $arr = json_decode($data,true);
+            exit(json_encode($arr));
+        }
+        else if($_GET['page'] == 2)
+        {
+            $data = '{
+                "status":0,
+                "msg":"成功",
+                "count":2000,
+                "data":[
+                    {
+                        "meterID":"12345678",
+                        "IMEI":"8645078915875689",
+                        "ICCID":"89861121230425878547",
+                        "VDD":3.68,
+                        "SS":28,
+                        "totalFlow":0.02,
+                        "testFlow":0.002,
+                        "reportTime":"2023-04-10 13:20:35",
+                        "version":"1.02",
+                        "testResult":"正在测试",
+                        "testTime":"2023-04-10 08:30:00"
+                    },
+                    {
+                        "meterID":"12345679",
+                        "IMEI":"8645078915875621",
+                        "ICCID":"89861121230425878533",
+                        "VDD":3.65,
+                        "SS":21,
+                        "totalFlow":0.04,
+                        "testFlow":0.001,
+                        "reportTime":"2023-04-10 13:21:35",
+                        "version":"1.02",
+                        "testResult":"正在测试",
+                        "testTime":"2023-04-10 08:30:00"
+                    },
+                    {
+                        "meterID":"12345679",
+                        "IMEI":"8645078915875621",
+                        "ICCID":"89861121230425878533",
+                        "VDD":3.65,
+                        "SS":21,
+                        "totalFlow":0.04,
+                        "testFlow":0.001,
+                        "reportTime":"2023-04-10 13:21:35",
+                        "version":"1.02",
+                        "testResult":"正在测试",
+                        "testTime":"2023-04-10 08:30:00"
+                    }
+
                 ]
             }';
             header('Content-Type:application/json;charset=utf-8');
