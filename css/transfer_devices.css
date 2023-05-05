@@ -26,11 +26,13 @@
     border-radius: 2px;
 }
 
-.warnBorder {
-    border: 1px solid rgb(184, 58, 27);
-}
-
 .layui-icon-close:hover {
     color: rgb(255, 0, 0);
     cursor: pointer;
+}
+
+.layui-btn-warm {
+    color: #fff;
+   background-color: #f19d26;
+   border-color: #f19d26;
 }

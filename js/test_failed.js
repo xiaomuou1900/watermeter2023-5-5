@@ -6,24 +6,22 @@ $.ajax({
   }
   , success: function (res) {
     var testSumData = {
-      testingNum: res.testingNum,
-      testPaseNum: res.testPaseNum,
       testFailNum: res.testFailNum,
-      totalTestNum: res.totalTestNum,
-      startTime: res.startTime
     };
     var htmlTestSum = template('tpl-testSum', testSumData);
     $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
   }
 })
 
-layui.use(['laypage', 'layer', 'table', 'form'], function () {
+var table_data = []
+layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
   var table = layui.table
     , laypage = layui.laypage
     , layer = layui.layer
-    , form = layui.form;
-
-  table.render({       //渲染正在测试界面表格
+    , form = layui.form
+    , laydate = layui.laydate;
+  var table_data = []
+  table.render({                         //...渲染正在测试界面表格...//
     elem: '#testDevice'
     , url: 'api/transfer_devices.php'
     , page: {
@@ -82,10 +80,11 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
 
       //得到数据总量
       // console.log(count);
+      table_data = res.data
 
     }
   });
-  table.on('tool(test)', function (obj) {                                   //...单元格工具事件（单击测试详情触发）
+  table.on('tool(test)', function (obj) {                                   //...单元格工具事件（单击测试详情触发）...//
     var data = obj.data;
 
     var specificsDIVData = {
@@ -132,13 +131,23 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     }
   });
 
+
+  laydate.render({                                        //...渲染查找日期范围...//
+    elem: '#ID-laydate-range',
+    range: ['#ID-laydate-start-date', '#ID-laydate-end-date'],
+    id: 'ID-laydate-range',
+    done: function (value, date, endDate) {
+    }
+  })
+
   var temp_meterID = 0
     , temp_IMEI = 0
     , temp_ICCID = 0
     , temp_data = {}
-  $('#deviceSerchBt').on('click', function () {                                                      //..查询按钮
+    , temp_startDate = 0
+  $('#deviceSerchBt').on('click', function () {                                           //...查询按钮...//
     var data = form.val('deviceSerchFilter')
-    if (data.meterIDserchInpt === "" && data.IMEIserchInpt === "" && data.ICCIDserchInpt === "") {
+    if (data.meterIDserchInpt === "" && data.IMEIserchInpt === "" && data.ICCIDserchInpt === "" && (data.startDate === "" || data.endDate === "")) {
       layer.alert('请填写查询信息！')
       return
     }
@@ -146,7 +155,9 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       form.val('deviceSerchFilter', {
         "meterIDserchInpt": "",
         "IMEIserchInpt": "",
-        "ICCIDserchInpt": ""
+        "ICCIDserchInpt": "",
+        "startDate": "",
+        "endDate": ""
       })
       if (data.meterIDserchInpt != "") {                                //...添加查找提示
         temp_data.meterID = data.meterIDserchInpt
@@ -187,12 +198,28 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           $('#ICCIDlabel').append(html)
         }
       }
+      if (data.startDate != "") {
+        temp_data.startDate = data.startDate
+        temp_data.endDate = data.endDate
+        if (temp_startDate == 0) {
+          temp_startDate = 1
+          var html = '<label id="startDateLabel" class="label label-success" style="display: inline-block; background-color: var(--green-color); color:white; height: 22px; padding-top: 5px; margin-right:10px">日期范围：' + data.startDate + '—' + data.endDate + '<i class="layui-icon layui-icon-close" id="startDateId" style="font-size: 12px; padding-left:10px"></i></label>'
+          $('#selectTips').append(html)
+        }
+        else {
+          var html = '日期范围: ' + data.startDate + '—' + data.endDate + '<i class="layui-icon layui-icon-close" id="ICCIDid" style="font-size: 12px; padding-left:10px"></i>'
+          $('#ICCIDlabel').empty()
+          $('#ICCIDlabel').append(html)
+        }
+      }
     }
     table.reloadData('testDevice', {                                   //只重载表格数据
       where: {
         meterID: temp_data.meterID
         , IMEI: temp_data.IMEI
         , ICCID: temp_data.ICCID
+        , startDate: temp_data.startDate
+        , endDate: temp_data.endDate
       }
     });
 
@@ -206,6 +233,8 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
+          , startDate: temp_data.startDate
+          , endDate: temp_data.endDate
         }
       });
     })
@@ -219,6 +248,8 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
+          , startDate: temp_data.startDate
+          , endDate: temp_data.endDate
         }
       });
     })
@@ -232,12 +263,30 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
+          , startDate: temp_data.startDate
+          , endDate: temp_data.endDate
+        }
+      });
+    })
+    $("#startDateId").off('click')
+    $("#startDateId").on('click', function (e) {                    //...关闭查找提示
+      temp_startDate = 0
+      $("#startDateLabel").remove()
+      temp_data.startDate = ""
+      temp_data.endDate = ""
+      table.reloadData('testDevice', {
+        where: {
+          meterID: temp_data.meterID
+          , IMEI: temp_data.IMEI
+          , ICCID: temp_data.ICCID
+          , startDate: temp_data.startDate
+          , endDate: temp_data.endDate
         }
       });
     })
   })
 
-  $("#exportBt").click(function () {                                                                //...导出按钮
+  $("#exportBt").click(function () {                                       //...导出按钮...//
     var ins1 = table.render({
       elem: '#data_export'
       , url: 'api/transfer_devices.php'
@@ -275,4 +324,107 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       }
     })
   })
+
+  $('#retestAllBt').on('click', function () {                  //...全部重测 按钮...//
+    $.ajax({
+      type: 'post'
+      , url: 'api/transfer_devices.php'
+      , data: {
+        "man": 'LIANLIFT'
+        , "initial_surplus": 20
+        , 'scale': 0
+        , "import": true
+        , "retestAll": "全部重测"
+        , success: function (res) {
+          layer.alert('全部重测成功！')
+          $.ajax({
+            type: 'get'
+            , url: 'api/transfer_devices.php'
+            , data: {
+              page: 1
+            }
+            , success: function (res) {
+              var testSumData = {
+                testFailNum: res.testFailNum,
+              };
+              var htmlTestSum = template('tpl-testSum', testSumData);
+              $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+            }
+          })
+        }
+      }
+    })
+  })
+
+  var inbound_meterID = []
+  table.on('checkbox(test)', function (obj) {                          //...复选框发生改变...//
+    if (obj.type === "one") {
+      if (obj.checked == true) {
+        inbound_meterID.push(obj.data.meterID)
+      }
+      else {
+        index_temp = inbound_meterID.indexOf(obj.data.meterID)
+        if (index_temp != -1) {
+          inbound_meterID.splice(index_temp, 1)
+        }
+      }
+    }
+    if (obj.type === "all") {
+      if (obj.checked == true) {
+        var all_data = table_data    //获得表格所有数据
+        inbound_meterID = []
+        for (var i = 0; i < all_data.length; i++) {
+          inbound_meterID[i] = all_data[i].meterID
+        }
+      }
+      else {
+        inbound_meterID = []
+      }
+    }
+    if (inbound_meterID.length > 0) {
+      $('#selectingNumSpan').html(inbound_meterID.length)
+      deviceControlDIV.style = "background-color: #fff;  border-top: 3px solid orange;"
+
+      $('#retestBt').off('click')
+      $('#retestBt').on('click', function () {                  //...重新测试 按钮...//
+        $.ajax({
+          type: 'post'
+          , url: 'api/transfer_devices.php'
+          , data: {
+            "man": 'LIANLIFT'
+            , "initial_surplus": 20
+            , 'scale': 0
+            , "import": true
+            , "retest": "重新测试"
+            , inbound_meterID
+            , success: function (res) {
+              layer.alert('重新测试成功！')
+              $.ajax({
+                type: 'get'
+                , url: 'api/transfer_devices.php'
+                , data: {
+                  page: 1
+                }
+                , success: function (res) {
+                  var testSumData = {
+                    testFailNum: res.testFailNum,
+                  };
+                  var htmlTestSum = template('tpl-testSum', testSumData);
+                  $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+                }
+              })
+            }
+          }
+        })
+      })
+    }
+    else {
+      deviceControlDIV.style = "display: none; background-color: #fff;  border-top: 3px solid orange;"
+    }
+    // html = "当前录入"+ inbound_meterID.length +"个设备"
+    // $("#select_num").empty()
+    // $("#select_num").append(html)
+  })
+
 })
+

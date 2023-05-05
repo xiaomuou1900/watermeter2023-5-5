@@ -2,6 +2,8 @@
     height: 34px;
 }
 
-.warnBorder {
-    border: 1px solid rgb(184, 58, 27);
-}
+.btn-warning {
+    color: #fff;
+    background-color: #f19d26;
+    border-color: #f19d26;
+ }

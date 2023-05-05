@@ -17,6 +17,9 @@ if(isset($_GET['page'])){
                     "status":0,
                     "msg":"成功",
                     "count":1,
+                    "deviceSum":10,
+                    "transferSum":5,
+                    "filterNum":4,
                     "data":[
                         {
                             "meterID":"12345678",
@@ -37,6 +40,9 @@ if(isset($_GET['page'])){
                     "status":0,
                     "msg":"成功",
                     "count":1,
+                    "deviceSum":10,
+                    "transferSum":5,
+                    "filterNum":4,
                     "data":[
                         {
                             "meterID":"12345679",
@@ -57,6 +63,9 @@ if(isset($_GET['page'])){
                     "status":0,
                     "msg":"成功",
                     "count":1,
+                    "deviceSum":10,
+                    "transferSum":5,
+                    "filterNum":4,
                     "data":[
                         {
                             "meterID":"12345679",
@@ -77,6 +86,9 @@ if(isset($_GET['page'])){
                     "status":0,
                     "msg":"成功",
                     "count":1,
+                    "deviceSum":10,
+                    "transferSum":5,
+                    "filterNum":4,
                     "data":[
                         {
                             "meterID":"12345679",
@@ -97,6 +109,9 @@ if(isset($_GET['page'])){
                     "status":0,
                     "msg":"成功",
                     "count":1,
+                    "deviceSum":10,
+                    "transferSum":5,
+                    "filterNum":4,
                     "data":[
                         {
                             "meterID":"12345679",
@@ -117,6 +132,9 @@ if(isset($_GET['page'])){
                     "status":0,
                     "msg":"成功",
                     "count":1,
+                    "deviceSum":10,
+                    "transferSum":5,
+                    "filterNum":4,
                     "data":[
                         {
                             "meterID":"12345679",
@@ -137,6 +155,9 @@ if(isset($_GET['page'])){
                     "status":0,
                     "msg":"成功",
                     "count":1,
+                    "deviceSum":10,
+                    "transferSum":5,
+                    "filterNum":4,
                     "data":[
                         {
                             "meterID":"12345679",
@@ -167,6 +188,9 @@ if(isset($_GET['page'])){
                 "count":1000,
                 "grantee":["厂商1","厂商2","厂商3","厂商4","厂商5"],
                 "transferor":["连云港连利福思特表业","连云港连利"],
+                "deviceSum":10,
+                "transferSum":5,
+                "filterNum":4,
                 "data":[
                     { 
                         "meterID":"12345679",
@@ -202,6 +226,9 @@ if(isset($_GET['page'])){
                 "count":1000,
                 "grantee":["厂商1","厂商2","厂商3","厂商4","厂商5"],
                 "transferor":["连云港连利福思特表业","连云港连利"],
+                "deviceSum":10,
+                "transferSum":5,
+                "filterNum":4,
                 "data":[
                     { 
                         "meterID":"12345679",

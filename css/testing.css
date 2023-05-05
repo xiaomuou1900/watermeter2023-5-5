@@ -18,3 +18,14 @@
  #deviceSerchBt {
     margin-bottom: 2px;
  }
+
+ .layui-icon-close:hover {
+   color: rgb(255, 0, 0);
+   cursor: pointer;
+}
+
+.btn-warning {
+   color: #fff;
+   background-color: #f19d26;
+   border-color: #f19d26;
+}

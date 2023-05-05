@@ -17,10 +17,10 @@ body {
     font-size: 25px;
     padding-bottom: 10px;
     background-color: var(--grey-color);
-    border-bottom: 3px solid var(--blue-color);
 }
 
 .content {
+    border-top: 3px solid var(--blue-color);
     background-color: white;
 }
 
@@ -28,4 +28,8 @@ body {
     content: "\e600";
     color: green;
     font-size: 14px;
-  }
+}
+
+.warnBorder {
+    border: 2px solid rgb(253, 167, 7);
+}
