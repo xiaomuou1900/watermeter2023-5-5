@@ -8,7 +8,7 @@ $.ajax({
     var deviceSumData = {
       deviceSum: res.deviceSum
       , transferSum: res.transferSum
-      , filterNum: res.filterNum
+      , serchNum: res.serchNum
     }
     var htmlTestSum = template('tpl-deviceSum', deviceSumData);
     $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
@@ -226,7 +226,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           var deviceSumData = {
             deviceSum: res.deviceSum
             , transferSum: res.transferSum
-            , filterNum: res.filterNum
+            , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
           $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
@@ -258,7 +258,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           var deviceSumData = {
             deviceSum: res.deviceSum
             , transferSum: res.transferSum
-            , filterNum: res.filterNum
+            , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
           $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
@@ -290,7 +290,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           var deviceSumData = {
             deviceSum: res.deviceSum
             , transferSum: res.transferSum
-            , filterNum: res.filterNum
+            , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
           $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
@@ -322,7 +322,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           var deviceSumData = {
             deviceSum: res.deviceSum
             , transferSum: res.transferSum
-            , filterNum: res.filterNum
+            , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
           $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
@@ -354,7 +354,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           var deviceSumData = {
             deviceSum: res.deviceSum
             , transferSum: res.transferSum
-            , filterNum: res.filterNum
+            , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
           $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
@@ -386,7 +386,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           var deviceSumData = {
             deviceSum: res.deviceSum
             , transferSum: res.transferSum
-            , filterNum: res.filterNum
+            , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
           $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
@@ -414,7 +414,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         var deviceSumData = {
           deviceSum: res.deviceSum
           , transferSum: res.transferSum
-          , filterNum: res.filterNum
+          , serchNum: res.serchNum
         }
         var htmlTestSum = template('tpl-deviceSum', deviceSumData);
         $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
@@ -498,7 +498,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
             var deviceSumData = {
               deviceSum: res.deviceSum
               , transferSum: res.transferSum
-              , filterNum: res.filterNum
+              , serchNum: res.serchNum
             }
             var htmlTestSum = template('tpl-deviceSum', deviceSumData);
             $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//

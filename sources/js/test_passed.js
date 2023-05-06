@@ -7,7 +7,7 @@ $.ajax({
   , success: function (res) {
     var testSumData = {
       testPassedNum: res.testPassedNum,
-      testPaseTodayNum: res.testPaseTodayNum,
+      serchNum: res.serchNum,
     };
     var htmlTestSum = template('tpl-testSum', testSumData);
     $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
@@ -223,6 +223,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
         , endDate: temp_data.endDate
       }
     });
+    $.ajax({
+      type: 'get'
+      , url: '../../api/transfer_devices.php'
+      , data: {
+        page: 1
+      }
+      , success: function (res) {
+        var testSumData = {
+          testPassedNum: res.testPassedNum,
+          serchNum: res.serchNum,
+        };
+        var htmlTestSum = template('tpl-testSum', testSumData);
+        $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+      }
+    })
 
     $("#meterIDid").off('click')     //绑定之前先解除之前绑定的事件，否则每次进来都会绑定一次事件
     $("#meterIDid").on('click', function (e) {                  //...关闭查找提示
@@ -238,6 +253,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
           , endDate: temp_data.endDate
         }
       });
+      $.ajax({
+        type: 'get'
+        , url: '../../api/transfer_devices.php'
+        , data: {
+          page: 1
+        }
+        , success: function (res) {
+          var testSumData = {
+            testPassedNum: res.testPassedNum,
+            serchNum: res.serchNum,
+          };
+          var htmlTestSum = template('tpl-testSum', testSumData);
+          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+        }
+      })
     })
     $("#IMEIid").off('click')
     $("#IMEIid").on('click', function (e) {                     //...关闭查找提示
@@ -253,6 +283,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
           , endDate: temp_data.endDate
         }
       });
+      $.ajax({
+        type: 'get'
+        , url: '../../api/transfer_devices.php'
+        , data: {
+          page: 1
+        }
+        , success: function (res) {
+          var testSumData = {
+            testPassedNum: res.testPassedNum,
+            serchNum: res.serchNum,
+          };
+          var htmlTestSum = template('tpl-testSum', testSumData);
+          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+        }
+      })
     })
     $("#ICCIDid").off('click')
     $("#ICCIDid").on('click', function (e) {                    //...关闭查找提示
@@ -268,6 +313,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
           , endDate: temp_data.endDate
         }
       });
+      $.ajax({
+        type: 'get'
+        , url: '../../api/transfer_devices.php'
+        , data: {
+          page: 1
+        }
+        , success: function (res) {
+          var testSumData = {
+            testPassedNum: res.testPassedNum,
+            serchNum: res.serchNum,
+          };
+          var htmlTestSum = template('tpl-testSum', testSumData);
+          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+        }
+      })
     })
     $("#startDateId").off('click')
     $("#startDateId").on('click', function (e) {                    //...关闭查找提示
@@ -284,6 +344,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
           , endDate: temp_data.endDate
         }
       });
+      $.ajax({
+        type: 'get'
+        , url: '../../api/transfer_devices.php'
+        , data: {
+          page: 1
+        }
+        , success: function (res) {
+          var testSumData = {
+            testPassedNum: res.testPassedNum,
+            serchNum: res.serchNum,
+          };
+          var htmlTestSum = template('tpl-testSum', testSumData);
+          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+        }
+      })
     })
   })
 
@@ -381,11 +456,8 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
               }
               , success: function (res) {
                 var testSumData = {
-                  testingNum: res.testingNum,
-                  testPaseNum: res.testPaseNum,
-                  testFailNum: res.testFailNum,
-                  totalTestNum: res.totalTestNum,
-                  startTime: res.startTime
+                  testPassedNum: res.testPassedNum,
+                  serchNum: res.serchNum,
                 };
                 var htmlTestSum = template('tpl-testSum', testSumData);
                 $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
@@ -417,11 +489,8 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
             }
             , success: function (res) {
               var testSumData = {
-                testingNum: res.testingNum,
-                testPaseNum: res.testPaseNum,
-                testFailNum: res.testFailNum,
-                totalTestNum: res.totalTestNum,
-                startTime: res.startTime
+                testPassedNum: res.testPassedNum,
+                serchNum: res.serchNum,
               };
               var htmlTestSum = template('tpl-testSum', testSumData);
               $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
@@ -518,11 +587,8 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
                   }
                   , success: function (res) {
                     var testSumData = {
-                      testingNum: res.testingNum,
-                      testPaseNum: res.testPaseNum,
-                      testFailNum: res.testFailNum,
-                      totalTestNum: res.totalTestNum,
-                      startTime: res.startTime
+                      testPassedNum: res.testPassedNum,
+                      serchNum: res.serchNum,
                     };
                     var htmlTestSum = template('tpl-testSum', testSumData);
                     $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
@@ -556,11 +622,8 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
                 }
                 , success: function (res) {
                   var testSumData = {
-                    testingNum: res.testingNum,
-                    testPaseNum: res.testPaseNum,
-                    testFailNum: res.testFailNum,
-                    totalTestNum: res.totalTestNum,
-                    startTime: res.startTime
+                    testPassedNum: res.testPassedNum,
+                    serchNum: res.serchNum,
                   };
                   var htmlTestSum = template('tpl-testSum', testSumData);
                   $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//

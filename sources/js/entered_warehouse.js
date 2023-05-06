@@ -6,7 +6,8 @@ $.ajax({
   }
   , success: function (res) {
     var testSumData = {
-      testFailNum: res.testFailNum,
+      enteredWarehouseNum: res.enteredWarehouseNum,
+      serchNum: res.serchNum,
     };
     var htmlTestSum = template('tpl-testSum', testSumData);
     $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
@@ -59,15 +60,18 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
       , { field: 'meterID', title: '设备编号', minWidth: 120, sort: true } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
       , { field: 'IMEI', title: 'IMEI', minWidth: 160, sort: true }
       , { field: 'ICCID', title: 'ICCID', minWidth: 200, sort: true }
-      , { field: 'VDD', title: '电池电压', minWidth: 105, sort: true }
-      , { field: 'SS', title: '信号强度', minWidth: 105, sort: true }
+      , { field: 'deviceStatus', title: '设备状态', minWidth: 105 }
+      , { field: 'DN', title: '基表口径', minWidth: 105, sort: true }
       , { field: 'totalFlow', title: '累计用量', minWidth: 105, sort: true } //单元格内容水平居中
-      , { field: 'testFlow', title: '当前测试用量', minWidth: 130, sort: true } //单元格内容水平居右
-      , { field: 'reportTime', title: '最近上报时间', minWidth: 160, sort: true }
-      , { field: 'V', title: '版本号', minWidth: 100, sort: true }
-      , { field: 'testResult', title: '测试结果', minWidth: 105, sort: true }
-      , { field: 'testTime', title: '测试时间', minWidth: 160, sort: true }
-      , { field: 'operate', title: '操作', width: 125, minWidth: 125, minWidth: 100, templet: '#tpl-specificsBt' }
+      , { field: 'reportTime', title: '上报日期', minWidth: 105, sort: true }
+      , { field: 'transferor', title: '所属厂商', Width: 100}
+      , { field: 'meno', title: '备注', minWidth: 105}
+      , { field: 'V', title: '版本号', minWidth: 105, sort: true }
+      , { field: 'pcbModel', title: '型号', minWidth: 105, sort: true }
+      , { title: '运行状态', minWidth: 105, templet:'#tpl-workStatus'}
+      , { field: 'enterTimer', title: '入库时间', minWidth: 105, sort: true }
+      , { field: 'initRecharge', title: '预存量', minWidth: 105, sort: true }
+      , { field: 'operate', title: '操作',minWidth: 100, templet: '#tpl-specificsBt' }
     ]]
     , even: true
     , done: function (res, curr, count) {                                 //表格渲染完后触发该函数
@@ -86,48 +90,13 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
   });
   table.on('tool(test)', function (obj) {                                   //...单元格工具事件（单击测试详情触发）...//
     var data = obj.data;
-
-    var specificsDIVData = {
-      meterID: '00000404'
-    };
-    var htmlSpecificsDIV = template('tpl-specificsDIV', specificsDIVData);   //...获得测试详情界面template的HTML
-
     if (obj.event == 'specifics') {
-      layer.open({                                                          //打开弹出层
-        title: '测试详情',
-        type: 1,
-        area: ['60%', '60%'],
-        content: htmlSpecificsDIV                                           //...将模板赋给内容
-      })
-      table.render({                                                        //...渲染测试详情表格
-        elem: '#specificsTable'
-        // ,url:'api/...'
-        // ,parseData: function(res){ //res 即为原始返回的数据
-        //   return {
-        //     "code": res.status, //解析接口状态
-        //     "msg": res.message, //解析提示文本
-        //     "count": res.total, //解析数据长度
-        //     "data": res.data //解析数据列表
-        //   };
-        // }
-
-        , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-        , cols: [[
-          { field: 'reportedItiems', title: '上报项目', minWidth: 100 }
-          , { field: 'parameterValue', title: '参数值', minWidth: 120 } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-          , { field: 'specificsTime', title: '日期', minWidth: 80 }
-        ]]
-        , data: [{
-          "reportedItiems": "阀门状态"
-          , "parameterValue": "阀门开启"
-          , "specificsTime": "2023-10-14"
-        }, {
-          "reportedItiems": "10001"
-          , "parameterValue": "杜甫。。。。。。。。。。。。。"
-          , "specificsTime": "2023-10-14"
-        }]
-        , even: true
-      });
+      layer.open({
+        type: 2, 
+        area:['100%','100%'],
+        title:['设备详情', 'font-size:25px; background-color: var(--grey-color); padding-left: 10px'],
+        content: '../../veiw/testing/deviceSpecifics.html' // URL
+      }); 
     }
   });
 
@@ -222,6 +191,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
         , endDate: temp_data.endDate
       }
     });
+    $.ajax({
+      type: 'get'
+      , url: '../../api/transfer_devices.php'
+      , data: {
+        page: 1
+      }
+      , success: function (res) {
+        var testSumData = {
+          enteredWarehouseNum: res.enteredWarehouseNum,
+          serchNum: res.serchNum,
+        };
+        var htmlTestSum = template('tpl-testSum', testSumData);
+        $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+      }
+    })
 
     $("#meterIDid").off('click')     //绑定之前先解除之前绑定的事件，否则每次进来都会绑定一次事件
     $("#meterIDid").on('click', function (e) {                  //...关闭查找提示
@@ -237,6 +221,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
           , endDate: temp_data.endDate
         }
       });
+      $.ajax({
+        type: 'get'
+        , url: '../../api/transfer_devices.php'
+        , data: {
+          page: 1
+        }
+        , success: function (res) {
+          var testSumData = {
+            enteredWarehouseNum: res.enteredWarehouseNum,
+            serchNum: res.serchNum,
+          };
+          var htmlTestSum = template('tpl-testSum', testSumData);
+          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+        }
+      })
     })
     $("#IMEIid").off('click')
     $("#IMEIid").on('click', function (e) {                     //...关闭查找提示
@@ -252,6 +251,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
           , endDate: temp_data.endDate
         }
       });
+      $.ajax({
+        type: 'get'
+        , url: '../../api/transfer_devices.php'
+        , data: {
+          page: 1
+        }
+        , success: function (res) {
+          var testSumData = {
+            enteredWarehouseNum: res.enteredWarehouseNum,
+            serchNum: res.serchNum,
+          };
+          var htmlTestSum = template('tpl-testSum', testSumData);
+          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+        }
+      })
     })
     $("#ICCIDid").off('click')
     $("#ICCIDid").on('click', function (e) {                    //...关闭查找提示
@@ -267,6 +281,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
           , endDate: temp_data.endDate
         }
       });
+      $.ajax({
+        type: 'get'
+        , url: '../../api/transfer_devices.php'
+        , data: {
+          page: 1
+        }
+        , success: function (res) {
+          var testSumData = {
+            enteredWarehouseNum: res.enteredWarehouseNum,
+            serchNum: res.serchNum,
+          };
+          var htmlTestSum = template('tpl-testSum', testSumData);
+          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+        }
+      })
     })
     $("#startDateId").off('click')
     $("#startDateId").on('click', function (e) {                    //...关闭查找提示
@@ -283,6 +312,21 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
           , endDate: temp_data.endDate
         }
       });
+      $.ajax({
+        type: 'get'
+        , url: '../../api/transfer_devices.php'
+        , data: {
+          page: 1
+        }
+        , success: function (res) {
+          var testSumData = {
+            enteredWarehouseNum: res.enteredWarehouseNum,
+            serchNum: res.serchNum,
+          };
+          var htmlTestSum = template('tpl-testSum', testSumData);
+          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+        }
+      })
     })
   })
 
@@ -325,37 +369,6 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
     })
   })
 
-  $('#retestAllBt').on('click', function () {                  //...全部重测 按钮...//
-    $.ajax({
-      type: 'post'
-      , url: '../../api/transfer_devices.php'
-      , data: {
-        "man": 'LIANLIFT'
-        , "initial_surplus": 20
-        , 'scale': 0
-        , "import": true
-        , "retestAll": "全部重测"
-        , success: function (res) {
-          layer.alert('全部重测成功！')
-          $.ajax({
-            type: 'get'
-            , url: '../../api/transfer_devices.php'
-            , data: {
-              page: 1
-            }
-            , success: function (res) {
-              var testSumData = {
-                testFailNum: res.testFailNum,
-              };
-              var htmlTestSum = template('tpl-testSum', testSumData);
-              $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
-            }
-          })
-        }
-      }
-    })
-  })
-
   var inbound_meterID = []
   table.on('checkbox(test)', function (obj) {                          //...复选框发生改变...//
     if (obj.type === "one") {
@@ -385,8 +398,8 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
       $('#selectingNumSpan').html(inbound_meterID.length)
       deviceControlDIV.style = "background-color: #fff;  border-top: 3px solid orange;"
 
-      $('#retestBt').off('click')
-      $('#retestBt').on('click', function () {                  //...重新测试 按钮...//
+      $('#deletDeviceBt').off('click')
+      $('#deletDeviceBt').on('click', function () {                  //...删除设备 按钮...//
         $.ajax({
           type: 'post'
           , url: '../../api/transfer_devices.php'
@@ -395,10 +408,10 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
             , "initial_surplus": 20
             , 'scale': 0
             , "import": true
-            , "retest": "重新测试"
+            , "deletDevice": "删除设备"
             , inbound_meterID
             , success: function (res) {
-              layer.alert('重新测试成功！')
+              layer.alert('删除设备成功！')
               $.ajax({
                 type: 'get'
                 , url: '../../api/transfer_devices.php'
@@ -407,7 +420,8 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
                 }
                 , success: function (res) {
                   var testSumData = {
-                    testFailNum: res.testFailNum,
+                    enteredWarehouseNum: res.enteredWarehouseNum,
+                    serchNum: res.serchNum,
                   };
                   var htmlTestSum = template('tpl-testSum', testSumData);
                   $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//

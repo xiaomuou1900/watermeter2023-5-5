@@ -1,3 +1,5 @@
+var testSumData = {}
+  , startTime = 0
 $.ajax({
   type: 'get'
   , url: '../../api/transfer_devices.php'
@@ -5,7 +7,7 @@ $.ajax({
     page: 1
   }
   , success: function (res) {
-    var testSumData = {
+    testSumData = {
       testingNum: res.testingNum,
       testPaseNum: res.testPaseNum,
       testFailNum: res.testFailNum,
@@ -17,6 +19,7 @@ $.ajax({
   }
 })
 
+var table_data = []
 layui.use(['laypage', 'layer', 'table', 'form'], function () {
   var table = layui.table
     , laypage = layui.laypage
@@ -82,9 +85,36 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
 
       //得到数据总量
       // console.log(count);
-
+      table_data = res.data
     }
   });
+  window.setInterval(function () {                 //...定时器...//
+    $.ajax({
+      type: 'get'
+      , url: '../../api/transfer_devices.php'
+      , data: {
+        page: 1
+        ,testSumData
+      }
+      , success: function (res) {
+        if(res.data != ''){
+          var testSumData = {
+            testingNum: res.testingNum,
+            testPaseNum: res.testPaseNum,
+            testFailNum: res.testFailNum,
+            totalTestNum: res.totalTestNum,
+            startTime: res.startTime
+          };
+          var htmlTestSum = template('tpl-testSum', testSumData);
+          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+          table.reloadData('testDevice', {                                   //只重载表格数据
+            where: {
+            }
+          });
+        }
+      }
+    })
+  }, 2000)
   table.on('tool(test)', function (obj) {                                   //...单元格工具事件（单击测试详情触发）
     var data = obj.data;
 
@@ -269,10 +299,168 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         , { field: 'operate', title: '操作', width: 125, minWidth: 125, minWidth: 100, templet: '#tpl-specificsBt' }
       ]]
       , even: true
-      , done: function (res, curr, count) {
+      , done: function (rse, curr, count) {
         exportData = res.data;
         table.exportFile(ins1.config.id, exportData, 'xls');
       }
     })
+  })
+
+  $('#testBt').on('click', function () {                  //...开始/停止测试 按钮...//
+    $.ajax({
+      type: 'post'
+      , url: '../../api/transfer_devices.php'
+      , data: {
+        "man": 'LIANLIFT'
+        , "initial_surplus": 20
+        , 'scale': 0
+        , "import": true
+        , "TestStatus": $('#testBt').html()
+      }
+      , success: function (res) {
+        if ($('#testBt').html() == "开始测试") {
+          $('#testBt').html('结束测试')
+          layer.alert('开始测试成功！')
+        }
+        else if ($('#testBt').html() == "结束测试") {
+          $('#testBt').html('开始测试')
+          layer.alert('结束测试成功！')
+        }
+        table.reloadData('testDevice', {                                   //只重载表格数据
+          where: {
+
+          }
+        });
+        $.ajax({
+          type: 'get'
+          , url: '../../api/transfer_devices.php'
+          , data: {
+            page: 1
+          }
+          , success: function (res) {
+            var testSumData = {
+              testingNum: res.testingNum,
+              testPaseNum: res.testPaseNum,
+              testFailNum: res.testFailNum,
+              totalTestNum: res.totalTestNum,
+              startTime: res.startTime
+            };
+            var htmlTestSum = template('tpl-testSum', testSumData);
+            $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+          }
+        })
+      }
+    })
+  })
+
+  var inbound_meterID = []
+  table.on('checkbox(test)', function (obj) {                          //...复选框发生改变...//
+    if (obj.type === "one") {
+      if (obj.checked == true) {
+        inbound_meterID.push(obj.data.meterID)
+      }
+      else {
+        index_temp = inbound_meterID.indexOf(obj.data.meterID)
+        if (index_temp != -1) {
+          inbound_meterID.splice(index_temp, 1)
+        }
+      }
+    }
+    if (obj.type === "all") {
+      if (obj.checked == true) {
+        var all_data = table_data    //获得表格所有数据
+        inbound_meterID = []
+        for (var i = 0; i < all_data.length; i++) {
+          inbound_meterID[i] = all_data[i].meterID
+        }
+      }
+      else {
+        inbound_meterID = []
+      }
+    }
+    if (inbound_meterID.length > 0) {
+      $('#selectingNumSpan').html(inbound_meterID.length)
+      deviceControlDIV.style = "background-color: #fff;  border-top: 3px solid orange;"
+
+      $('#retestBt').off('click')
+      $('#retestBt').on('click', function () {                  //...重新测试 按钮...//
+        $.ajax({
+          type: 'post'
+          , url: '../../api/transfer_devices.php'
+          , data: {
+            "man": 'LIANLIFT'
+            , "initial_surplus": 20
+            , 'scale': 0
+            , "import": true
+            , "retest": "重新测试"
+            , inbound_meterID
+            , success: function (res) {
+              layer.alert('重新测试成功！')
+              $.ajax({
+                type: 'get'
+                , url: '../../api/transfer_devices.php'
+                , data: {
+                  page: 1
+                }
+                , success: function (res) {
+                  var testSumData = {
+                    testingNum: res.testingNum,
+                    testPaseNum: res.testPaseNum,
+                    testFailNum: res.testFailNum,
+                    totalTestNum: res.totalTestNum,
+                    startTime: res.startTime
+                  };
+                  var htmlTestSum = template('tpl-testSum', testSumData);
+                  $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+                }
+              })
+            }
+          }
+        })
+      })
+
+      $('#forceFailBt').off('click')
+      $('#forceFailBt').on('click', function () {                  //...强制失败 按钮...//
+        $.ajax({
+          type: 'post'
+          , url: '../../api/transfer_devices.php'
+          , data: {
+            "man": 'LIANLIFT'
+            , "initial_surplus": 20
+            , 'scale': 0
+            , "import": true
+            , "forceFail": "强制失败"
+            , inbound_meterID
+            , success: function (res) {
+              layer.alert('强制失败成功！')
+              $.ajax({
+                type: 'get'
+                , url: '../../api/transfer_devices.php'
+                , data: {
+                  page: 1
+                }
+                , success: function (res) {
+                  var testSumData = {
+                    testingNum: res.testingNum,
+                    testPaseNum: res.testPaseNum,
+                    testFailNum: res.testFailNum,
+                    totalTestNum: res.totalTestNum,
+                    startTime: res.startTime
+                  };
+                  var htmlTestSum = template('tpl-testSum', testSumData);
+                  $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+                }
+              })
+            }
+          }
+        })
+      })
+    }
+    else {
+      deviceControlDIV.style = "display: none; background-color: #fff;  border-top: 3px solid orange;"
+    }
+    // html = "当前录入"+ inbound_meterID.length +"个设备"
+    // $("#select_num").empty()
+    // $("#select_num").append(html)
   })
 })

@@ -15,6 +15,14 @@
     <!-- testing主界面 -->
     <div class="pannel">   
         <header class="title">当前测试批次</header>
+        <div id="deviceControlDIV" style="display: none; background-color: #fff;  border-top: 3px solid orange;">
+            <div style="font-size: 20px; padding: 10px"><i class="iconfont icon-spanner-fill" style="font-size: 20px; padding-right: 10px;"></i>设备控制</div>
+            <div style="padding-left: 10px; padding-bottom: 10px; margin-bottom: 20px;">
+                <span>当前选中<span id="selectingNumSpan">1</span>个设备</span> 
+                <a href="#" class="btn btn-warning" role="button" id="retestBt">重新测试</a>           
+                <a href="#" class="btn btn-warning" role="button" id="forceFailBt">强制失败</a>           
+            </div>
+        </div>
         <div class="content ">
            <div class="box-header pannel">
                 <div class="introduction">
@@ -24,7 +32,7 @@
                     <a href="#" class="btn btn-success" id="exportBt" role="button">导出</a>
                     <!--导出表 不展示-->
                     <div style="display: none;"><table id="data_export"></table></div>
-                    <a href="#" class="btn btn-warning" role="button">结束测试</a>
+                    <a href="#" class="btn btn-warning" id="testBt" role="button">开始测试</a>
                 </div>
                 <!-- 查询提示 -->
                 <div id="selectTips" style="padding-top:5px ;"> </div>

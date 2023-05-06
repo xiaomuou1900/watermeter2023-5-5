@@ -191,6 +191,10 @@ if(isset($_GET['page'])){
                 "deviceSum":10,
                 "transferSum":5,
                 "filterNum":4,
+                "testFailNum":2,
+                "enteredWarehouseNum":543,
+                "serchNum":66,
+                "testPassedNum":111,
                 "data":[
                     { 
                         "meterID":"12345679",
@@ -200,7 +204,9 @@ if(isset($_GET['page'])){
                         "transferor":"连云港连利",
                         "valveStatus":"阀门已开",
                         "dn":"DN15",
-                        "meno":"测试"
+                        "meno":"测试",
+                        "VDD":"3.66V",
+                        "CSQ":"18"
                     },
                     {
                         "meterID":"12345678",
@@ -210,7 +216,9 @@ if(isset($_GET['page'])){
                         "transferor":"连云港连利福思特表业",
                         "valveStatus":"",
                         "dn":"DN15",
-                        "meno":"测试"
+                        "meno":"测试",
+                        "VDD":"3.67V",
+                        "CSQ":"20"
                     }
                 ]
             }';
