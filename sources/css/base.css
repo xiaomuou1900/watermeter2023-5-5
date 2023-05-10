@@ -33,3 +33,35 @@ body {
 .warnBorder {
     border: 2px solid rgb(253, 167, 7);
 }
+
+ /* 滚动条样式 */
+ body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #858586;
+    border-radius: 7.5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #727171;
+}
+
+
+ .layui-table-body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.layui-table-body::-webkit-scrollbar-thumb {
+    background: #868585;
+    border-radius: 7.5px;
+}
+
+.layui-table-body::-webkit-scrollbar-thumb:hover {
+    background: #727171;
+}
+/* 滚动条样式 */

@@ -66,10 +66,12 @@ layui.use(['layer', 'table', 'dropdown', 'form'], function () {
         $('#syncReadingBt').on('click', function () {           //...表底数机电同步 按钮
           layer.open({
             type: 1
-            , title: ['请输入底数', 'font-size:20px']
+            , title: ['请输入底数', 'font-size:15px']
             , content: tplHTML
-            , area: ['500px', '250px']
-            , offset: ['50px', '300px']
+            // , area: ['500px', '250px']
+            ,maxWidth:'500'
+            ,maxHeight:'250'
+            ,offset:'auto'
             , btn: ['确定', '取消']
             , yes: function (index, layero) {
               //按钮【确定】的回调
@@ -100,10 +102,9 @@ layui.use(['layer', 'table', 'dropdown', 'form'], function () {
         $('#maintainBt').on('click', function () {           //...进入维修模式 按钮
           layer.open({
             type: 1
-            , title: ['确认', 'font-size:20px']
-            , content: '<div style="margin-top:45px; margin-left:20px; font-size:17px">确认进入维修模式</div>'
-            , area: ['500px', '250px']
-            , offset: ['50px', '300px']
+            , title: ['确认', 'font-size:15px']
+            , content: '<div style="margin-top:20px; margin-left:20px;  margin-right:200px; margin-bottom:20px; font-size:15px">确认进入维修模式</div>'
+            // , area: ['500px', '250px']
             , btn: ['确定', '取消']
             , yes: function (index, layero) {
               //按钮【确定】的回调
@@ -130,10 +131,9 @@ layui.use(['layer', 'table', 'dropdown', 'form'], function () {
         $('#retestBt').on('click', function () {           //...重测 按钮
           layer.open({
             type: 1
-            , title: ['确认', 'font-size:20px']
-            , content: '<div style="margin-top:45px; margin-left:20px; font-size:17px">确认重新测试设备编号：' + meterID + '吗？</div>'
-            , area: ['500px', '250px']
-            , offset: ['50px', '300px']
+            , title: ['确认', 'font-size:15px']
+            , content: '<div style="margin-top:20px; margin-left:20px;  margin-right:100px; margin-bottom:20px; font-size:15px">确认重新测试设备编号：' + meterID + '吗？</div>'
+            // , area: ['500px', '250px']
             , btn: ['确定', '取消']
             , yes: function (index, layero) {
               //按钮【确定】的回调
@@ -158,10 +158,9 @@ layui.use(['layer', 'table', 'dropdown', 'form'], function () {
         $('#forcedFailureBt').on('click', function () {           //...强制失败 按钮
           layer.open({
             type: 1
-            , title: ['确认', 'font-size:20px']
-            , content: '<div style="margin-top:45px; margin-left:20px; font-size:17px">确认强制失败设备编号：' + meterID + '吗？</div>'
-            , area: ['500px', '250px']
-            , offset: ['50px', '300px']
+            , title: ['确认', 'font-size:15px']
+            , content: '<div style="margin-top:20px; margin-left:20px;  margin-right:100px; margin-bottom:20px; font-size:15px">确认强制失败设备编号：' + meterID + '吗？</div>'
+            // , area: ['500px', '250px']
             , btn: ['确定', '取消']
             , yes: function (index, layero) {
               //按钮【确定】的回调
@@ -254,20 +253,11 @@ layui.use(['layer', 'table', 'dropdown', 'form'], function () {
           if (data.selectDNinpt == "") {
             $('#selectDNdiv').addClass('warnBorder')
             $('#selectValveDiv').removeClass('warnBorder')
-            $('#memoDiv').removeClass('warnBorder')
           }
           else if (data.selectValveInpt == "") {
-            $('#selectValveDiv').addClass('warnBorder')
-            $('#memoDiv').removeClass('warnBorder')
             $('#selectDNdiv').removeClass('warnBorder')
-          }
-          else if (data.memoInpt == "") {
-            $('#memoDiv').addClass('warnBorder')
-            $('#selectDNdiv').removeClass('warnBorder')
-            $('#selectValveDiv').removeClass('warnBorder')
           }
           else {
-            $('#memoDiv').removeClass('warnBorder')
             $('#selectDNdiv').removeClass('warnBorder')
             $('#selectValveDiv').removeClass('warnBorder')
             $.ajax({

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>deviceSpecifics</title>
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/css/layui.css">
+    <link rel="stylesheet" href="../../sources/lib/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../sources/lib/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../../sources/css/base.css">
+    <link rel="stylesheet" href="../../pearadmin/component/pear/css/pear.css">
+    <link rel="stylesheet" href="../../pearadmin/admin/css/other/result.css">
+    <link rel="stylesheet" href="../../sources/css/deviceSpecifics.css">
+    <link rel="stylesheet" href="../../sources/css/line_VDD_CSQ.css">
+</head>
+
+<body>
+    <!-- 主界面 -->
+    <div class="pannel" style="padding-top: 0;">
+        <div style="padding-left:10px; background-color:#fff;margin-bottom: -9px; font-size: 20px; line-height: 40px;  border-top: 3px solid var(--blue-color);">
+            <i class="pear-icon pear-icon-file" style="font-size: 20px;"></i> 设备信息
+        </div>
+        <div>
+            <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>
+        </div>
+        <div id="deviceControlDIV" style="background-color: #fff;  border-top: 3px solid orange;">
+            <div style="font-size: 20px; padding: 10px;  border-bottom: 1px solid var(--grey-color);"><i
+                    class="iconfont icon-spanner-fill" style="font-size: 20px; padding-right: 10px;"></i>设备控制</div>
+            <div style="padding-left: 10px; padding-bottom: 10px; margin-bottom: 20px; margin-top: 10px;">
+                <a href="#" class="btn btn-warning" role="button" id="clearAbnormalBt">清除异常</a>
+            </div>
+        </div>
+        <div id="workStatusDIV" style="background-color: #fff;  border-top: 3px solid var(--blue-color);">
+            <div style=" border-bottom: 1px solid var(--grey-color);">
+                <div style="border-bottom: 1px solid var(--grey-color);">
+                    <div style="display: inline-block; font-size: 20px; padding: 10px; "><i
+                            class="iconfont icon-ic_saleperformance"
+                            style="font-size: 20px; padding-right: 10px;"></i>运行状态信息</div>
+                    <div style="display: inline-block; padding-left: 10px; padding-bottom: 10px; margin-top: 10px;">
+                        <a href="#" class="btn" role="button" id="clearAbnormalBt2" style="display: inline; background-color: #fff; margin-right: -57px;">详情</a>
+                        <a href="#" class="btn btn-info" role="button" id="specificsBt" style="display: inline;">详情</a>
+                    </div>
+                </div>
+                <div style="width:100%">
+                    <div style="display: inline-block; width:49%; height: 20%; min-width: 355px;">
+                        <div class="layui-col-md6" style="padding-left: 0PX;">
+                            <div class="layui-card">
+                                <div class="layui-card-body">
+                                    <div id="line_VDD" style="min-height:200px; margin-left: 10px;margin-right: 10px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:inline-block; width: 49%; height: 20%; ; min-width: 355px;">
+                        <div class="layui-col-md6" style="padding-left: 0PX;">
+                            <div class="layui-card">
+                                <div class="layui-card-body">
+                                    <div id="line_CSQ" style="min-height:200px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card" style="overflow-y: hidden; margin-top:20px">
+            <div class="layui-card-body">
+                <div class="layui-tab layui-tab-card">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">读数上报信息</li>
+                        <li>操作指令</li>
+                        <li>阀门记录</li>
+                        <li>读数异常记录</li>
+                        <li>异常记录</li>
+                        <li>冻结量</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <div class="introduction" style="margin-left: 20px;">
+                                <i class="iconfont icon-xinxi"></i>您可以通过设定日期进行数据的筛选。
+                            </div>
+                            <!-- 查询提示 -->
+                            <div id="selectTips_readDataReportInfo" style="padding-top:5px ;"> </div>
+                            <form class="layui-form readDataReportInfo" action="" lay-filter="readDataReportInfoFilter"
+                                style="border-bottom: 1px solid var(--grey-color);">
+                                <div class="layui-inline" id="dateDIV">
+                                    <label class="layui-form-label" style="width: 120px;">记录开始日期:</label>
+                                    <div class="layui-inline" name="date_range" id="ID-laydate-range">
+                                        <div class="layui-inline">
+                                            <div class="layui-input-inline">
+                                                <input type="text" class="layui-input" id="ID-laydate-demo"
+                                                    name="startTime" placeholder="开始日期">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="display: inline-block;"><button type="button" class="layui-btn layui-btn-xs" id="readDataReportInfoBt" style="margin-bottom: 5px; height: 26px;"><i class="iconfont icon-fangdajing"></i>查询</button></span>
+                            </form>
+                            <table style="margin-top: 10px;" id="log-readDataReportInfo-table" lay-filter="user-table">
+                            </table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="introduction" style="margin-left: 20px;">
+                                <i class="iconfont icon-xinxi"></i>您可以通过设定日期进行数据的筛选。
+                            </div>
+                            <!-- 查询提示 -->
+                            <div id="selectTips_operateOrder" style="padding-top:5px ;"> </div>
+                            <form class="layui-form operateOrder" action="" lay-filter="operateOrderFilter"
+                                style="border-bottom: 1px solid var(--grey-color);">
+                                <div class="layui-inline" id="dateDIV">
+                                    <label class="layui-form-label" style="width: 120px;">操作开始日期:</label>
+                                    <div class="layui-inline" name="date_range" id="ID-laydate-range">
+                                        <div class="layui-inline">
+                                            <div class="layui-input-inline">
+                                                <input type="text" class="layui-input" id="ID-laydate-demo"
+                                                    name="startTime" placeholder="开始日期">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="display: inline-block;"><button type="button" class="layui-btn layui-btn-xs" id="operateOrderBt" style="margin-bottom: 5px; height: 26px;"><i class="iconfont icon-fangdajing"></i>查询</button></span>
+                            </form>
+                            <table style="margin-top: 10px;" id="log-operateOrder-table" lay-filter="user-table">
+                            </table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="introduction" style="margin-left: 20px;">
+                                <i class="iconfont icon-xinxi"></i>您可以通过设定日期进行数据的筛选。
+                            </div>
+                            <!-- 查询提示 -->
+                            <div id="selectTips_valveRecord" style="padding-top:5px ;"> </div>
+                            <form class="layui-form valveRecord" action="" lay-filter="valveRecordFilter"
+                                style="border-bottom: 1px solid var(--grey-color);">
+                                <div class="layui-inline" id="dateDIV">
+                                    <label class="layui-form-label" style="width: 120px;">记录开始日期:</label>
+                                    <div class="layui-inline" name="date_range" id="ID-laydate-range">
+                                        <div class="layui-inline">
+                                            <div class="layui-input-inline">
+                                                <input type="text" class="layui-input" id="ID-laydate-demo"
+                                                    name="startTime" placeholder="开始日期">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="display: inline-block;"><button type="button" class="layui-btn layui-btn-xs" id="valveRecordBt" style="margin-bottom: 5px; height: 26px;"><i class="iconfont icon-fangdajing"></i>查询</button></span>
+                            </form>
+                            <table style="margin-top: 10px;" id="log-valveRecord-table" lay-filter="user-table"></table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="introduction" style="margin-left: 20px;">
+                                <i class="iconfont icon-xinxi"></i>您可以通过设定日期进行数据的筛选。
+                            </div>
+                            <!-- 查询提示 -->
+                            <div id="selectTips_readDataAbnormal" style="padding-top:5px ;"> </div>
+                            <form class="layui-form readDataAbnormal" action="" lay-filter="readDataAbnormalFilter"
+                                style="border-bottom: 1px solid var(--grey-color);">
+                                <div class="layui-inline" id="dateDIV">
+                                    <label class="layui-form-label" style="width: 120px;">记录开始日期:</label>
+                                    <div class="layui-inline" name="date_range" id="ID-laydate-range">
+                                        <div class="layui-inline">
+                                            <div class="layui-input-inline">
+                                                <input type="text" class="layui-input" id="ID-laydate-demo"
+                                                    name="startTime" placeholder="开始日期">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="display: inline-block;"><button type="button" class="layui-btn layui-btn-xs" id="readDataAbnormalBt" style="margin-bottom: 5px; height: 26px;"><i class="iconfont icon-fangdajing"></i>查询</button></span>
+                            </form>
+                            <table style="margin-top: 10px;" id="log-readDataAbnormal-table" lay-filter="user-table">
+                            </table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="introduction" style="margin-left: 20px;">
+                                <i class="iconfont icon-xinxi"></i>您可以通过设定日期进行数据的筛选。
+                            </div>
+                            <!-- 查询提示 -->
+                            <div id="selectTips_abnormalRecord" style="padding-top:5px ;"> </div>
+                            <form class="layui-form abnormalRecord" action="" lay-filter="abnormalRecordFilter"
+                                style="border-bottom: 1px solid var(--grey-color);">
+                                <div class="layui-inline" id="dateDIV">
+                                    <label class="layui-form-label" style="width: 120px;">记录开始日期:</label>
+                                    <div class="layui-inline" name="date_range" id="ID-laydate-range">
+                                        <div class="layui-inline">
+                                            <div class="layui-input-inline">
+                                                <input type="text" class="layui-input" id="ID-laydate-demo"
+                                                    name="startTime" placeholder="开始日期">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="display: inline-block;"><button type="button" class="layui-btn layui-btn-xs" id="abnormalRecordBt" style="margin-bottom: 5px; height: 26px;"><i class="iconfont icon-fangdajing"></i>查询</button></span>
+                            </form>
+                            <table style="margin-top: 10px;" id="log-abnormalRecord-table" lay-filter="user-table">
+                            </table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="introduction" style="margin-left: 20px;">
+                                <i class="iconfont icon-xinxi"></i>您可以通过设定日期或冻结类型进行数据的筛选。
+                            </div>
+                            <!-- 查询提示 -->
+                            <div id="selectTips_freeze" style="padding-top:5px ;"> </div>
+                            <form class="layui-form freeze" action="" lay-filter="freezeFilter"
+                                style="border-bottom: 1px solid var(--grey-color);">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label" style="width: 120px;">冻结类型:</label>
+                                    <div class="layui-inline" id="freezeStartTimeId">
+                                        <select name="freezeTypeInpt" type="text" style="height: 35px;">
+                                            <option value="">请选择冻结类型</option>
+                                            <option value="日冻结">日冻结</option>
+                                            <option value="月冻结">月冻结</option>
+                                            <option value="小时">小时</option>
+                                            <option value="15分钟">15分钟</option>
+                                        </select>
+                                    </div>                                
+                                </div>
+                                <div class="layui-inline" id="dateDIV">
+                                    <label class="layui-form-label" style="width: 120px;">冻结开始日期:</label>
+                                    <div class="layui-inline" name="date_range" id="ID-laydate-range">
+                                        <div class="layui-inline">
+                                            <div class="layui-input-inline">
+                                                <input type="text" class="layui-input" id="ID-laydate-demo"
+                                                    name="startTime" placeholder="开始日期">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="display: inline-block;"><button type="button" class="layui-btn layui-btn-xs" id="freezeBt" style="margin-bottom: 5px; height: 26px;"><i class="iconfont icon-fangdajing"></i>查询</button></span>
+                            </form>
+                            <table style="margin-top: 10px;" id="log-freeze-table" lay-filter="user-table"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 运行状态templet -->
+    <script type="text/html" id="tpl-workStatus">
+        <span>电池电压<label style="background-color: rgb(31, 138, 31); border-radius: 10px; color: #fff; line-height: 20px; width: 60px; text-align: center;">{{d.VDD }}</label></span>
+        <span>信号强度<label style="background-color: rgb(31, 138, 31); border-radius: 10px; color: #fff; line-height: 20px; ; width: 20px;text-align: center;">{{d.CSQ}}</label></span>
+    </script>
+
+    <!-- 详情内容DIV templet -->
+    <script type="text/html" id="tpl-specificsDIV">
+        <div class="pannel">   
+            <div class="content " style="padding-top: 5px;">
+                设备编号：{{meterID}}
+                <table class="layui-hide" id="specificsTable" lay-filter="test"></table>   
+            </div> 
+        </div>
+    </script>  
+
+    <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../sources/lib/iconfont/iconfont.js"></script>
+    <script src="../../sources/lib/template-web.js"></script>
+    <script src="../../pearadmin/component/layui/layui.js"></script>
+    <script src="../../pearadmin/component/pear/pear.js"></script>
+    <script src="../../sources/js/line_VDD_CSQ.js"></script>
+    <script src="../../sources/js/deviceSpecifics.js"></script>
+    <script></script>
+</body>
+
+</html>

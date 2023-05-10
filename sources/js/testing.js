@@ -114,12 +114,12 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         }
       }
     })
-  }, 2000)
+  }, 10000)
   table.on('tool(test)', function (obj) {                                   //...单元格工具事件（单击测试详情触发）
     var data = obj.data;
 
     var specificsDIVData = {
-      meterID: '00000404'
+      meterID: data.meterID
     };
     var htmlSpecificsDIV = template('tpl-specificsDIV', specificsDIVData);   //...获得测试详情界面template的HTML
 
@@ -132,15 +132,18 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       })
       table.render({                                                        //...渲染测试详情表格
         elem: '#specificsTable'
-        // ,url:'api/...'
-        // ,parseData: function(res){ //res 即为原始返回的数据
-        //   return {
-        //     "code": res.status, //解析接口状态
-        //     "msg": res.message, //解析提示文本
-        //     "count": res.total, //解析数据长度
-        //     "data": res.data //解析数据列表
-        //   };
-        // }
+        ,url:'../../api/testing_specifics.json'
+        ,where:{
+          
+        }
+        ,parseData: function(res){ //res 即为原始返回的数据
+          return {
+            "code": res.code, //解析接口状态
+            "msg": res.msg, //解析提示文本
+            "count": res.count, //解析数据长度
+            "data": res.data //解析数据列表
+          };
+        }
 
         , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         , cols: [[
@@ -148,15 +151,6 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           , { field: 'parameterValue', title: '参数值', minWidth: 120 } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
           , { field: 'specificsTime', title: '日期', minWidth: 80 }
         ]]
-        , data: [{
-          "reportedItiems": "阀门状态"
-          , "parameterValue": "阀门开启"
-          , "specificsTime": "2023-10-14"
-        }, {
-          "reportedItiems": "10001"
-          , "parameterValue": "杜甫。。。。。。。。。。。。。"
-          , "specificsTime": "2023-10-14"
-        }]
         , even: true
       });
     }

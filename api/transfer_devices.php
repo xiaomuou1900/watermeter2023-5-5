@@ -29,7 +29,9 @@ if(isset($_GET['page'])){
                             "transferor":"连云港连利福思特表业",
                             "valveStatus":"",
                             "dn":"DN15",
-                            "meno":"测试"
+                            "meno":"测试",
+                            "VDD":"3.65",
+                            "CSQ":"19"
                         }
                     ]
                 }';
@@ -52,7 +54,9 @@ if(isset($_GET['page'])){
                             "transferor":"连云港连利福思特表业",
                             "valveStatus":"阀门已开",
                             "dn":"DN15",
-                            "meno":"测试"
+                            "meno":"测试",
+                            "VDD":"3.66",
+                            "CSQ":"27"
                         }
                     ]
                 }';

@@ -95,7 +95,7 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
         type: 2, 
         area:['100%','100%'],
         title:['设备详情', 'font-size:25px; background-color: var(--grey-color); padding-left: 10px'],
-        content: '../../veiw/testing/deviceSpecifics.html' // URL
+        content: '../../view/testing/deviceSpecifics.html?meterID='+data.meterID // URL
       }); 
     }
   });

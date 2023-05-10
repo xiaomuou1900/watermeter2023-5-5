@@ -29,3 +29,14 @@
    background-color: #f19d26;
    border-color: #f19d26;
 }
+
+.layui-table-cell {
+   height: auto !important;
+   line-height: 18px;
+   padding: 6px 15px;
+   position: relative;
+   overflow: visible;
+   text-overflow: inherit;
+   white-space: normal;
+   box-sizing: border-box;
+}
