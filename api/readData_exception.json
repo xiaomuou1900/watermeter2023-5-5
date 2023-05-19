@@ -1,0 +1,66 @@
+{
+	"createTime": null,
+	"createBy": null,
+	"updateTime": null,
+	"updateBy": null,
+	"remark": null,
+	"code": 0,
+	"msg": null,
+	"count": 100,
+	"readData_exceptionNum": 66,
+	"serchNum": 8,
+	"transferor":["连利","福思特"],
+	"data": [
+		{
+			"meterID": "12345678",
+			"readData_lastTime": "150.00m³",
+			"readData_thisTime": "10.00m³",
+			"readData_exception_reportTime": "2023-05-09 13:15:38 ",
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},
+		{
+			"meterID": "12345679",
+			"readData_lastTime": "150.00m³",
+			"readData_thisTime": "10.00m³",
+			"readData_exception_reportTime": "2023-05-09 13:15:38 ",
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},
+		{
+			"meterID": "00000001",
+			"readData_lastTime": "150.00m³",
+			"readData_thisTime": "10.00m³",
+			"readData_exception_reportTime": "2023-05-09 13:15:38 ",
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},		{
+			"meterID": "00000002",
+			"readData_lastTime": "150.00m³",
+			"readData_thisTime": "10.00m³",
+			"readData_exception_reportTime": "2023-05-09 13:15:38 ",
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},		{
+			"meterID": "00000003",
+			"readData_lastTime": "150.00m³",
+			"readData_thisTime": "10.00m³",
+			"readData_exception_reportTime": "2023-05-09 13:15:38 ",
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},		{
+			"meterID": "00000004",
+			"readData_lastTime": "150.00m³",
+			"readData_thisTime": "10.00m³",
+			"readData_exception_reportTime": "2023-05-09 13:15:38 ",
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		}
+	]
+}

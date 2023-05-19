@@ -514,7 +514,9 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       return
     }
     if (form.val("transferForm").setRecharge === "") {
-      layer.alert('请设置预充值量！')
+      $('#setRechargeInpt').focus()
+      $('#setRechargeID').addClass('warnBorder')
+      // layer.alert('请设置预充值量！')
       return
     }
     arr_desc = form.val("transferForm").desc.split(',')   //获取文本框中的内容并转成数组
@@ -549,7 +551,9 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       return
     }
     if (form.val("transferForm").setMeno === "") {
-      layer.alert('请输入备注信息！')
+      $('#setMenoInpt').focus()
+      $('#setMenoID').addClass('warnBorder')
+      // layer.alert('请输入备注信息！')
       return
     }
     arr_desc = form.val("transferForm").desc.split(',')   //获取文本框中的内容并转成数组

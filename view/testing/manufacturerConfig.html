@@ -15,64 +15,49 @@
     <!-- 主界面 -->
     <div class="pannel">   
         <header class="title">厂商配置</header>
-        <div class="content ">
-            <div class="introduction pannel">
+        <div class="content" style="padding-bottom: 30px; height: 450px;">
+            <div class="introduction pannel" style="border-bottom: 1px solid var(--grey-color); margin-bottom: 10px;">
                 <i class="iconfont icon-xinxi"></i>厂商配置
-            </div>          
-            
+            </div>  
+            <div class="row" style="margin: 0; padding: 0;">
+                <div class=" col-lg-10 col-lg-offset-1">
+                    <form class="layui-form" action="" lay-filter="manufacturerConfigFilter" style="padding-bottom: 10px; margin: auto; text-align: right;">
+                        <fieldset style="text-align: right; margin-bottom: 20px;">
+                            <legend style="text-align: left;">厂商配置</legend>                   
+                            <div class="row" style="padding: 0; margin: 0;">
+                                <span class="col-sm-3 col-xs-6"  style="display: inline-block; margin-right: 20px; line-height: 39px;"><strong>厂商简称</strong></span>
+                                <div class="col-sm-8 col-xs-12"  id="manufacturerShortDIV"  style="display: inline-block; height: 39px;  padding: 0; margin: 0; margin-bottom: 10px;">
+                                    <div style="display: inline-block;margin-bottom: 10px; height: 36px; width: 100%; border: 1px solid rgb(190, 188, 188); line-height: 35px; text-align: left ;">
+                                        <input id="manufacturerShortInpt" name="manufacturerShortInpt" type="text" style="border: none; padding-left: 10px; padding-right: 10px; width: 100%;" placeholder="如：连云港连利·福思特表业">
+                                    </div> 
+                                </div>                        
+                            </div>
+                            <div class="row" style="padding: 0; margin: 0;">
+                                <span class="col-sm-3 col-xs-6"  style="display: inline-block; margin-right: 20px; line-height: 39px;"><strong>厂商全称</strong></span>
+                                <div class="col-sm-8 col-xs-12"  id="manufacturerFullDIV"  style="display: inline-block; height: 39px;  padding: 0; margin: 0; margin-bottom: 10px;">
+                                    <div style="display: inline-block;margin-bottom: 10px; height: 36px; width: 100%; border: 1px solid rgb(190, 188, 188); line-height: 35px; text-align: left ;">
+                                        <input id="manufacturerFullInpt" name="manufacturerFullInpt" type="text" style="border: none; padding-left: 10px; padding-right: 10px; width: 100%;" placeholder="如：连云港连利·福思特表业有限公司">
+                                    </div> 
+                                </div>                        
+                            </div>
+                            <div  class="row" style="padding: 0; margin: 0;">
+                                <span class="col-sm-3 col-xs-6" style="display: inline-block; margin-right: 20px; line-height: 39px;"><strong>预充值量</strong></span>
+                                <div class="col-sm-8 col-xs-12" id="interRechargeDIV" style="display: inline-block; height: 39px; padding: 0; margin: 0; margin-bottom: 10px; ">
+                                    <div class="row" style="position: relative; display: inline-block; padding: 0; margin: 0; margin-bottom: 20px; height: 36px; width: 100%; border: 1px solid rgb(190, 188, 188); line-height: 35px; text-align: left ;">
+                                        <input class="col-sm-10 col-xs-8" id="interRechargeInpt" name="interRechargeInpt" type="number" style="border: none; padding: 0; margin: 0; padding-left: 10px; padding-right: 10px;" placeholder="请输入0 - 10000之间的数字">
+                                        <div class="col-sm-2 col-xs-4" style="position: absolute; display: inline-block; border-left: 1px solid rgb(190, 188, 188);padding:0; margin:0; text-align: center;">立方米</div>
+                                    </div>
+                                </div>                      
+                            </div>                
+                        </fieldset>  
+                        <button type="button" class="layui-btn" id="manufacturerConfigBt">保存配置</button>
+                    </form> 
+                </div>            
+            </div>     
         </div> 
         <!-- <div id="paging"></div>   -->
     </div>
 
-
-    <!-- 操作区域DIV templet -->
-    <script type="text/html" id="tpl-operateDIV">
-        <span style="display: inline-block; margin-right: 50px; margin-top: 5px; vertical-align:bottom; margin-bottom: 8px; color:var(--blue-color) ;">设备编号：{{meterID}}</span>
-        <span ><a href="#" class="btn btn-warning" role="button" id="MOFEbt" style="margin-top:5px;">设备维护<i class="layui-icon layui-icon-down layui-font-12"></i></a></span>
-        <span><a href="#" class="btn btn-warning" role="button" id="maintainBt" style="margin-top:5px;">进入维修模式</a></span>
-        <span><a href="#" class="btn btn-warning" role="button" id="syncReadingBt" style="margin-top:5px;">表底数机电同步</a></span>
-        <span><a href="#" class="btn btn-warning" role="button" id="retestBt" style="margin-top:5px;">重测</a></span>
-        <span><a href="#" class="btn btn-warning" role="button" id="forcedFailureBt" style="margin-top:5px;">强制失败</a></span>
-        <span style="display: inline-block; height:33px;  vertical-align:middle; margin-top: 5px; ">
-            <form class="layui-form" action="" lay-filter="inboundInfo" >
-                <div class="layui-input-inline" id="selectDNdiv">
-                    <select name="selectDNinpt" id="selectDNinpt" lay-filter="selectDNfilter" lay-verify="selectDNverfy" >
-                        <option value="">请选择基表口径</option>
-                    </select>           
-                </div>
-                <div class="layui-input-inline" id="selectValveDiv">
-                    <select name="selectValveInpt" id="selectValveInpt" lay-filter="selectValveFilter" >
-                        <option value="">请选择有无阀门</option>
-                        <option value="true">有阀门</option>
-                        <option value="false">无阀门</option>
-                    </select>           
-                </div>
-                <div class="layui-input-inline" id="memoDiv">
-                   <span style="display: inline-block; height:34px; border:1px solid #eee; vertical-align:bottom;">
-                        <input type="text" placeholder="请输入备注信息（0-20个任意字符）" name="memoInpt" id="memoInpt" style="width:220px; border:none ; margin-top: 6px; margin-left: 8px">
-                   </span>
-                </div>
-                <div class="layui-input-inline">
-                    <a href="#" class="btn btn-warning" role="button" id="inboundBt" >入库</a>
-                </div>
-            </form>     
-        </span>
-    </script>  
-
-    <!-- 底数机电同步 弹出层 templet -->    
-    <script type="text/html" id="tpl-syncReadingLayer">
-       <div style="margin-top:20px; margin-left:20px;margin-bottom: 20px;margin-right: 20px;">
-           <span style="margin-right:20px; font-size:15px">设备编号: {{meterID}}</span>
-           <span style="font-size:15px">精度: {{precision}}m³</span>
-           <div style="margin-top:20px; margin-right:60px;">
-              <span style="margin-right:10px; font-size:15px"> <strong>表底数：</strong> </span>
-              <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
-                <input type="text" placeholder="请输入表底数" style=" height: 16px; border: none;font-size: 15px; margin-left: 5px;" id="syncReadingLayerInpt">
-                <span style="border-left: 1px solid rgb(184, 180, 180); font-size: 18px; color:rgb(119, 118, 118)">m³</span>
-              </span>
-           </div>
-       </div>
-    </script>  
     <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>
     <script src="../../sources/lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
     <script src="../../sources/lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>

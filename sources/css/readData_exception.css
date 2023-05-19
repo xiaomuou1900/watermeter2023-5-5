@@ -37,14 +37,16 @@
    background-color: fff(235, 233, 233);
    color: rgba(0,0,0,.85);
    border-radius: 2px;
+   margin-top: 7px;
+   border-color: rgb(133, 129, 129)
 }
 
 #dateDIV {
-   padding-top: 12px;
+   padding-top: 10px;
 }
 
-#dateDIV .layui-input {
-   height: 21px;
+/* #dateDIV .layui-input {
+   height: 26px;
    line-height: 1.3;
    line-height: 38px\9;
    border-width: 1px;
@@ -54,7 +56,7 @@
    border-radius: 2px;
    margin-top: 6px;
    border-color: rgb(133, 129, 129)
-}
+} */
 
 .btn-warning {
    color: #fff;

@@ -255,6 +255,7 @@ layui.use(['layer', 'table', 'dropdown', 'form'], function () {
             $('#selectValveDiv').removeClass('warnBorder')
           }
           else if (data.selectValveInpt == "") {
+            $('#selectValveDiv').addClass('warnBorder')
             $('#selectDNdiv').removeClass('warnBorder')
           }
           else {

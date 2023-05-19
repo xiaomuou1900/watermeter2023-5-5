@@ -207,9 +207,9 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
           $('#selectTips').append(html)
         }
         else {
-          var html = '日期范围: ' + data.startDate + '—' + data.endDate + '<i class="layui-icon layui-icon-close" id="ICCIDid" style="font-size: 12px; padding-left:10px"></i>'
-          $('#ICCIDlabel').empty()
-          $('#ICCIDlabel').append(html)
+          var html = '日期范围: ' + data.startDate + '—' + data.endDate + '<i class="layui-icon layui-icon-close" id="startDateId" style="font-size: 12px; padding-left:10px"></i>'
+          $('#startDateLabel').empty()
+          $('#startDateLabel').append(html)
         }
       }
     }
@@ -293,7 +293,7 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
       , where: {
         export: 'all'
       }
-      , title: "正在测试批次"
+      , title: "导出数据"
       , parseData: function (res) { //res 即为原始返回的数据
         return {
           "code": res.status, //解析接口状态

@@ -268,7 +268,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       , where: {
         export: 'all'
       }
-      , title: "正在测试批次"
+      , title: "导出数据"
       , parseData: function (res) { //res 即为原始返回的数据
         return {
           "code": res.status, //解析接口状态
