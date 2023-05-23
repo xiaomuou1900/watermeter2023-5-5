@@ -25,8 +25,10 @@
                 <span><button type="button" class="layui-btn layui-btn-xs" id="deviceSerchBt"><i class="iconfont icon-fangdajing"></i>查询</button></span> 
             </div>
             <div class="pannel" id="operateDIV"></div>
-            <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>   
-            <table class="layui-hide" id="specificsTable" lay-filter="test"></table> 
+            <div>
+                <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>   
+                <table class="layui-hide" id="specificsTable" lay-filter="test"></table> 
+            </div>          
         </div> 
         <!-- <div id="paging"></div>   -->
     </div>
@@ -40,26 +42,26 @@
         <span><a href="#" class="btn btn-warning" role="button" id="syncReadingBt" style="margin-top:5px;">表底数机电同步</a></span>
         <span><a href="#" class="btn btn-warning" role="button" id="retestBt" style="margin-top:5px;">重测</a></span>
         <span><a href="#" class="btn btn-warning" role="button" id="forcedFailureBt" style="margin-top:5px;">强制失败</a></span>
-        <span style="display: inline-block; height:33px;  vertical-align:middle; margin-top: 5px; ">
+        <span style="display: inline-block; vertical-align:middle;">
             <form class="layui-form" action="" lay-filter="inboundInfo" >
-                <div class="layui-input-inline" id="selectDNdiv">
+                <div class="layui-input-inline" id="selectDNdiv" style="margin-top: 5px;">
                     <select name="selectDNinpt" id="selectDNinpt" lay-filter="selectDNfilter" lay-verify="selectDNverfy" >
                         <option value="">请选择基表口径</option>
                     </select>           
                 </div>
-                <div class="layui-input-inline" id="selectValveDiv">
+                <div class="layui-input-inline" id="selectValveDiv"  style="margin-top: 5px;">
                     <select name="selectValveInpt" id="selectValveInpt" lay-filter="selectValveFilter" >
                         <option value="">请选择有无阀门</option>
                         <option value="true">有阀门</option>
                         <option value="false">无阀门</option>
                     </select>           
                 </div>
-                <div class="layui-input-inline" id="memoDiv">
+                <div class="layui-input-inline" id="memoDiv"  style="margin-top: 5px;">
                    <span style="display: inline-block; height:34px; border:1px solid #eee; vertical-align:bottom;">
                         <input type="text" placeholder="请输入备注信息（0-20个任意字符）" name="memoInpt" id="memoInpt" style="width:220px; border:none ; margin-top: 6px; margin-left: 8px">
                    </span>
                 </div>
-                <div class="layui-input-inline">
+                <div class="layui-input-inline"  style="margin-top: 5px;">
                     <a href="#" class="btn btn-warning" role="button" id="inboundBt" >入库</a>
                 </div>
             </form>     

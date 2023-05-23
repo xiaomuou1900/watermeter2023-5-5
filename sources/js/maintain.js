@@ -3,12 +3,13 @@ $.ajax({
   , url: '../../api/transfer_devices.php'
   , data: {
     page: 1
-    ,transferStatus: "未转让"
+    ,get: "deviceSumData"
+    ,maintainStatus: "已进入维修"
   }
   , success: function (res) {
     var deviceSumData = {
       deviceSum: res.deviceSum
-      , transferSum: res.transferSum
+      , in_maintainSum: res.in_maintainSum
       , serchNum: res.serchNum
     }
     var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -23,17 +24,14 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     , laypage = layui.laypage
     , layer = layui.layer
     , form = layui.form
-  $.ajax({                                                //...请求 受让厂商 和 转让厂商 并渲染选择框
+  $.ajax({                                                //...请求 转让厂商 并渲染选择框
     type: 'get'
     , url: '../../api/transfer_devices.php'
     , data: {
       page: 1
+      ,get : 'transferor'
     }
     , success: function (res) {
-      $.each(res.grantee, function (index, elem) {
-        var html = '<option value="' + elem + '">' + elem + '</option>'
-        $("#grantee").append(html)
-      })
       $.each(res.transferor, function (index, elem) {
         var html = '<option value="' + elem + '">' + elem + '</option>'
         $("#transferor").append(html)
@@ -46,7 +44,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     elem: '#deviceTable'
     , url: '../../api/transfer_devices.php'
     ,where: {
-      transferStatus:  "未转让"
+      maintainStatus:  "已进入维修"
     }
     , page: {
       limit: 25
@@ -83,12 +81,9 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       , { field: 'meterID', title: '设备编号', minWidth: 120, sort: true } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
       , { field: 'IMEI', title: 'IMEI', minWidth: 160, sort: true }
       , { field: 'ICCID', title: 'ICCID', minWidth: 200, sort: true }
-      , { field: 'transferStatus', title: '转让状态', minWidth: 105 }
+      , { field: 'maintainStatus', title: '维修状态', minWidth: 105 }
       , { field: 'transferor', title: '所属厂商', minWidth: 105 }
-      , { field: 'valveStatus', title: '阀门状态', minWidth: 105 } //单元格内容水平居中
-      , { field: 'dn', title: '口径', minWidth: 130 } //单元格内容水平居右
       , { field: 'meno', title: '备注', minWidth: 160 }
-      , { field: 'transferTime', title: '转让时间', minWidth: 160, sort: true }
     ]]
     , even: true
     , done: function (res, curr, count) {                                 //表格渲染完后触发该函数
@@ -104,29 +99,62 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     }
   });
 
+  $("#exportBt").click(function () {                                       //...导出按钮...//
+    var ins1 = table.render({
+      elem: '#data_export'
+      , url: '../../api/all_exception.json'
+      , where: {
+        export: 'all'
+      }
+      , title: "导出数据"
+      , parseData: function (res) { //res 即为原始返回的数据
+        return {
+          "code": res.code, //解析接口状态
+          "data": res.data //解析数据列表
+        };
+      }
+      , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+      , cols: [[
+        { type: 'checkbox', minWidth: 50 }
+        , { field: 'id', title: '序号', type: 'numbers', minWidth: 50 }
+        , { field: 'meterID', title: '设备编号', minWidth: 120, sort: true } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+        , { field: 'IMEI', title: 'IMEI', minWidth: 160, sort: true }
+        , { field: 'ICCID', title: 'ICCID', minWidth: 200, sort: true }
+        , { field: 'maintainStatus', title: '维修状态', minWidth: 105 }
+        , { field: 'transferor', title: '所属厂商', minWidth: 105 }
+        , { field: 'meno', title: '备注', minWidth: 160 }
+      ]]
+      , even: true
+      , done: function (res, curr, count) {
+        exportData = res.data;
+        table.exportFile(ins1.config.id, exportData, 'xls');
+      }
+    })
+  })
+
   var temp_meterID = 0
     , temp_IMEI = 0
     , temp_ICCID = 0
-    , temp_transferStatus = 0
+    , temp_maintainStatus = 0
     , temp_transferor = 0
     , temp_meno = 0
     , temp_data = {}
-  if (temp_transferStatus == 0) {
-    temp_transferStatus = 1
-    var html = '<label id="transferStatusLabel" class="label label-success" style="display: inline-block; background-color: var(--green-color); color:white; height: 22px; padding-top: 5px; margin-right:10px">转让状态：未转让<i class="layui-icon layui-icon-close" style="font-size: 12px; padding-left:10px"></i></label>'
+  if (temp_maintainStatus == 0) {
+    temp_maintainStatus = 1
+    var html = '<label id="maintainStatusLabel" class="label label-success" style="display: inline-block; background-color: var(--green-color); color:white; height: 22px; padding-top: 5px; margin-right:10px">维修状态：已进入维修<i class="layui-icon layui-icon-close" style="font-size: 12px; padding-left:10px"></i></label>'
     $('#selectTips').append(html)
   }
-  $("#transferStatusLabel i").off('click')
-    $("#transferStatusLabel i").on('click', function () {                     //...关闭查找提示
-      temp_transferStatus = 0
-      $("#transferStatusLabel").remove()
-      temp_data.transferStatus = ""
+  $("#maintainStatusLabel i").off('click')
+    $("#maintainStatusLabel i").on('click', function () {                     //...关闭查找提示
+      temp_maintainStatus = 0
+      $("#maintainStatusLabel").remove()
+      temp_data.maintainStatus = ""
       table.reloadData('deviceTable', {                                //...只重载表格数据      
         where: {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
-          , transferStatus: temp_data.transferStatus
+          , maintainStatus: temp_data.maintainStatus
           , transferor: temp_data.transferor
           , meno: temp_data.meno
         }
@@ -140,7 +168,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         , success: function (res) {
           var deviceSumData = {
             deviceSum: res.deviceSum
-            , transferSum: res.transferSum
+            , in_maintainSum: res.in_maintainSum
             , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -150,7 +178,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     })
   $('#deviceSerchBt').on('click', function () {                                                        //..查询按钮
     var data = form.val('deviceSerchForm')
-    if (data.meterIDserchInpt === "" && data.IMEIserchInpt === "" && data.ICCIDserchInpt === "" && data.transferStatusSerchInpt === "" && data.transferorSerchInpt === "" && data.menoSerchInpt === "") {
+    if (data.meterIDserchInpt === "" && data.IMEIserchInpt === "" && data.ICCIDserchInpt === "" && data.maintainStatusSerchInpt === "" && data.transferorSerchInpt === "" && data.menoSerchInpt === "") {
       layer.alert('请填写查询信息！')
       return
     }
@@ -159,7 +187,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         "meterIDserchInpt": "",
         "IMEIserchInpt": "",
         "ICCIDserchInpt": "",
-        "transferStatusSerchInpt": "",
+        "maintainStatusSerchInpt": "",
         "transferorSerchInpt": "",
         "menoSerchInpt": "",
       })
@@ -202,17 +230,17 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           $('#ICCIDlabel').append(html)
         }
       }
-      if (data.transferStatusSerchInpt != "") {
-        temp_data.transferStatus = data.transferStatusSerchInpt
-        if (temp_transferStatus == 0) {
-          temp_transferStatus = 1
-          var html = '<label id="transferStatusLabel" class="label label-success" style="display: inline-block; background-color: var(--green-color); color:white; height: 22px; padding-top: 5px; margin-right:10px">转让状态：' + data.transferStatusSerchInpt + '<i class="layui-icon layui-icon-close" style="font-size: 12px; padding-left:10px"></i></label>'
+      if (data.maintainStatusSerchInpt != "") {
+        temp_data.maintainStatus = data.maintainStatusSerchInpt
+        if (temp_maintainStatus == 0) {
+          temp_maintainStatus = 1
+          var html = '<label id="maintainStatusLabel" class="label label-success" style="display: inline-block; background-color: var(--green-color); color:white; height: 22px; padding-top: 5px; margin-right:10px">转让状态：' + data.maintainStatusSerchInpt + '<i class="layui-icon layui-icon-close" style="font-size: 12px; padding-left:10px"></i></label>'
           $('#selectTips').append(html)
         }
         else {
-          var html = '转让状态: ' + data.transferStatusSerchInpt + '<i class="layui-icon layui-icon-close" style="font-size: 12px; padding-left:10px"></i>'
-          $('#transferStatusLabel').empty()
-          $('#transferStatusLabel').append(html)
+          var html = '维修状态: ' + data.maintainStatusSerchInpt + '<i class="layui-icon layui-icon-close" style="font-size: 12px; padding-left:10px"></i>'
+          $('#maintainStatusLabel').empty()
+          $('#maintainStatusLabel').append(html)
         }
       }
       if (data.transferorSerchInpt != "") {
@@ -252,7 +280,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
-          , transferStatus: temp_data.transferStatus
+          , maintainStatus: temp_data.maintainStatus
           , transferor: temp_data.transferor
           , meno: temp_data.meno
         }
@@ -266,7 +294,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         , success: function (res) {
           var deviceSumData = {
             deviceSum: res.deviceSum
-            , transferSum: res.transferSum
+            , in_maintainSum: res.in_maintainSum
             , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -284,7 +312,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
-          , transferStatus: temp_data.transferStatus
+          , maintainStatus: temp_data.maintainStatus
           , transferor: temp_data.transferor
           , meno: temp_data.meno
         }
@@ -298,7 +326,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         , success: function (res) {
           var deviceSumData = {
             deviceSum: res.deviceSum
-            , transferSum: res.transferSum
+            , in_maintainSum: res.in_maintainSum
             , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -316,7 +344,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
-          , transferStatus: temp_data.transferStatus
+          , maintainStatus: temp_data.maintainStatus
           , transferor: temp_data.transferor
           , meno: temp_data.meno
         }
@@ -330,7 +358,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         , success: function (res) {
           var deviceSumData = {
             deviceSum: res.deviceSum
-            , transferSum: res.transferSum
+            , in_maintainSum: res.in_maintainSum
             , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -338,17 +366,17 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         }
       })
     })
-    $("#transferStatusLabel i").off('click')
-    $("#transferStatusLabel i").on('click', function () {                     //...关闭查找提示
-      temp_transferStatus = 0
-      $("#transferStatusLabel").remove()
-      temp_data.transferStatus = ""
+    $("#maintainStatusLabel i").off('click')
+    $("#maintainStatusLabel i").on('click', function () {                     //...关闭查找提示
+      temp_maintainStatus = 0
+      $("#maintainStatusLabel").remove()
+      temp_data.maintainStatus = ""
       table.reloadData('deviceTable', {                                //...只重载表格数据      
         where: {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
-          , transferStatus: temp_data.transferStatus
+          , maintainStatus: temp_data.maintainStatus
           , transferor: temp_data.transferor
           , meno: temp_data.meno
         }
@@ -362,7 +390,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         , success: function (res) {
           var deviceSumData = {
             deviceSum: res.deviceSum
-            , transferSum: res.transferSum
+            , in_maintainSum: res.in_maintainSum
             , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -380,7 +408,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
-          , transferStatus: temp_data.transferStatus
+          , maintainStatus: temp_data.maintainStatus
           , transferor: temp_data.transferor
           , meno: temp_data.meno
         }
@@ -394,7 +422,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         , success: function (res) {
           var deviceSumData = {
             deviceSum: res.deviceSum
-            , transferSum: res.transferSum
+            , in_maintainSum: res.in_maintainSum
             , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -412,7 +440,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           meterID: temp_data.meterID
           , IMEI: temp_data.IMEI
           , ICCID: temp_data.ICCID
-          , transferStatus: temp_data.transferStatus
+          , maintainStatus: temp_data.maintainStatus
           , transferor: temp_data.transferor
           , meno: temp_data.meno
         }
@@ -426,7 +454,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         , success: function (res) {
           var deviceSumData = {
             deviceSum: res.deviceSum
-            , transferSum: res.transferSum
+            , in_maintainSum: res.in_maintainSum
             , serchNum: res.serchNum
           }
           var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -440,7 +468,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         meterID: temp_data.meterID
         , IMEI: temp_data.IMEI
         , ICCID: temp_data.ICCID
-        , transferStatus: temp_data.transferStatus
+        , maintainStatus: temp_data.maintainStatus
         , transferor: temp_data.transferor
         , meno: temp_data.meno
       }
@@ -454,7 +482,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       , success: function (res) {
         var deviceSumData = {
           deviceSum: res.deviceSum
-          , transferSum: res.transferSum
+          , in_maintainSum: res.in_maintainSum
           , serchNum: res.serchNum
         }
         var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -463,49 +491,45 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     })
   })
 
-  var grantee_data = []
+  var select_data = []
   table.on('checkbox(deviceFilter)', function (obj) {                        //...复选框发生改变...//
     if (obj.type === "one") {
       if (obj.checked == true) {
-        grantee_data.push(obj.data.meterID)
+        select_data.push(obj.data.meterID)
       }
       else {
-        index_temp = grantee_data.indexOf(obj.data.meterID)
+        index_temp = select_data.indexOf(obj.data.meterID)
         if (index_temp != -1) {
-          grantee_data.splice(index_temp, 1)
+          select_data.splice(index_temp, 1)
         }
       }
     }
     if (obj.type === "all") {
       if (obj.checked == true) {
         var all_data = layui.table.cache["deviceTable"]    //获得表格所有数据
-        grantee_data = []
+        select_data = []
         for (var i = 0; i < all_data.length; i++) {
-          grantee_data[i] = all_data[i].meterID
+          select_data[i] = all_data[i].meterID
         }
       }
       else {
-        grantee_data = []
+        select_data = []
       }
     }
-    form.val('transferForm', {
-      "desc": grantee_data.join(',')   // 将获取的数组转成字符串 添加给文本框
+    form.val('myForm', {
+      "desc": select_data.join(',')   // 将获取的数组转成字符串 添加给文本框
     })
-    html = "当前录入" + grantee_data.length + "个设备"
+    html = "当前录入" + select_data.length + "个设备"
     $("#select_num").empty()
     $("#select_num").append(html)
   })
 
-  $("#tranferBt").on('click', function () {                                    //...转让 按钮...//
-    if (form.val('transferForm').desc === "") {
+  $("#out_maintainBt").on('click', function () {                                    //...退出维修模式 按钮...//
+    if (form.val('myForm').desc === "") {
       layer.alert('请录入设备！')
       return
     }
-    if (form.val("transferForm").grantee === "") {
-      layer.alert('请选择转让厂商！')
-      return
-    }
-    arr_desc = form.val("transferForm").desc.split(',')   //获取文本框中的内容并转成数组
+    arr_desc = form.val("myForm").desc.split(',')   //获取文本框中的内容并转成数组
     var error_temp = 0
     $.each(arr_desc, function (index, elem) {
       if (isNaN(Number(elem))) {
@@ -517,16 +541,15 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       error_temp = 0
       return;
     }
-    grantee = form.val("transferForm").grantee  //获取转让厂商
     $.ajax({
       type: 'post'
       , url: '../../api/transfer_devices.php'
       , data: {
-        "grantee": grantee
+        "status": "out_maintain"
         , arr_desc
       }
       , success: function (res) {
-        layer.alert('转让成功！')
+        layer.alert('退出维修模式成功')
         table.reloadData('deviceTable', {                                //...只重载表格数据      
         });
         $.ajax({
@@ -538,7 +561,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           , success: function (res) {
             var deviceSumData = {
               deviceSum: res.deviceSum
-              , transferSum: res.transferSum
+              , in_maintainSum: res.in_maintainSum
               , serchNum: res.serchNum
             }
             var htmlTestSum = template('tpl-deviceSum', deviceSumData);
@@ -549,18 +572,12 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     })
   })
 
-  $("#initRechargeBt").on('click', function () {                              //...设置预充值量 按钮...//
-    if (form.val('transferForm').desc === "") {
+  $("#in_maintainBt").on('click', function () {                              //...进入维修模式 按钮...//
+    if (form.val('myForm').desc === "") {
       layer.alert('请录入设备！')
       return
     }
-    if (form.val("transferForm").setRecharge === "") {
-      $('#setRechargeInpt').focus()
-      $('#setRechargeID').addClass('warnBorder')
-      // layer.alert('请设置预充值量！')
-      return
-    }
-    arr_desc = form.val("transferForm").desc.split(',')   //获取文本框中的内容并转成数组
+    arr_desc = form.val("myForm").desc.split(',')   //获取文本框中的内容并转成数组
     var error_temp = 0
     $.each(arr_desc, function (index, elem) {
       if (isNaN(Number(elem))) {
@@ -572,53 +589,33 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       error_temp = 0
       return;
     }
-    initRecharge = form.val("transferForm").setRecharge
     $.ajax({
       type: 'post'
       , url: '../../api/transfer_devices.php'
       , data: {
-        "initRecharge": initRecharge
+        "status": "in_maintain"
         , arr_desc
       }
       , success: function (res) {
-        layer.alert('设置预充值量成功！')
-      }
-    })
-  })
-
-  $("#setMenoBt").on('click', function () {                                       //...修改备注 按钮...//
-    if (form.val('transferForm').desc === "") {
-      layer.alert('请录入设备！')
-      return
-    }
-    if (form.val("transferForm").setMeno === "") {
-      $('#setMenoInpt').focus()
-      $('#setMenoID').addClass('warnBorder')
-      // layer.alert('请输入备注信息！')
-      return
-    }
-    arr_desc = form.val("transferForm").desc.split(',')   //获取文本框中的内容并转成数组
-    var error_temp = 0
-    $.each(arr_desc, function (index, elem) {
-      if (isNaN(Number(elem))) {
-        layer.alert("录入的设备编号格式错误或可能存在非英文逗号:" + elem)
-        error_temp = 1
-      }
-    })
-    if (error_temp == 1) {
-      error_temp = 0
-      return;
-    }
-    meno = form.val("transferForm").setMeno
-    $.ajax({
-      type: 'post'
-      , url: '../../api/transfer_devices.php'
-      , data: {
-        "meno": meno
-        , arr_desc
-      }
-      , success: function (res) {
-        layer.alert('修改备注成功！')
+        layer.alert('进入维修模式成功！')
+        table.reloadData('deviceTable', {                                //...只重载表格数据      
+        });
+        $.ajax({
+          type: "get"
+          , url: '../../api/transfer_devices.php'
+          , data: {
+            page: 1
+          }
+          , success: function (res) {
+            var deviceSumData = {
+              deviceSum: res.deviceSum
+              , in_maintainSum: res.in_maintainSum
+              , serchNum: res.serchNum
+            }
+            var htmlTestSum = template('tpl-deviceSum', deviceSumData);
+            $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
+          }
+        })
       }
     })
   })

@@ -60,8 +60,29 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
       , { field: 'meterID', title: '设备编号', minWidth: 120, sort: true } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
       , { field: 'IMEI', title: 'IMEI', minWidth: 160, sort: true }
       , { field: 'ICCID', title: 'ICCID', minWidth: 200, sort: true }
-      , { field: 'VDD', title: '电池电压', minWidth: 105, sort: true }
-      , { field: 'SS', title: '信号强度', minWidth: 105, sort: true }
+      , { field: 'VDD', title: '电池电压', minWidth: 105, sort: true ,templet:function(d) {
+        var myHtml = ''
+        if(d.VDD < 3.3){
+          myHtml = '<span>电池电压<label style="background-color: rgb(206, 49, 49); border-radius: 10px; color: #fff; line-height: 20px; width: 60px; text-align: center;">'+ d.VDD +'V</label></span>'
+        }
+        else {
+          myHtml = '<span>电池电压<label style="background-color: rgb(31, 138, 31); border-radius: 10px; color: #fff; line-height: 20px; width: 60px; text-align: center;">'+ d.VDD +'V</label></span>'
+        }
+        return myHtml
+    }}
+      , { field: 'CSQ', title: '信号强度', minWidth: 105, sort: true ,templet:function(d) {
+        var myHtml = ''
+        if(d.CSQ < 10) {
+          myHtml = myHtml + '<span>信号强度<label style="background-color: rgb(206, 49, 49); border-radius: 10px; color: #fff; line-height: 20px; ; width: 20px;text-align: center;">'+ d.CSQ +'</label></span>'
+        }
+        else if(d.CSQ < 15) {
+          myHtml = myHtml + '<span>信号强度<label style="background-color: orange; border-radius: 10px; color: #fff; line-height: 20px; ; width: 20px;text-align: center;">'+ d.CSQ +'</label></span>'
+        }
+        else {
+          myHtml = myHtml + '<span>信号强度<label style="background-color:  rgb(31, 138, 31); border-radius: 10px; color: #fff; line-height: 20px; ; width: 20px;text-align: center;">'+ d.CSQ +'</label></span>'
+        }
+        return myHtml
+    }}
       , { field: 'totalFlow', title: '累计用量', minWidth: 105, sort: true } //单元格内容水平居中
       , { field: 'testFlow', title: '当前测试用量', minWidth: 130, sort: true } //单元格内容水平居右
       , { field: 'reportTime', title: '最近上报时间', minWidth: 160, sort: true }

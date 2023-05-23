@@ -30,8 +30,8 @@ if(isset($_GET['page'])){
                             "valveStatus":"",
                             "dn":"DN15",
                             "meno":"测试",
-                            "VDD":"3.65",
-                            "CSQ":"19"
+                            "VDD":"3.2",
+                            "CSQ":"12"
                         }
                     ]
                 }';
@@ -209,8 +209,8 @@ if(isset($_GET['page'])){
                         "valveStatus":"阀门已开",
                         "dn":"DN15",
                         "meno":"测试",
-                        "VDD":"3.66V",
-                        "CSQ":"18"
+                        "VDD":3.2,
+                        "CSQ":13
                     },
                     {
                         "meterID":"12345678",
@@ -221,8 +221,20 @@ if(isset($_GET['page'])){
                         "valveStatus":"",
                         "dn":"DN15",
                         "meno":"测试",
-                        "VDD":"3.67V",
-                        "CSQ":"20"
+                        "VDD": 3.67,
+                        "CSQ": 20
+                    },
+                    {
+                        "meterID":"12345678",
+                        "IMEI":"8645078915875689",
+                        "ICCID":"89861121230425878547",
+                        "transferStatus":"未转让",
+                        "transferor":"连云港连利福思特表业",
+                        "valveStatus":"",
+                        "dn":"DN15",
+                        "meno":"测试",
+                        "VDD": 3.67,
+                        "CSQ": 8
                     }
                 ]
             }';

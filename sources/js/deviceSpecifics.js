@@ -40,7 +40,25 @@ layui.use(['layer', 'table', 'dropdown', 'form', 'jquery', 'element','laydate'],
       , { field: 'totalFlow', title: '累计用量', minWidth: 80, sort: true } //单元格内容水平居中
       , { field: 'reportTime', title: '上报日期', minWidth: 80, sort: true }
       , { field: 'meno', title: '备注', minWidth: 80 }
-      , { title: '运行状态', minWidth: 105, templet: '#tpl-workStatus' }
+      , { title: '运行状态', minWidth: 105, templet:function(d) {
+        var myHtml = ''
+        if(d.VDD < 3.3){
+          myHtml = '<span>电池电压<label style="background-color: rgb(206, 49, 49); border-radius: 10px; color: #fff; line-height: 20px; width: 60px; text-align: center;">'+ d.VDD +'V</label></span>'
+        }
+        else {
+          myHtml = '<span>电池电压<label style="background-color: rgb(31, 138, 31); border-radius: 10px; color: #fff; line-height: 20px; width: 60px; text-align: center;">'+ d.VDD +'V</label></span>'
+        }
+        if(d.CSQ < 10) {
+          myHtml = myHtml + '<span>信号强度<label style="background-color: rgb(206, 49, 49); border-radius: 10px; color: #fff; line-height: 20px; ; width: 20px;text-align: center;">'+ d.CSQ +'</label></span>'
+        }
+        else if(d.CSQ < 15) {
+          myHtml = myHtml + '<span>信号强度<label style="background-color: orange; border-radius: 10px; color: #fff; line-height: 20px; ; width: 20px;text-align: center;">'+ d.CSQ +'</label></span>'
+        }
+        else {
+          myHtml = myHtml + '<span>信号强度<label style="background-color:  rgb(31, 138, 31); border-radius: 10px; color: #fff; line-height: 20px; ; width: 20px;text-align: center;">'+ d.CSQ +'</label></span>'
+        }
+        return myHtml
+    } }
       , { field: 'enterTimer', title: '入库时间', minWidth: 105, sort: true }
     ]]
     , even: true

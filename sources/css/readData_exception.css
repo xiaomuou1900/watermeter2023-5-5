@@ -16,11 +16,11 @@
  }
 
  #deviceSerchBt {
-   height: 25px;
+   height: 22px;
    line-height: 22px;
    padding: 0 5px;
    font-size: 12px;
-   margin-bottom: 6px;
+   margin-bottom: 0px;
  }
 
  .layui-icon-close:hover {
