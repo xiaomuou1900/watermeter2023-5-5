@@ -15,7 +15,7 @@ $.ajax({
       startTime: res.startTime
     };
     var htmlTestSum = template('tpl-testSum', testSumData);
-    $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
+    $('#testSum').html(htmlTestSum);                                   //....渲染测试总数....//
   }
 })
 
@@ -109,7 +109,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       table_data = res.data
     }
   });
-  window.setInterval(function () {                 //...定时器...//
+  window.setInterval(function () {                 //....定时器....//
     $.ajax({
       type: 'get'
       , url: '../../api/transfer_devices.php'
@@ -127,31 +127,54 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
             startTime: res.startTime
           };
           var htmlTestSum = template('tpl-testSum', testSumData);
-          $('#testSum').html(htmlTestSum);                                   //...渲染测试总数...//
-          table.reloadData('testDevice', {                                   //只重载表格数据
-            where: {
+          $('#testSum').html(htmlTestSum);                                   //....渲染测试总数....//
+          table.reloadData('testDevice', {                                   //....只重载表格数据
+            where: {              
             }
           });
         }
       }
     })
   }, 10000)
-  table.on('tool(test)', function (obj) {                                   //...单元格工具事件（单击测试详情触发）
+
+  form.on('select(serchCondition_select_filter)', function(data){                 //.....选择查询条件复选框发生改变...//
+    // var elem = data.elem; // 获得 select 原始 DOM 对象
+    // var value = data.value; // 获得被选中的值
+    // var othis = data.othis; // 获得 select 元素被替换后的 jQuery 对象 
+    // layer.msg(this.innerHTML + ' 的 value: '+ value); // this 为当前选中 <option> 元素对象
+    form.val('deviceSerchFilter', {
+      "meterIDserchInpt": "",
+      "IMEIserchInpt": "",
+      "ICCIDserchInpt": ""
+    })
+    $('#meterIDserchSpan_id').addClass('hide')
+    $('#IMEIserchSpan_id').addClass('hide')  
+    $('#ICCIDserchSpan_id').addClass('hide')
+    if(data.value == "设备编号") {
+      $('#meterIDserchSpan_id').removeClass('hide')
+    } else if(data.value == "IMEI") {
+      $('#IMEIserchSpan_id').removeClass('hide')
+    } else if(data.value == "ICCID") {
+      $('#ICCIDserchSpan_id').removeClass('hide')
+    } 
+  });
+
+  table.on('tool(test)', function (obj) {                                   //....单元格工具事件（单击测试详情触发）
     var data = obj.data;
 
     var specificsDIVData = {
       meterID: data.meterID
     };
-    var htmlSpecificsDIV = template('tpl-specificsDIV', specificsDIVData);   //...获得测试详情界面template的HTML
+    var htmlSpecificsDIV = template('tpl-specificsDIV', specificsDIVData);   //....获得测试详情界面template的HTML
 
     if (obj.event == 'specifics') {
       layer.open({                                                          //打开弹出层
         title: '测试详情',
         type: 1,
         area: ['60%', '60%'],
-        content: htmlSpecificsDIV                                           //...将模板赋给内容
+        content: htmlSpecificsDIV                                           //....将模板赋给内容
       })
-      table.render({                                                        //...渲染测试详情表格
+      table.render({                                                        //....渲染测试详情表格
         elem: '#specificsTable'
         ,url:'../../api/testing_specifics.json'
         ,where:{
@@ -184,7 +207,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
   $('#deviceSerchBt').on('click', function () {                                                      //..查询按钮
     var data = form.val('deviceSerchFilter')
     if (data.meterIDserchInpt === "" && data.IMEIserchInpt === "" && data.ICCIDserchInpt === "") {
-      layer.alert('请填写查询信息！')
+      layer.alert('请选择查询条件并填写查询信息！')
       return
     }
     else {

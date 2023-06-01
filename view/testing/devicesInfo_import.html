@@ -20,24 +20,37 @@
         <div class="content ">
            <div class="box-header pannel">
                 <div class="introduction">
-                    <i class="iconfont icon-xinxi"></i>  您可以通过点击“  ”按钮 
+                    <i class="iconfont icon-xinxi"></i>  请点击下载模板文件： 
+                    <span style="margin-left: 5px;"><a href="../../excels/设备信息导入模板.xls">点击下载Excel模板</a></span>
                 </div>
-                <form class="layui-form deviceSerch" action="" lay-filter="deviceSerchFilter" style="border-bottom: 1px solid var(--grey-color);">                 
-                    <span class="layui-input-inline" style="margin-left: 40px; margin-right: -10px; ">平台选择：</span>
-                    <div class="layui-input-inline" style="margin-bottom: 7px">
-                        <select id="platform" name="platformSerchInpt" type="text">
-                            <option value="">请选择所属平台</option>
-                            <option value="电信OC">电信OC</option>
-                            <option value="电信AEP">电信AEP</option>
-                            <option value="移动OneNet">移动OneNet</option>
-                        <select>
-                    </div>
-                    <span  class="layui-input-inline" style=" font-size: 18px;"><button type="button" class="layui-btn layui-btn-sm" id="importBt"><i class="iconfont icon-daoru"></i>导入</button></span> 
-                    <span  class="layui-input-inline" style=" font-size: 18px;"><button type="button" class="layui-btn layui-btn-sm" id="exportBt"><i class="iconfont icon-daochu"></i>导出</button></span> 
-                    <div style="display: none;"><table id="data_export"></table></div>
+                <form class="layui-form deviceSerch row" action="" lay-filter="deviceSerchFilter" style="border-bottom: 1px solid var(--grey-color); padding-bottom: 5px;"> 
+                    <div   class="layui-input-inline col-sm-6 col-xs-12" style="text-align: left;">
+                        <span class="layui-input-inline" style="margin-left: 0px; margin-right: -10px; ">平台选择：</span>
+                        <div class="layui-input-inline" style="margin-bottom: 7px; width: 200px;">
+                            <select name="platformSerchInpt" type="text">
+                                <option value="">请选择所属平台</option>
+                                <option value="电信OC">电信OC</option>
+                                <option value="电信AEP">电信AEP</option>
+                                <option value="移动OneNet">移动OneNet</option>
+                            <select>
+                        </div>
+                        <span class="layui-input-inline" style=" font-size: 18px;"><button type="button" class="layui-btn layui-btn-sm" id="importBt"><i class="iconfont icon-daoru"></i>导入</button></span> 
+                    </div>                                   
+                    <div   class="layui-input-inline col-sm-6 col-xs-12" style="text-align: left;">
+                        <span class="layui-input-inline" style="margin-left: 0px; margin-right: -10px; ">任务编号：</span>
+                        <div class="layui-input-inline" id="excelNameDiv" style="margin-bottom: 7px; width: 200px;">                       
+                            <select id="excelNameId" name="excelNameInpt" type="text">
+                                <option value="">请选择任务编号</option>
+                            <select>
+                        </div>
+                        <span style=" font-size: 18px; "><button type="button" class="layui-btn layui-btn-sm" id="searchBt"><i class="iconfont icon-fangdajing"></i>查询</button></span> 
+                        <span style=" font-size: 18px; "><button type="button" class="layui-btn layui-btn-sm" id="exportBt"><i class="iconfont icon-daochu"></i>导出</button></span> 
+                        <div style="display: none;"><table id="data_export"></table></div>
+                    </div>              
                 </form>
            </div>
-           <!-- <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>    -->
+           <div style="margin-left: 15px;"><strong> 任务编号：</strong><span id="excelNameSpan"></span></div> 
+           <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>   
         </div> 
     </div>
     <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>

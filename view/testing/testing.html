@@ -37,13 +37,18 @@
                 <!-- 查询提示 -->
                 <div id="selectTips" style="padding-top:5px ;"> </div>
                 <form class="layui-form deviceSerch" action="" lay-filter="deviceSerchFilter" style="padding-bottom: 8px; border-bottom: 1px solid var(--grey-color);">
-                    <span style="display: inline-block; margin-top: 5px;">设备编号：</span>
-                    <span style="display: inline-block; margin-top: 5px;"><input name="meterIDserchInpt" type="text"></span> 
-                    <span style="display: inline-block; margin-left: 20px; margin-top: 5px;">IMEI：</span>
-                    <span style="display: inline-block; margin-top: 5px;"><input name="IMEIserchInpt" type="text"></span> 
-                    <span style="display: inline-block; margin-left: 20px; margin-top: 5px;">ICCID：</span>
-                    <span style="display: inline-block; margin-top: 5px;"><input name="ICCIDserchInpt" type="text"></span>
-                    <span style="display: inline-block; margin-top: 5px;"><button type="button" class="layui-btn layui-btn-xs" id="deviceSerchBt"><i class="iconfont icon-fangdajing"></i>查询</button></span> 
+                    <span id="serchCondition_selcet_id" style="display: inline-block; margin-top: 5px;">
+                        <select name="serchCondition_selcet" type="text" lay-filter="serchCondition_select_filter">
+                            <option value="">查询条件</option>
+                            <option value="设备编号">设备编号</option>
+                            <option value="IMEI">IMEI</option>
+                            <option value="ICCID">ICCID</option>
+                        </select>
+                    </span>
+                    <span id="meterIDserchSpan_id" class="hide" style="display: inline-block; margin-top: 5px;"><input name="meterIDserchInpt" type="text" placeholder="请输入设备编号" style=" padding: 0 2px;"></span> 
+                    <span id="IMEIserchSpan_id" class="hide" style="display: inline-block; margin-top: 5px;"><input name="IMEIserchInpt" type="text" placeholder="请输入IMEI" style=" padding: 0 2px;"></span> 
+                    <span id="ICCIDserchSpan_id" class="hide" style="display: inline-block; margin-top: 5px;"><input name="ICCIDserchInpt" type="text" placeholder="请输入ICCID" style=" padding: 0 2px;"></span>
+                    <span style="display: inline-block; margin-top: 5px; position: relative; width: 48px; height: 22px;"><button type="button" class="layui-btn layui-btn-xs" id="deviceSerchBt" style="position: absolute; top:6px"><i class="iconfont icon-fangdajing"></i>查询</button></span> 
                 </form>
            </div>
             <table class="testSum" id="testSum">

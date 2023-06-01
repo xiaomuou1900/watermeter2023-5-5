@@ -16,14 +16,12 @@ $.ajax({
   }
 })
 
-
-
 layui.use(['laypage', 'layer', 'table', 'form'], function () {
   var table = layui.table
     , laypage = layui.laypage
     , layer = layui.layer
     , form = layui.form
-  $.ajax({                                                //...请求 受让厂商 和 转让厂商 并渲染选择框
+  $.ajax({                                                //....请求 受让厂商 和 转让厂商 并渲染选择框
     type: 'get'
     , url: '../../api/transfer_devices.php'
     , data: {
@@ -38,7 +36,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         var html = '<option value="' + elem + '">' + elem + '</option>'
         $("#transferor").append(html)
       })
-      form.render('select');                              //...渲染所有选择框
+      form.render('select');                              //....渲染所有选择框
     }
   })
 
@@ -104,6 +102,40 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     }
   });
 
+  form.on('select(serchCondition_select_filter)', function(data){                 //.....选择查询条件复选框发生改变...//
+    // var elem = data.elem; // 获得 select 原始 DOM 对象
+    // var value = data.value; // 获得被选中的值
+    // var othis = data.othis; // 获得 select 元素被替换后的 jQuery 对象 
+    // layer.msg(this.innerHTML + ' 的 value: '+ value); // this 为当前选中 <option> 元素对象
+    form.val('deviceSerchForm', {
+      "meterIDserchInpt": "",
+      "IMEIserchInpt": "",
+      "ICCIDserchInpt": "",
+      "transferStatusSerchInpt": "",
+      "transferorSerchInpt": "",
+      "menoSerchInpt": "",
+    })
+    $('#meterID_serch_div').addClass('hide')
+    $('#IMEI_serch_div').addClass('hide')  
+    $('#ICCID_serch_div').addClass('hide')
+    $('#transferStatus_serch_div').addClass('hide')
+    $('#transferor_serch_div').addClass('hide')
+    $('#meno_serch_div').addClass('hide')
+    if(data.value == "设备编号") {
+      $('#meterID_serch_div').removeClass('hide')
+    } else if(data.value == "IMEI") {
+      $('#IMEI_serch_div').removeClass('hide')
+    } else if(data.value == "ICCID") {
+      $('#ICCID_serch_div').removeClass('hide')
+    } else if(data.value == "转让状态") {
+      $('#transferStatus_serch_div').removeClass('hide')
+    } else if(data.value == "所属厂商") {
+      $('#transferor_serch_div').removeClass('hide')
+    } else if(data.value == "备注") {
+      $('#meno_serch_div').removeClass('hide')
+    }
+  });
+
   var temp_meterID = 0
     , temp_IMEI = 0
     , temp_ICCID = 0
@@ -151,7 +183,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
   $('#deviceSerchBt').on('click', function () {                                                        //..查询按钮
     var data = form.val('deviceSerchForm')
     if (data.meterIDserchInpt === "" && data.IMEIserchInpt === "" && data.ICCIDserchInpt === "" && data.transferStatusSerchInpt === "" && data.transferorSerchInpt === "" && data.menoSerchInpt === "") {
-      layer.alert('请填写查询信息！')
+      layer.alert('请选择查询条件并填写查询信息！')
       return
     }
     else {

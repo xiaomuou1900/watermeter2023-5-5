@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>platformDevicesManage</title>
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/layui.js">
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/css/layui.css">
+    <link rel="stylesheet" href="../../sources/lib/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../../sources/lib/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../sources/css/base.css">
+    <link rel="stylesheet" href="../../pearadmin/component/pear/css/pear.css">
+    <link rel="stylesheet" href="../../sources/css/platformDevicesManage.css">
+</head>
+<body>
+    <!-- testing主界面 -->
+    <div class="pannel">   
+        <header class="title">平台设备管理</header>
+        <div class="content ">
+           <div class="box-header pannel">
+                <div class="introduction" style="margin-bottom: 10px;">
+                    <i class="iconfont icon-xinxi"></i>  “平台选择”显示对应平台的信息，选择“应用名称”、“设备状态”然后点击“查询”按钮可以进行筛选，勾选设备并选择“操作类型”然后点击“执行”按钮可以进行执行操作，点击“导出”按钮可以导出对应平台的设备管理信息。
+                </div>
+                <form class="layui-form deviceSerch row" action="" lay-filter="deviceSerchFilter" style="border-bottom: 1px solid var(--grey-color); padding-bottom: 5px; margin-top: 5px;"> 
+                    <div   class="layui-input-inline col-lg-3 col-sm-12 col-xs-12" style="text-align: left;">
+                        <span class="layui-input-inline" style="margin-left: 0px; margin-right: -10px; ">平台选择：</span>
+                        <div class="layui-input-inline" style="margin: 5px 0; width: 150px;">
+                            <select name="platformInpt" type="text" lay-filter="platform-select-filter">
+                                <option value="电信OC">电信OC</option>
+                                <option value="电信AEP">电信AEP</option>
+                                <option value="移动OneNet">移动OneNet</option>
+                            <select>
+                        </div>
+                        <!-- <span class="layui-input-inline" style=" font-size: 18px;"><button type="button" class="layui-btn layui-btn-sm" id="searchBt"><i class="iconfont icon-fangdajing"></i>查询</button></span>  -->
+                    </div>           
+                    <div   class="layui-input-inline col-lg-5 col-sm-10 col-xs-10" style="text-align: left; ">
+                        <span class="layui-input-inline" style="margin-left: 0px; margin-right: -10px; ">应用名称：</span>
+                        <div class="layui-input-inline" style="margin: 5px 0; margin-right: 30px; width: 150px;">
+                            <select id="appInptId" name="appInpt" type="text">
+                                <option value="">请选择应用</option>
+                            <select>
+                        </div>
+                        <span class="layui-input-inline" style="margin-left: 0px; margin-right: -10px; ">设备状态：</span>
+                        <div class="layui-input-inline" style="margin: 5px 0; width: 150px;">
+                            <select name="statusInpt" type="text">
+                                <option value="">请选择状态</option>
+                                <option value="已注册">已注册</option>
+                                <option value="未注册">未注册</option>
+                            <select>
+                        </div>
+                        <span class="layui-input-inline" style=" font-size: 18px;"><button type="button" class="layui-btn layui-btn-sm" id="searchBt"><i class="iconfont icon-fangdajing"></i>查询</button></span> 
+                    </div>                                   
+                    <div   class="layui-input-inline col-lg-4 col-sm-12 col-xs-12" style="text-align: left;">
+                        <span class="layui-input-inline" style="margin-left: 0px; margin-right: -10px; ">操作类型：</span>
+                        <div class="layui-input-inline" style="margin: 5px 0; width: 150px;">                       
+                            <select name="operationTypeInpt" type="text">
+                                <option value="">请选择操作类型</option>
+                                <option value="注册">注册</option>
+                                <option value="解绑">解绑</option>
+                                <option value="删除数据">删除数据</option>
+                            <select>
+                        </div>
+                        <span style=" font-size: 18px;"><button type="button" class="layui-btn layui-btn-sm" id="excuteBt"><i class="iconfont icon-spanner-fill"></i>执行</button></span> 
+                        <span style=" font-size: 18px; "><button type="button" class="layui-btn layui-btn-sm" id="exportBt"><i class="iconfont icon-daochu"></i>导出</button></span> 
+                        <div style="display: none;"><table id="data_export"></table></div>
+                    </div>              
+                </form>
+           </div>
+           <div style="margin-left: 15px;"><strong> 已选中：</strong><span id="selectingNumSpan">0</span>条</div> 
+           <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>   
+        </div> 
+    </div>
+    <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../sources/lib/iconfont/iconfont.js"></script>
+    <script src="../../sources/lib/template-web.js"></script>
+    <script src="../../pearadmin/component/layui/layui.js"></script>
+    <script src="../../pearadmin/component/pear/pear.js"></script>
+    <script src="../../sources/lib/xlsx.full.min.js"></script>
+    <script src="../../sources/js/platformDevicesManage.js"></script>
+</body>
+</html>
