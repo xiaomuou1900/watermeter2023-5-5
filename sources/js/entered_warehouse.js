@@ -106,6 +106,34 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
 
     }
   });
+
+  form.on('select(serchCondition_select_filter)', function(data){                 //.....选择查询条件复选框发生改变...//
+    // var elem = data.elem; // 获得 select 原始 DOM 对象
+    // var value = data.value; // 获得被选中的值
+    // var othis = data.othis; // 获得 select 元素被替换后的 jQuery 对象 
+    // layer.msg(this.innerHTML + ' 的 value: '+ value); // this 为当前选中 <option> 元素对象
+    form.val('deviceSerchFilter', {
+      "meterIDserchInpt": "",
+      "IMEIserchInpt": "",
+      "ICCIDserchInpt": "",
+      "startDate": "",
+      "endDate": ""
+    })
+    $('#meterIDserchDiv_id').addClass('hide')
+    $('#IMEIserchDiv_id').addClass('hide')  
+    $('#ICCIDserchDiv_id').addClass('hide')
+    $('#dateDiv_id').addClass('hide')
+    if(data.value == "设备编号") {
+      $('#meterIDserchDiv_id').removeClass('hide')
+    } else if(data.value == "IMEI") {
+      $('#IMEIserchDiv_id').removeClass('hide')
+    } else if(data.value == "ICCID") {
+      $('#ICCIDserchDiv_id').removeClass('hide')
+    } else if(data.value == "日期范围") {
+      $('#dateDiv_id').removeClass('hide')
+    } 
+  });
+
   table.on('tool(test)', function (obj) {                                   //...单元格工具事件（单击测试详情触发）...//
     var data = obj.data;
     if (obj.event == 'specifics') {

@@ -120,6 +120,33 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
     }
   });
 
+  form.on('select(serchCondition_select_filter)', function(data){                 //.....选择查询条件复选框发生改变...//
+    // var elem = data.elem; // 获得 select 原始 DOM 对象
+    // var value = data.value; // 获得被选中的值
+    // var othis = data.othis; // 获得 select 元素被替换后的 jQuery 对象 
+    // layer.msg(this.innerHTML + ' 的 value: '+ value); // this 为当前选中 <option> 元素对象
+    form.val('deviceSerchFilter', {
+      "meterIDserchInpt": "",
+      "startDate": "",
+      "endDate": "",
+      "transferorSerchInpt": "",
+      "menoSerchInpt": ""
+    })
+    $('#meterIDserchDiv_id').addClass('hide')
+    $('#dateDiv_id').addClass('hide')
+    $('#transferorDiv_id').addClass('hide')  
+    $('#menoDiv_id').addClass('hide')
+    if(data.value == "设备编号") {
+      $('#meterIDserchDiv_id').removeClass('hide')
+    } else if(data.value == "日期范围") {
+      $('#dateDiv_id').removeClass('hide')
+    } else if(data.value == "所属厂商") {
+      $('#transferorDiv_id').removeClass('hide')
+    } else if(data.value == "备注") {
+      $('#menoDiv_id').removeClass('hide')
+    } 
+  });
+
   $("#exportBt").click(function () {                                       //...导出按钮...//
     var ins1 = table.render({
       elem: '#data_export'

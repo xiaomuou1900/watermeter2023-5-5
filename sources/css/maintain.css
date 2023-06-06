@@ -37,3 +37,9 @@
    background-color: #f19d26;
    border-color: #f19d26;
 }
+
+#serchCondition_selcet_id .layui-input{
+    height: 24px;
+    width: 100px;
+    border: 1px solid rgb(94, 92, 92);
+ }

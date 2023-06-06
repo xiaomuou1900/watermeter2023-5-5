@@ -1,0 +1,7 @@
+*{
+   box-sizing:content-box;
+}
+
+.layui-card-header {
+   color: #fff
+}

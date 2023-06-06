@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "587323",
+      "name": "已使用",
+      "font_class": "yishiyong",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "3639954",
+      "name": "绿洲_总数",
+      "font_class": "lvzhou_zongshu",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "19104013",
+      "name": "首页-欠费账单",
+      "font_class": "qianfeizhangdan",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "35346354",
+      "name": "未使用",
+      "font_class": "weishiyong",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
       "icon_id": "7838629",
       "name": "点点点",
       "font_class": "diandiandian",
