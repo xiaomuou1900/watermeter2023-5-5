@@ -1,0 +1,68 @@
+{
+	"code": 0,
+	"msg": null,
+	"count": 100,
+	"meterTotalCount":1500,
+	"meterUsedCount":1268,
+	"zeroFlowUserCount":1,
+	"arrearsUserCount":15,
+	"deviceStatusAlarmCount":3,
+	"userStatusAlarmCount":10,
+	"aferPayUserAlarmCount":7,
+	"beforPayUserAlarmCount":3,
+	"data_readMeterStatus": [
+		{
+			"thisReadMeterTime": "2023-05-09 13:15:38",
+			"readSuccessMeterNum": "1000/1298",
+			"nextReadMeterTime":"2023-05-10 13:15:38"
+		}
+	],
+	"data_deviceStatusAlarm": [
+		{
+			"meterID": "12345678",
+			"abnormalStatus": "电量低"
+		},
+		{
+			"meterID": "12345678",
+			"abnormalStatus": "信号弱"
+		},
+		{
+			"meterID": "12345678",
+			"abnormalStatus": "电量低，信号弱"
+		}
+	],
+	"data_afterPayUserStatusAlarm": [
+		{
+			"userID": "A001",
+			"userName": "奇奇",
+			"arrearage": "100.00"
+		},
+		{
+			"userID": "A001",
+			"userName": "奇奇",
+			"arrearage": "100.00"
+		}
+	],
+	"data_beforePayUserStatusAlarm": [
+		{
+			"userID": "B001",
+			"userName": "妙妙",
+			"arrearage": "100.00"
+		},
+		{
+			"userID": "B001",
+			"userName": "妙妙",
+			"arrearage": "100.00"
+		}
+	],
+	"data_beforePayUserSearch":[
+		{
+			"userID": "B001",
+			"userName": "妙妙",
+			"meterID": "123888",
+			"balance": "10.00",
+			"userAddress": "苹果大街"
+		}
+	]
+	
+}

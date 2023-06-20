@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,16 +10,18 @@
     <link rel="stylesheet" href="../../sources/lib/bootstrap-3.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../sources/lib/iconfont/iconfont.css">
     <link rel="stylesheet" href="../../sources/css/base.css">
-    <link rel="stylesheet" href="../../sources/css/home.css">
     <link rel="stylesheet" href="../../sources/css/console1.css">
+    <link rel="stylesheet" href="../../sources/css/home.css">
 </head>
+
 <body>
     <!-- testing主界面 -->
-    <div class="pannel">   
+    <div class="pannel">
         <header class="title">首页</header>
-        <div class="layui-row layui-col-space10" style="margin-bottom: 15px;">
+        <div class="layui-row layui-col-space10" style="margin-bottom: 5px" id="meterCount_id">
             <div class="layui-col-xs6 layui-col-md3">
-                <div class="layui-card top-panel" style="background: linear-gradient(45deg, #216EF0, #21C9F0) !important;color: #fff!important; box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.1);;">
+                <div class="layui-card top-panel"
+                    style="background: linear-gradient(45deg, #216EF0, #21C9F0) !important;color: #fff!important; box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.1);;">
                     <div class="layui-card-header">表总数</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
@@ -33,7 +36,8 @@
                 </div>
             </div>
             <div class="layui-col-xs6 layui-col-md3">
-                <div class="layui-card top-panel" style="background: linear-gradient(45deg, #0b8a44, #49eca8) !important;color: #fff!important; box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.1);;">
+                <div class="layui-card top-panel"
+                    style="background: linear-gradient(45deg, #0b8a44, #49eca8) !important;color: #fff!important; box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.1);;">
                     <div class="layui-card-header">使用表总数</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
@@ -48,7 +52,8 @@
                 </div>
             </div>
             <div class="layui-col-xs6 layui-col-md3">
-                <div class="layui-card top-panel" style="background: linear-gradient(45deg, rgb(255, 134, 13), #f6c343) !important;color: #fff!important; box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.1);;">
+                <div class="layui-card top-panel"
+                    style="background: linear-gradient(45deg, rgb(255, 134, 13), #f6c343) !important;color: #fff!important; box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.1);;">
                     <div class="layui-card-header">零流量用户数量</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
@@ -63,7 +68,8 @@
                 </div>
             </div>
             <div class="layui-col-xs6 layui-col-md3">
-                <div class="layui-card top-panel" style="background: linear-gradient(45deg, #6b5eae, #727cf5) !important;color: #fff!important; box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.1);;">
+                <div class="layui-card top-panel"
+                    style="background: linear-gradient(45deg, #6b5eae, #727cf5) !important;color: #fff!important; box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.1);;">
                     <div class="layui-card-header">欠费用户数量</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
@@ -78,9 +84,66 @@
                 </div>
             </div>
         </div>
-        <div class="content ">
-           
-        </div> 
+        <div class="row">
+            <div id="deviceStatusAlarm" class="content col-xs-12 col-md-6" style="margin-bottom: 10px; background-color:var(--grey-color);">
+                <div class="row" style="margin-right: 1px;">
+                    <div class="layui-inline col-xs-10" style="height: 21px; padding:10px 0; background-color: white;">
+                        <i class="iconfont icon-yichang" style="margin-left: 10px; font-size: 22px; vertical-align:-12%;"></i>设备状态报警<span class="label label-danger" style="margin-left: 5px; vertical-align:10%; font-size: 16px;"></span>
+                    </div>
+                    <div class="layui-inline col-xs-2" style="height: 21px; padding:10px 0; text-align: right; background-color: white;">
+                        <button style="margin-right: 10px; font-weight: 700; font-size: 20px; width: 21px; height: 21px; border: 0; line-height: 21px; background-color: white; color: gray;">+</button>                    
+                    </div>
+                </div>
+                <div id="tableDiv" class="hide" style="height: fit-content; background-color: #fff; margin-right: 1px;"><table id="deviceStatusAlarm_table"></table></div>
+            </div>
+            <div id="userStatusAlarm" class="content col-xs-12 col-md-6" style="margin-bottom: 10px;  background-color:var(--grey-color);">
+                <div class="row" style="margin-right: 1px;">
+                    <div class="layui-inline col-xs-10" style="height: 21px; padding:10px 0; background-color: white;">
+                        <i class="iconfont icon-yichang" style="margin-left: 10px; font-size: 22px; vertical-align:-12%;"></i>用户状态报警<span class="label label-danger" style="margin-left: 5px; vertical-align:10%; font-size: 16px;"></span>
+                    </div>
+                    <div class="layui-inline col-xs-2" style="height: 21px; padding:10px 0; text-align: right; background-color: white;">
+                        <button style="margin-right: 10px; font-weight: 700; font-size: 20px; width: 21px; height: 21px; border: 0; line-height: 21px; background-color: white; color: gray;">+</button>                    
+                    </div>
+                </div>
+                <div id="tableDiv" class="hide" style="height: fit-content; background-color: #fff; margin-right: 1px;">
+                    <div class="layui-tab" lay-filter="test-handle">
+                        <ul class="layui-tab-title">
+                          <li class="layui-this" lay-id="11">后付费用户<span id="afterPayUser_span" class="label label-danger" style="margin-left: 5px; vertical-align:10%; font-size: 14px;"></span></li>
+                          <li lay-id="22">预付费用户<span id="beforePayUser_span" class="label label-danger" style="margin-left: 5px; vertical-align:10%; font-size: 14px;"></span></li>
+                        </ul>
+                        <div class="layui-tab-content">
+                          <div class="layui-tab-item layui-show"><table id="afterPayUserStatusAlarm_table"></table></div>
+                          <div class="layui-tab-item"><table id="beforePayUserStatusAlarm_table"></table></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="beforePayUserSearch" class="content" style="background-color:var(--grey-color);">
+            <div style="margin-bottom: 10px;">
+                <div class="row" style="margin-right: 1px;">
+                    <div class="layui-inline col-xs-10" style="height: 21px; padding:10px 0; background-color: white;">
+                        <i class="iconfont icon-yichang" style="margin-left: 10px; font-size: 22px; vertical-align:-12%;"></i>预付费用户余额筛选
+                    </div>
+                    <div class="layui-inline col-xs-2" style="height: 21px; padding:10px 0; text-align: right; background-color: white;">
+                        <button id="button_show" style="margin-right: 10px; font-weight: 700; font-size: 20px; width: 21px; height: 21px; border: 0; line-height: 21px; background-color: white; color: gray;">+</button>                    
+                    </div>
+                </div>
+                <div id="tableDiv" class="hide" style="background-color: #fff; padding-bottom: 10px; margin-right: 1px;">
+                    <div style="text-align: right;">
+                        <span style="font-size: 18px;">余额范围：</span>
+                        <label style=" border:1px solid #d2d6de;height: 26px; width: 25px; margin-bottom: 0; margin-bottom: -8px; margin-right: -6px; font-weight: 400; text-align: center; color:#6f7279">≤</label>
+                        <input id="balance_input"  type="number" style="display: inline-block;height: 26px; border:1px solid #d2d6de;width: 150px;" >
+                        <button id="button_search" type="button" class="layui-btn layui-btn-sm layui-btn-normal" style="margin-left:-4px; height:28px; line-height: 28px; vertical-align:bottom; font-size:14px; margin-right: 12px;">筛选</button>
+                    </div>
+                    <table id="beforePayUserSearch_table"></table>
+                </div>
+            </div>
+        </div>  
+        <div class="content" style="background-color:white; padding:10px" >
+            <i class="iconfont icon-jilu" style="font-size: 22px; vertical-align:-8%; margin-right: 2px;"></i>抄表状态
+            <div><table id="readMeterStatus_table"></table></div>
+        </div>    
     </div>
     <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>
     <script src="../../sources/lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
@@ -90,4 +153,5 @@
     <script src="../../sources/js/home.js"></script>
 
 </body>
+
 </html>

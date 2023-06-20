@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3826027",
+      "name": "记录",
+      "font_class": "jilu",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
       "icon_id": "587323",
       "name": "已使用",
       "font_class": "yishiyong",
