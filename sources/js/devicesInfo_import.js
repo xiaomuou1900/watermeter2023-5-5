@@ -38,23 +38,24 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
       limit: 25
       , limits: [10, 15, 20, 25, 30, 35, 40, 45, 50]
       , layout: ['prev', 'page', 'next', 'skip', 'count', 'limit']
-      , jump: function (obj, first) {                                        //分页被操作时触发该函数
-        //obj包含了当前分页的所有参数，比如：
-        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-        console.log(obj.limit); //得到每页显示的条数
-        //首次不执行
-        if (!first) {
-          //do something
-          table.reloadData('testDevice', {                                   //只重载表格数据
-            where: {
-              get:'devicesInfo_import'
-              ,excelNanme: excelNameSpan
-              ,page: obj.curr
-              ,limit: obj.limit
-            }
-          });
-        }
-      }
+      // , jump: function (obj, first) {                                        // table.render 中没有jump
+      //   //obj包含了当前分页的所有参数，比如：
+      //   console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+      //   console.log(obj.limit); //得到每页显示的条数
+      //   //首次不执行
+      //   if (!first) {
+      //     //do something
+      //     table.reloadData('testDevice', {                                   //只重载表格数据
+      //       where: {
+      //         get:'devicesInfo_import'
+      //         ,excelNanme: excelNameSpan
+      //         ,page: obj.curr
+      //         ,limit: obj.limit
+      //         ,hi:'你好'
+      //       }
+      //     });
+      //   }
+      // }
     }
     , parseData: function (res) { //res 即为原始返回的数据
       return {
@@ -205,6 +206,11 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
       excelNameExport = excelNanme_export.excelNameInpt  
     }
     var date = new Date()
+    var month = date.getMonth() +1
+    if (month < 10 ) {
+      month = '0' + month
+    }
+    var dates = '' + date.getFullYear() + month + date.getDate("00")
     var ins1 = table.render({
       elem: '#data_export'
       , url: '../../api/devicesInfo_import.json'
@@ -212,7 +218,7 @@ layui.use(['laypage', 'layer', 'table', 'form', 'laydate'], function () {
         export:'devicesInfo_import'
         ,excelNanme: excelNameExport
       }
-      , title: excelNameExport + date.getFullYear() + date.getMonth("00") + date.getDate("00")
+      , title: excelNameExport + '-' + dates
       , parseData: function (res) { //res 即为原始返回的数据
         return {
           "code": res.code, //解析接口状态

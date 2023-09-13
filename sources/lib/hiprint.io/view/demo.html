@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +7,7 @@
     <meta name="keywords" content="hiprint,一个可以跨平台windows,mac,linux运行的js打印插件,打印自动分页">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>hiprint.io</title>
-    <link href="../Content/hinnn.css" rel="stylesheet" />
+    <link href= "..../Content/hinnn.css" rel="stylesheet" />
     <!-- Bootstrap -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet">
     <link href="../Content/document.css" rel="stylesheet" />
@@ -25,253 +24,364 @@
     <link href="../Content/hiprint/css/hiprint.css" rel="stylesheet" />
     <link href="../Content/hiprint/css/print-lock.css" rel="stylesheet" />
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script> -->
-    <script src="../Content/jquery.js"></script>
+     <script src="../Content/jquery.js"></script>
 
-    <script data-ad-client="ca-pub-2624961100945767" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-2624961100945767" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
-
 <body>
-    <div class="wrapper">
-        <layout class="layout hinnn-layout hinnn-layout-has-sider height-100-per" style="background:#fff;">
-            <content class="hinnn-layout-content" style="border-left:1px solid #e8e8e8;">
-                <div class="container-fluid height-100-per print-content">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-3 col-md-2" style="padding-right:0px;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand hidden-sm" href="/">Hiprint</a>
+            </div>
+            <div class="navbar-collapse collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    
+                    <li><a href="/demo">Hiprint2中文文档</a></li>
+                    <li><a href="/demo/list">Hiprint在线实例</a></li>
+                    <li><a href="/demo/list/htmlTopdf">Hiprint转PDF</a></li>
+                    <li><a href="/updatelogs">更新日志</a></li>
+                    
+                    
+                    <li><a href="/design">模板设计</a></li>
+                    <li><a href="/download">下载 v2.5.3</a></li>
 
-                                    <div class="rect-printElement-types hiprintEpContainer">
-                                        <ul class="hiprint-printElement-type">
+                </ul>
+                <ul class="nav navbar-nav navbar-right hidden-sm">
+                    <li><a href="javascript:void(0)">q群 867788017(满),561844693 vip群 866855396</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper" style="margin-top:50px;">
+        
+
+<link href="../Content/hiprint/css/hiprint.css" rel="stylesheet" />
+<link href="../Content/hiprint/css/print-lock.css" rel="stylesheet" />
+<link href="../Content/hiprint/css/print-lock.css" media="print" rel="stylesheet" />
+
+
+<layout class="layout hinnn-layout hinnn-layout-has-sider height-100-per" style="background:#fff;">
+    <sider class="hinnn-layout-sider" style="flex: 0 0 80px; max-width: 80px; min-width: 80px; width: 80px;">
+        <nav class="hinnn-docs-sidebar" style="width:80px;height:100%;">
+    <ul class="nav hinnn-docs-sidenav">
+
+        <li>
+            <a href="/demo">实例</a>
+
+        </li>
+        <li>
+            <a href="/demo/demo2">实例2</a>
+
+        </li>
+        <li>
+            <a href="/demo/demo3">实例3</a>
+
+        </li>
+        <li>
+            <a href="/docs/start">开始</a>
+
+        </li>
+        <li>
+            <a href="/docs/template">模板</a>
+
+        </li>
+        <li>
+            <a href="/docs/panel">面板</a>
+
+        </li>
+        <li>
+            <a href="/docs/text">文本</a>
+
+        </li>
+
+        <li>
+
+        </li>
+
+        <li>
+            <a href="/docs/image">图片</a>
+
+        </li>
+
+        <li>
+            <a href="/docs/hline">横线</a>
+        </li>
+        <li>
+            <a href="/docs/vline">竖线</a>
+        </li>
+        <li>
+            <a href="/docs/rect">矩形</a>
+        </li>
+        <li>
+            <a href="/docs/oval">椭圆</a>
+        </li>
+        <li>
+            <a href="/docs/table">表格</a>
+        </li>
+        <li>
+            <a href="/docs/longText">长文</a>
+
+        </li>
+        <li>
+            <a href="#helper-classes">html</a>
+
+        </li>
+        <li>
+            <a href="/docs/paperNumber">页码</a>
+
+        </li>
+        <li>
+            <a href="/docs/paperHeader">页眉</a>
+
+        </li>
+
+        <li>
+            <a href="/docs/paperFooter">页脚</a>
+
+        </li>
+    </ul>
+</nav>
+
+    </sider>
+
+    <content class="hinnn-layout-content" style="border-left:1px solid #e8e8e8;">
+        <div class="container-fluid height-100-per print-content">
+            <div class="hinnn-callout hinnn-callout-danger small-callout">
+                <p>Hiprint 存在3种方式生成打印模板 <a href="/Demo"><code>托拽自定义</code>-实例1</a>、<a href="/Demo/Demo2"><code>配置方式</code>-实例2</a>、<a href="/Demo/Demo3"><code>调用函数方式</code>-实例3</a></p>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2" style="padding-right:0px;">
+
+                            <div class="rect-printElement-types hiprintEpContainer">
+                                <ul class="hiprint-printElement-type">
+
+                                    <li>
+                                        <span class="title"><code>拖拽列表</code></span>
+                                        <ul>
+                                            <li>
+                                                <a class="ep-draggable-item" tid="testModule.text" style="">
+
+                                                    <span class="glyphicon glyphicon-text-width" aria-hidden="true"></span>
+                                                    <span class="glyphicon-class">文本</span>
+                                                </a>
+                                            </li>
 
                                             <li>
-                                                <span class="title"><code>拖拽列表</code></span>
-                                                <ul>
-                                                    <li>
-                                                        <a class="ep-draggable-item" tid="testModule.text" style="">
-
-                                                            <span class="glyphicon glyphicon-text-width"
-                                                                aria-hidden="true"></span>
-                                                            <span class="glyphicon-class">文本</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a class="ep-draggable-item" tid="testModule.image" style="">
-                                                            <span class="glyphicon glyphicon-picture"
-                                                                aria-hidden="true"></span>
-                                                            <span class="glyphicon-class">图片</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="ep-draggable-item" tid="testModule.longText">
-                                                            <span class="glyphicon glyphicon-subscript"
-                                                                aria-hidden="true"></span>
-                                                            <span class="glyphicon-class">长文</span>
-
-
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a class="ep-draggable-item" tid="testModule.tableCustom"
-                                                            style="">
-                                                            <span class="glyphicon glyphicon-th"
-                                                                aria-hidden="true"></span>
-                                                            <span class="glyphicon-class">表格</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a class="ep-draggable-item" tid="testModule.html">
-                                                            <span class="glyphicon glyphicon-header"
-                                                                aria-hidden="true"></span>
-                                                            <span class="glyphicon-class">html</span>
-                                                        </a>
-                                                    </li>
-
-                                                </ul>
+                                                <a class="ep-draggable-item" tid="testModule.image" style="">
+                                                    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                                                    <span class="glyphicon-class">图片</span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <span class="title">辅助</span>
-                                                <ul>
-                                                    <li>
-                                                        <a class="ep-draggable-item" tid="testModule.hline" style="">
+                                                <a class="ep-draggable-item" tid="testModule.longText">
+                                                    <span class="glyphicon glyphicon-subscript" aria-hidden="true"></span>
+                                                    <span class="glyphicon-class">长文</span>
 
-                                                            <span class="glyphicon glyphicon-resize-horizontal"
-                                                                aria-hidden="true"></span>
-                                                            <span class="glyphicon-class">横线</span>
-                                                        </a>
-                                                    </li>
 
-                                                    <li>
-                                                        <a class="ep-draggable-item" tid="testModule.vline" style="">
-                                                            <span class="glyphicon glyphicon-resize-vertical"
-                                                                aria-hidden="true"></span>
-                                                            <span class="glyphicon-class">竖线</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="ep-draggable-item" tid="testModule.rect">
-                                                            <span class="glyphicon glyphicon-unchecked"
-                                                                aria-hidden="true"></span>
-                                                            <span class="glyphicon-class">矩形</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="ep-draggable-item" tid="testModule.oval">
-                                                            <span class="glyphicon glyphicon-record"
-                                                                aria-hidden="true"></span>
-                                                            <span class="glyphicon-class">椭圆</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a class="ep-draggable-item" tid="testModule.tableCustom" style="">
+                                                    <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                                                    <span class="glyphicon-class">表格</span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a class="ep-draggable-item" tid="testModule.html">
+                                                    <span class="glyphicon glyphicon-header" aria-hidden="true"></span>
+                                                    <span class="glyphicon-class">html</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="title">辅助</span>
+                                        <ul>
+                                            <li>
+                                                <a class="ep-draggable-item" tid="testModule.hline" style="">
+
+                                                    <span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>
+                                                    <span class="glyphicon-class">横线</span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a class="ep-draggable-item" tid="testModule.vline" style="">
+                                                    <span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>
+                                                    <span class="glyphicon-class">竖线</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="ep-draggable-item" tid="testModule.rect">
+                                                    <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                                                    <span class="glyphicon-class">矩形</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="ep-draggable-item" tid="testModule.oval">
+                                                    <span class="glyphicon glyphicon-record" aria-hidden="true"></span>
+                                                    <span class="glyphicon-class">椭圆</span>
+                                                </a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </li>
+                                </ul>
+                            </div>
 
-                                </div>
-                                <div class="col-sm-9 col-md-10">
+                        </div>
+                        <div class="col-sm-9 col-md-10">
+                            <div class="hiprint-toolbar" style="margin-top:15px;">
+                                <ul>
+                                    <li><a class="hiprint-toolbar-item" onclick="setPaper('A3')">A3</a></li>
+                                    <li><a class="hiprint-toolbar-item" onclick="setPaper('A4')">A4</a></li>
+                                    <li><a class="hiprint-toolbar-item" onclick="setPaper('A5')">A5</a></li>
+                                    <li><a class="hiprint-toolbar-item" onclick="setPaper('B3')">B3</a></li>
+                                    <li><a class="hiprint-toolbar-item" onclick="setPaper('B4')">B4</a></li>
+                                    <li><a class="hiprint-toolbar-item" onclick="setPaper('B5')">B5</a></li>
+                                    
+                                    <li><a class="hiprint-toolbar-item"><input type="text" id="customWidth" style="width: 50px;height: 19px;border: 0px;" placeholder="宽/mm" /></a></li>
+                                    <li><a class="hiprint-toolbar-item"><input type="text" id="customHeight" style="width: 50px;height: 19px;border: 0px;" placeholder="高/mm" /></a></li>
+
+                                    <li><a class="hiprint-toolbar-item" onclick="setPaper($('#customWidth').val(),$('#customHeight').val())">自定义</a></li>
+                                    <li><a class="hiprint-toolbar-item" onclick="rotatePaper()">旋转</a></li>
+                                    <li><a class="hiprint-toolbar-item" onclick="clearTemplate()">清空</a></li>
+                                    
+
+
+                                </ul>
+                                <ul>
+
+                                    <li>
+                                        <a class="btn hiprint-toolbar-item " style="color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;" id="A4_preview">快速预览</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn hiprint-toolbar-item " style="color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;" id="A4_preview_batch2">多模板批量预览</a>
+                                    </li>
+                                    <li>
+
+                                        <a id="A4_directPrint" class="btn hiprint-toolbar-item " style="color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;">打印</a>
+                                    </li>
+                                    <li>
+                                        <a id="A4_directPrint_batch" class="btn hiprint-toolbar-item " style="color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;">单模板批量打印</a>
+                                    </li>
+                                    <li>
+                                        <a id="A4_directPrint_batch2" class="btn hiprint-toolbar-item " style="color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;">多模板批量打印</a>
+                                    </li>
+                                    <li>
+                                        <a id="A4_topdf" class="btn hiprint-toolbar-item " style="color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;">导出pdf</a>
+                                    </li>
+
+                                </ul>
+                                <div style="clear:both;"></div>
+                            </div>
+                            <div id="hiprint-printTemplate" class="hiprint-printTemplate" style="margin-top:20px;">
+
+                            </div>
+                            <div style="padding-top:15px;">
+                                <button type="button" class="btn btn-primary" id="A4_getJson_toTextarea">生成json到textarea</button>
+                                <button type="button" class="btn btn-primary" id="A4_getJson_toDesign">生成打印设计 json to 模板</button>
+                            </div>
+                            <div class="hinnn-callout hinnn-callout-danger">
+
+                                <p><code>可视化</code>结果以Json的形式存在，用户可以<code>编辑Json</code>实现特殊化操作，如：数据<code>formatter</code>，<code>文本变色</code>,单元格<code>改变背景</code>等。具体请参考文档。</p>
+                            </div>
+                            <textarea class="form-control" rows="10" id="A4_textarea_json"></textarea>
+                            <div style="padding:15px 0;">
+                                <button type="button" class="btn btn-danger" id="A4_getHtml_toTextarea">生成html到textarea</button>
+                            </div>
+
+                            <textarea class="form-control" rows="10" id="A4_textarea_html">
+
+                            </textarea>
+                            <div style="margin:10px 0;">
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 横幅广告 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:970px;height:112px"
+     data-ad-client="ca-pub-2624961100945767"
+     data-ad-slot="3416480539"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="hinnn-docs-section">
+                                        <h1 class="page-header">票据定位打印</h1>
+                                        <p class="simpaleExplain">hiprint 票据定位打印，用户通过拖拽矩形，椭圆，横线，竖线等来设计票据布局。然后在对应的位置填充文本。操作简单，可视化操作。几分钟时间就可以设计好一个复杂的票据模板。<code>票据定位打印-图片背景请查看在线实例</code>
+                                    </div>
                                     <div class="hiprint-toolbar" style="margin-top:15px;">
                                         <ul>
-                                            <li><a class="hiprint-toolbar-item" onclick="setPaper('A3')">A3</a></li>
-                                            <li><a class="hiprint-toolbar-item" onclick="setPaper('A4')">A4</a></li>
-                                            <li><a class="hiprint-toolbar-item" onclick="setPaper('A5')">A5</a></li>
-                                            <li><a class="hiprint-toolbar-item" onclick="setPaper('B3')">B3</a></li>
-                                            <li><a class="hiprint-toolbar-item" onclick="setPaper('B4')">B4</a></li>
-                                            <li><a class="hiprint-toolbar-item" onclick="setPaper('B5')">B5</a></li>
-
-                                            <li><a class="hiprint-toolbar-item"><input type="text" id="customWidth"
-                                                        style="width: 50px;height: 19px;border: 0px;"
-                                                        placeholder="宽/mm" /></a></li>
-                                            <li><a class="hiprint-toolbar-item"><input type="text" id="customHeight"
-                                                        style="width: 50px;height: 19px;border: 0px;"
-                                                        placeholder="高/mm" /></a></li>
-
-                                            <li><a class="hiprint-toolbar-item"
-                                                    onclick="setPaper($('#customWidth').val(),$('#customHeight').val())">自定义</a>
-                                            </li>
-                                            <li><a class="hiprint-toolbar-item" onclick="rotatePaper()">旋转</a></li>
-                                            <li><a class="hiprint-toolbar-item" onclick="clearTemplate()">清空</a></li>
-
-
-
-                                        </ul>
-                                        <ul>
-
                                             <li>
                                                 <a class="btn hiprint-toolbar-item " style="color: #fff;
     background-color: #d9534f;
-    border-color: #d43f3a;" id="A4_preview">快速预览</a>
+    border-color: #d43f3a;" id="bill_preview">快速预览</a>
                                             </li>
                                             <li>
-
-                                                <a id="A4_directPrint" class="btn hiprint-toolbar-item " style="color: #fff;
+                                                <a class="btn hiprint-toolbar-item " style="color: #fff;
     background-color: #d9534f;
-    border-color: #d43f3a;">打印</a>
-                                            </li>
-                                            <li>
-                                                <a id="A4_topdf" class="btn hiprint-toolbar-item " style="color: #fff;
-    background-color: #d9534f;
-    border-color: #d43f3a;">导出pdf</a>
+    border-color: #d43f3a;" id="bill_print">打印</a>
                                             </li>
 
                                         </ul>
                                         <div style="clear:both;"></div>
                                     </div>
-                                    <div id="hiprint-printTemplate" class="hiprint-printTemplate"
-                                        style="margin-top:20px;">
+                                    <div id="hiprint-printTemplate_bill" class="hiprint-printTemplate">
 
                                     </div>
-                                    <div style="padding-top:15px;">
-                                        <button type="button" class="btn btn-primary"
-                                            id="A4_getJson_toTextarea">生成json到textarea</button>
-                                        <button type="button" class="btn btn-primary" id="A4_getJson_toDesign">生成打印设计
-                                            json to 模板</button>
-                                    </div>
+
                                     <div class="hinnn-callout hinnn-callout-danger">
-
-                                        <p><code>可视化</code>结果以Json的形式存在，用户可以<code>编辑Json</code>实现特殊化操作，如：数据<code>formatter</code>，<code>文本变色</code>,单元格<code>改变背景</code>等。具体请参考文档。
-                                        </p>
+                                        <p><code>可视化票据</code>结果以Json的形式存在，用户可以<code>编辑Json</code>实现特殊化操作，如：数据<code>formatter</code>，<code>文本变色</code>,单元格<code>改变背景</code>等。具体请参考文档。</p>
                                     </div>
-                                    <textarea class="form-control" rows="10" id="A4_textarea_json"></textarea>
-                                    <div style="padding:15px 0;">
-                                        <button type="button" class="btn btn-danger"
-                                            id="A4_getHtml_toTextarea">生成html到textarea</button>
-                                    </div>
+                                    <textarea class="form-control" rows="10" id="textarea_bill">{"panels":[{"index":0,"height":148,"width":210,"paperHeader":-1.5,"paperFooter":380,"printElements":[{"options":{"left":540,"top":10.5,"height":35,"width":33,"borderColor":"#f20000"},"printElementType":{"title":"椭圆","type":"oval"}},{"options":{"left":454.5,"top":15,"height":18,"width":74,"title":"8888888","fontSize":18,"fontWeight":"600","color":"#2935e3","textAlign":"center","lineHeight":16},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":424.5,"top":15,"height":19,"width":24,"title":"NO","fontSize":18,"color":"#2935e3","textAlign":"center","lineHeight":15},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":190.5,"top":15,"height":21,"width":226,"title":"上海增值税普通发票","fontSize":18,"fontWeight":"600","letterSpacing":2.5,"color":"#cc5a5a","textAlign":"center","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":244.5,"top":19.5,"height":51,"width":112,"borderColor":"#eb1111","borderWidth":"2"},"printElementType":{"title":"椭圆","type":"oval"}},{"options":{"left":90,"top":19.5,"height":21,"width":96,"title":"8888888","fontSize":19,"letterSpacing":1,"color":"#2935e3","textAlign":"center","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":19.5,"top":19.5,"height":61,"width":65,"title":"031001800204","textType":"qrcode"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":250.5,"top":25.5,"height":42,"width":104,"borderColor":"#f00505"},"printElementType":{"title":"椭圆","type":"oval"}},{"options":{"left":190.5,"top":45,"height":10,"width":228,"borderColor":"#b5a8a8"},"printElementType":{"title":"横线","type":"hline"}},{"options":{"left":190.5,"top":49.5,"height":10,"width":228,"borderColor":"#baafaf"},"printElementType":{"title":"横线","type":"hline"}},{"options":{"left":244.5,"top":55.5,"height":22,"width":120,"title":"发票联","fontSize":18,"fontWeight":"600","letterSpacing":8,"color":"#cc5a5a","textAlign":"center","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":510,"top":55.5,"height":13,"width":69,"title":"2019年05月09日","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":445.5,"top":55.5,"height":15,"width":57,"title":"开票日期：","color":"#cc5a5a","lineHeight":13},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":90,"top":64.5,"height":15,"width":141,"title":"校验码：123456 788942 52344","color":"#2935e3","textAlign":"center","lineHeight":13},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":400,"top":90,"height":60,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":35,"top":90,"height":60,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":420,"top":90,"height":61,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":10.5,"top":90,"height":282,"width":572,"borderColor":"#cc5a5a"},"printElementType":{"title":"矩形","type":"rect"}},{"options":{"left":405,"top":94.5,"height":55,"width":13,"title":"密码区","fontSize":13,"color":"#cc5a5a","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":424.5,"top":94.5,"height":50,"width":152,"title":"","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":15,"top":94.5,"height":53,"width":15,"title":"购买方","fontSize":13,"color":"#cc5a5a","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":45,"top":100.5,"height":10,"width":348,"title":"名称：北京地铁税务局有限公司","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":45,"top":115.5,"height":10,"width":347,"title":"纳税人识别号：999999999999999999","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":45,"top":130.5,"height":10,"width":347,"title":"地址、电话：18888888888","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":345,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":409.5,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":295.5,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":480,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":215,"top":150,"height":224,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":520.5,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":10,"top":150,"height":10,"width":574,"borderColor":"#cc5a5a"},"printElementType":{"title":"横线","type":"hline"}},{"options":{"left":300,"top":160.5,"height":10,"width":36,"title":"单位","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":349.5,"top":160.5,"height":11,"width":51,"title":"数量","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":225,"top":160.5,"height":10,"width":62,"title":"规格名称","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":420,"top":160.5,"height":10,"width":53,"title":"单价","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":484.5,"top":160.5,"height":10,"width":32,"title":"税率","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":525,"top":160.5,"height":10,"width":52,"title":"税额","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":19.5,"top":160.5,"height":10,"width":184,"title":"货物或应税劳务、服务名称","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":40.5,"top":175.5,"height":12,"width":120,"title":"*餐饮服务*餐费","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":10.5,"top":340.5,"height":10,"width":574,"borderColor":"#cc5a5a"},"printElementType":{"title":"横线","type":"hline"}},{"options":{"left":225,"top":349.5,"height":14,"width":229,"title":"壹佰贰拾元整","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":460.5,"top":349.5,"height":13,"width":58,"title":"（小写）","fontSize":13,"color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":520.5,"top":349.5,"height":13,"width":48,"title":"￥100.00","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":15,"top":349.5,"height":14,"width":193,"title":"价税合计（大写）","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":300,"top":385.5,"height":10,"width":39,"title":"开票人：","color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":190.5,"top":385.5,"height":10,"width":103,"title":"轩大可","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":150,"top":385.5,"height":10,"width":33,"title":"复核：","color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":345,"top":385.5,"height":10,"width":86,"title":"张天天","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":64.5,"top":385.5,"height":10,"width":78,"title":"轩天天","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":439.5,"top":385.5,"height":10,"width":40,"title":"销售方：","color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":15,"top":385.5,"height":10,"width":44,"title":"收款人：","color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}}],"paperNumberLeft":565.5,"paperNumberTop":394.5,"paperNumberDisabled":true}]}</textarea>
 
-                                    <textarea class="form-control" rows="10" id="A4_textarea_html">
+                                </div>
 
-                            </textarea>
-                                    <div style="margin:10px 0;">
-                                        <script async
-                                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                        <!-- 横幅广告 -->
-                                        <ins class="adsbygoogle" style="display:inline-block;width:970px;height:112px"
-                                            data-ad-client="ca-pub-2624961100945767" data-ad-slot="3416480539"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script>
-                                    </div>
+                            </div>
 
-                                    <div class="row">
+                            <h2>条码打印测试</h2>
+                            <p class="simpaleExplain">点击下方快速预览即可快速生成条形码打印预览</p>
 
-                                        <div class="col-md-12">
-
-                                            <div class="hinnn-docs-section">
-                                                <h1 class="page-header">票据定位打印</h1>
-                                                <p class="simpaleExplain">hiprint
-                                                    票据定位打印，用户通过拖拽矩形，椭圆，横线，竖线等来设计票据布局。然后在对应的位置填充文本。操作简单，可视化操作。几分钟时间就可以设计好一个复杂的票据模板。<code>票据定位打印-图片背景请查看在线实例</code>
-                                            </div>
-                                            <div class="hiprint-toolbar" style="margin-top:15px;">
-                                                <ul>
-                                                    <li>
-                                                        <a class="btn hiprint-toolbar-item " style="color: #fff;
-    background-color: #d9534f;
-    border-color: #d43f3a;" id="bill_preview">快速预览</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="btn hiprint-toolbar-item " style="color: #fff;
-    background-color: #d9534f;
-    border-color: #d43f3a;" id="bill_print">打印</a>
-                                                    </li>
-
-                                                </ul>
-                                                <div style="clear:both;"></div>
-                                            </div>
-                                            <div id="hiprint-printTemplate_bill" class="hiprint-printTemplate">
-
-                                            </div>
-
-                                            <div class="hinnn-callout hinnn-callout-danger">
-                                                <p><code>可视化票据</code>结果以Json的形式存在，用户可以<code>编辑Json</code>实现特殊化操作，如：数据<code>formatter</code>，<code>文本变色</code>,单元格<code>改变背景</code>等。具体请参考文档。
-                                                </p>
-                                            </div>
-                                            <textarea class="form-control" rows="10"
-                                                id="textarea_bill">{"panels":[{"index":0,"height":148,"width":210,"paperHeader":-1.5,"paperFooter":380,"printElements":[{"options":{"left":540,"top":10.5,"height":35,"width":33,"borderColor":"#f20000"},"printElementType":{"title":"椭圆","type":"oval"}},{"options":{"left":454.5,"top":15,"height":18,"width":74,"title":"8888888","fontSize":18,"fontWeight":"600","color":"#2935e3","textAlign":"center","lineHeight":16},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":424.5,"top":15,"height":19,"width":24,"title":"NO","fontSize":18,"color":"#2935e3","textAlign":"center","lineHeight":15},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":190.5,"top":15,"height":21,"width":226,"title":"上海增值税普通发票","fontSize":18,"fontWeight":"600","letterSpacing":2.5,"color":"#cc5a5a","textAlign":"center","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":244.5,"top":19.5,"height":51,"width":112,"borderColor":"#eb1111","borderWidth":"2"},"printElementType":{"title":"椭圆","type":"oval"}},{"options":{"left":90,"top":19.5,"height":21,"width":96,"title":"8888888","fontSize":19,"letterSpacing":1,"color":"#2935e3","textAlign":"center","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":19.5,"top":19.5,"height":61,"width":65,"title":"031001800204","textType":"qrcode"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":250.5,"top":25.5,"height":42,"width":104,"borderColor":"#f00505"},"printElementType":{"title":"椭圆","type":"oval"}},{"options":{"left":190.5,"top":45,"height":10,"width":228,"borderColor":"#b5a8a8"},"printElementType":{"title":"横线","type":"hline"}},{"options":{"left":190.5,"top":49.5,"height":10,"width":228,"borderColor":"#baafaf"},"printElementType":{"title":"横线","type":"hline"}},{"options":{"left":244.5,"top":55.5,"height":22,"width":120,"title":"发票联","fontSize":18,"fontWeight":"600","letterSpacing":8,"color":"#cc5a5a","textAlign":"center","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":510,"top":55.5,"height":13,"width":69,"title":"2019年05月09日","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":445.5,"top":55.5,"height":15,"width":57,"title":"开票日期：","color":"#cc5a5a","lineHeight":13},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":90,"top":64.5,"height":15,"width":141,"title":"校验码：123456 788942 52344","color":"#2935e3","textAlign":"center","lineHeight":13},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":400,"top":90,"height":60,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":35,"top":90,"height":60,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":420,"top":90,"height":61,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":10.5,"top":90,"height":282,"width":572,"borderColor":"#cc5a5a"},"printElementType":{"title":"矩形","type":"rect"}},{"options":{"left":405,"top":94.5,"height":55,"width":13,"title":"密码区","fontSize":13,"color":"#cc5a5a","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":424.5,"top":94.5,"height":50,"width":152,"title":"","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":15,"top":94.5,"height":53,"width":15,"title":"购买方","fontSize":13,"color":"#cc5a5a","lineHeight":18},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":45,"top":100.5,"height":10,"width":348,"title":"名称：北京地铁税务局有限公司","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":45,"top":115.5,"height":10,"width":347,"title":"纳税人识别号：999999999999999999","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":45,"top":130.5,"height":10,"width":347,"title":"地址、电话：18888888888","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":345,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":409.5,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":295.5,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":480,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":215,"top":150,"height":224,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":520.5,"top":150,"height":190,"width":10,"borderColor":"#cc5a5a"},"printElementType":{"title":"竖线","type":"vline"}},{"options":{"left":10,"top":150,"height":10,"width":574,"borderColor":"#cc5a5a"},"printElementType":{"title":"横线","type":"hline"}},{"options":{"left":300,"top":160.5,"height":10,"width":36,"title":"单位","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":349.5,"top":160.5,"height":11,"width":51,"title":"数量","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":225,"top":160.5,"height":10,"width":62,"title":"规格名称","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":420,"top":160.5,"height":10,"width":53,"title":"单价","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":484.5,"top":160.5,"height":10,"width":32,"title":"税率","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":525,"top":160.5,"height":10,"width":52,"title":"税额","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":19.5,"top":160.5,"height":10,"width":184,"title":"货物或应税劳务、服务名称","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":40.5,"top":175.5,"height":12,"width":120,"title":"*餐饮服务*餐费","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":10.5,"top":340.5,"height":10,"width":574,"borderColor":"#cc5a5a"},"printElementType":{"title":"横线","type":"hline"}},{"options":{"left":225,"top":349.5,"height":14,"width":229,"title":"壹佰贰拾元整","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":460.5,"top":349.5,"height":13,"width":58,"title":"（小写）","fontSize":13,"color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":520.5,"top":349.5,"height":13,"width":48,"title":"￥100.00","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":15,"top":349.5,"height":14,"width":193,"title":"价税合计（大写）","fontSize":13,"color":"#cc5a5a","textAlign":"center"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":300,"top":385.5,"height":10,"width":39,"title":"开票人：","color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":190.5,"top":385.5,"height":10,"width":103,"title":"轩大可","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":150,"top":385.5,"height":10,"width":33,"title":"复核：","color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":345,"top":385.5,"height":10,"width":86,"title":"张天天","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":64.5,"top":385.5,"height":10,"width":78,"title":"轩天天","color":"#2935e3"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":439.5,"top":385.5,"height":10,"width":40,"title":"销售方：","color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":15,"top":385.5,"height":10,"width":44,"title":"收款人：","color":"#cc5a5a"},"printElementType":{"title":"文本","type":"text"}}],"paperNumberLeft":565.5,"paperNumberTop":394.5,"paperNumberDisabled":true}]}</textarea>
-
-                                        </div>
-
-                                    </div>
-
-                                    <h2>条码打印测试</h2>
-                                    <p class="simpaleExplain">点击下方快速预览即可快速生成条形码打印预览</p>
-
-                                    <textarea class="form-control" rows="10"
-                                        id="textarea_barcode">{"panels":[{"index":0,"height":20,"width":40,"paperHeader":0,"paperFooter":130,"printElements":[{"options":{"left":5,"top":5,"height":23,"width":72,"field":"barcode","testData":"1234556","textType":"barcode"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":5,"top":40,"height":13,"width":93,"field":"name","hideTitle":"1"},"printElementType":{"title":"文本","type":"text"}}],"paperNumberDisabled":true,"rotate":true}]}</textarea>
-                                    <div style="padding-top:15px;">
-                                        <button type="button" id="barcode_button_preview"
-                                            class="btn btn-primary">快速预览</button>
-                                        <button type="button" id="barcode_button_print"
-                                            class="btn btn-danger">测试打印</button>
-                                    </div>
+                            <textarea class="form-control" rows="10" id="textarea_barcode">{"panels":[{"index":0,"height":20,"width":40,"paperHeader":0,"paperFooter":130,"printElements":[{"options":{"left":5,"top":5,"height":23,"width":72,"field":"barcode","testData":"1234556","textType":"barcode"},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":5,"top":40,"height":13,"width":93,"field":"name","hideTitle":"1"},"printElementType":{"title":"文本","type":"text"}}],"paperNumberDisabled":true,"rotate":true}]}</textarea>
+                            <div style="padding-top:15px;">
+                                <button type="button" id="barcode_button_preview" class="btn btn-primary">快速预览</button>
+                                <button type="button" id="barcode_button_print" class="btn btn-danger">测试打印</button>
+                            </div>
 
 
 
-                                    <h2>条码打印测试</h2>
-                                    <p class="simpaleExplain">代码生成打印模板，所有拖拽结果形成的json都可以通过代码添加的方式完成。</p>
-                                    <figure class="highlight">
-                                        <pre><code class="language-html" data-lang="html">
+                            <h2>条码打印测试</h2>
+                            <p class="simpaleExplain">代码生成打印模板，所有拖拽结果形成的json都可以通过代码添加的方式完成。</p>
+                            <figure class="highlight">
+                                <pre><code class="language-html" data-lang="html">
                                 <span class="c">&lt;!-- hiprint 打印初始化，更多参数请查看文档 --&gt;</span>
     hiprint.init();
                                 <span class="c">&lt;!-- 创建打印模板对象--&gt;</span>
@@ -298,50 +408,49 @@
     panel.addPrintRect({ options: { width: 35, height: 35, top: 230, left: 60 } });
 
 </code></pre>
-                                    </figure>
-                                </div>
-                            </div>
+                            </figure>
                         </div>
-                    </div>
-
-                </div>
-
-            </content>
-            <sider class="hinnn-layout-sider" style="">
-                <div class="container height-100-per" style="width:250px;">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div id="PrintElementOptionSetting" style="margin-top:10px;"></div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </sider>
-        </layout>
-
-
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" role="document" style="display: inline-block; width: auto;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">打印预览</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <button type="button" class="btn btn-danger" id="A4_printByHtml">打印</button>
-                        <!-- <span id="printerlist"></span> -->
-                        <div class="prevViewDiv"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
                     </div>
                 </div>
             </div>
+
         </div>
+
+    </content>
+    <sider class="hinnn-layout-sider" style="">
+        <div class="container height-100-per" style="width:250px;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="PrintElementOptionSetting" style="margin-top:10px;"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </sider>
+</layout>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document" style="display: inline-block; width: auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">打印预览</h4>
+            </div>
+
+            <div class="modal-body">
+                <button type="button" class="btn btn-danger" id="A4_printByHtml">直接打印</button>
+                <span id="printerlist"></span>
+                <div class="prevViewDiv"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -349,29 +458,29 @@
 
 
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-
+    
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script> -->
-    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
     <script src="../Content/jquery.nicescroll-3.7.4/jquery.nicescroll.min.js"></script>
     <script src="../Content/hiprint/hiprint.bundle.js"></script>
 
-
+    
     <script src="../Content/hiprint/custom-etype-provider.js"></script>
     <script src="../Content/hiprint/custom-print-json.js"></script>
     <script src="../Content/hiprint/print-data.js"></script>
     <script src="../Content/hiprint/socket.io.js"></script>
     <script src="../Content/hiprint/polyfill.min.js"></script>
-    <script src="../Content/hiprint/plugins/jquery.hiwprint.js"></script>
-    <script src="../Content/hiprint/plugins/JsBarcode.all.min.js"></script>
-    <script src="../Content/hiprint/plugins/qrcode.js"></script>
-    <script src="../Content/hiprint/plugins/jquery.minicolors.min.js"></script>
-    <script src="../Content/hiprint/plugins/jspdf/canvas2image.js"></script>
-    <script src="../Content/hiprint/plugins/jspdf/canvg.min.js"></script>
-    <script src="../Content/hiprint/plugins/jspdf/html2canvas.min.js"></script>
-    <script src="../Content/hiprint/plugins/jspdf/jspdf.min.js"></script>
-    <script src="../Content/hiprint/socket.io.js"></script>
-    <script src="../Content/hiprint/hiprint.config.js"></script>
+<script src="../Content/hiprint/plugins/jquery.hiwprint.js"></script>
+<script src="../Content/hiprint/plugins/JsBarcode.all.min.js"></script>
+<script src="../Content/hiprint/plugins/qrcode.js"></script>
+<script src="../Content/hiprint/plugins/jquery.minicolors.min.js"></script>
+<script src="../Content/hiprint/plugins/jspdf/canvas2image.js"></script>
+<script src="../Content/hiprint/plugins/jspdf/canvg.min.js"></script>
+<script src="../Content/hiprint/plugins/jspdf/html2canvas.min.js"></script>
+<script src="../Content/hiprint/plugins/jspdf/jspdf.min.js"></script>
+<script src="../Content/hiprint/socket.io.js"></script>
+<script src="../Content/hiprint/hiprint.config.js"></script>
 
     <script>
         var hiprintTemplate;
@@ -391,7 +500,7 @@
                 settingContainer: '#PrintElementOptionSetting',
                 paginationContainer: '.hiprint-printPagination'
             });
-
+          
             //打印设计
             hiprintTemplate.design('#hiprint-printTemplate');
 
@@ -414,20 +523,20 @@
                 hiprintTemplate.print([printData, printData]);
             });
             $('#A4_directPrint_batch2').click(function () {
-                hiprint.print2({ templates: [{ template: hiprintTemplate, data: printData, options: {} }, { template: hiprintTemplate, data: printData }], options: { printer: '', landscape: true } }, function (data) { console.log('success') });
-
+                hiprint.print2({ templates: [{ template: hiprintTemplate, data: printData, options: {} }, { template: hiprintTemplate, data: printData }], options: { printer: '', landscape:true } }, function (data) { console.log('success') });
+             
             });
 
             hiprintTemplate.on('printSuccess', function (data) {
                 $('#myModal').modal('hide')
             })
             hiprintTemplate.on('printError', function (data) {
-
+               
             })
             $('#A4_printByHtml').click(function () {
-                hiprintTemplate.print(printData);
 
-                // hiprintTemplate.print2(printData, { printer: $('#printerlist select').val(), title: 'hiprint测试打印'});
+
+                hiprintTemplate.print2(printData, { printer: $('#printerlist select').val(), title: 'hiprint测试打印'});
             })
             $('#A4_getJson_toTextarea').click(function () {
                 console.log(hiprintTemplate)
@@ -473,7 +582,7 @@
             return ul;
         }
     </script>
-
+    
     <script>
         $(document).ready(function () {
             //设置左侧拖拽事件
@@ -495,7 +604,7 @@
 
 
     </script>
-
+    
     <script type="text/javascript">
         $(document).ready(function () {
             $('#barcode_button_preview').click(function () {
@@ -518,7 +627,7 @@
     </script>
 
     <script src="../Content/assets/tctip-1.0.1.min.js"></script>
-    <script>
+    <script> 
         $(document).ready(function () {
             new tctip({
                 top: '20%',
@@ -527,17 +636,16 @@
                     type: 'dashang',
                 },
                 list: [
-
-                    {
-                        type: 'wechat',
-                        qrImg: '../Content/assets/weixnpay.jpg'
+                   
+                      {
+                          type: 'wechat',
+                          qrImg: '../Content/assets/weixnpay.jpg'
                     }
-
+                      
                 ]
             }).init()
 
         });
     </script>
 </body>
-
 </html>

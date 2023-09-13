@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%!important;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>annual_waterConsumption</title>
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/css/layui.css">
+    <link rel="stylesheet" href="../../sources/lib/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../sources/lib/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../../sources/css/base.css">
+    <link rel="stylesheet" href="../../pearadmin/component/pear/css/pear.css">
+    <link rel="stylesheet" href="../../pearadmin/admin/css/other/result.css">
+    <link rel="stylesheet" href="../../sources/css/annual_waterConsumption.css">
+</head>
+
+<body>
+    <!-- 主界面 -->
+    <div class="pannel" style="padding: 0;">
+        <div
+            style="margin:0  5px ; background-color:#fff; font-size: 20px; line-height: 40px;  border-top: 3px solid var(--blue-color);">
+            <i class="pear-icon pear-icon-file" style="font-size: 20px; padding-left: 5px;"></i> 年用量
+        </div>
+    </div>
+    <div class="row sonHeightAsFathter" style="margin: 0;  ">
+        <div class="col-xs-12 col-sm-2" style="padding: 0; margin-top: 5px; border:5px solid  rgb(225, 230, 236); border-top: 0; border-bottom: 0; background-color: #fff; ">
+                <div style="margin: 5px;  background-color: white; display: flex; height: 19px;">
+                    <span style="flex: 6; margin-left: 5px;">片区列表</span>
+                    <i class="iconfont icon-fangdajing" style="flex: 1; text-align: right; padding-right: 10px;"></i>
+                </div>
+                <div style="margin: 0 5px 5px 5px;  background-color: white; display: flex; border-top: 1px solid var(--grey-color);">
+                    <ul id="demoTree" class="dtree" data-id="0"></ul>
+                </div>
+        </div>
+        <div class="col-xs-12 col-sm-10" style="padding: 0; margin-top: 5px;">
+            <div style="margin: 0 5px;">
+                <div style="display: flex; padding: 5px 0; background-color: #fff; height: 30px; border-bottom: 1px solid var(--grey-color);">
+                    <span style="flex:1 ;padding-left: 10px;">数据列表</span>
+                    <div class="layui-inline" style="flex: 1; padding-top: 2px; text-align: right;">
+                        <span style="display: inline-block; position: relative;"><button type="button"
+                                class="layui-btn layui-btn-xs" id="exportBt"
+                                style="position: absolute; top: -17px; left:-60px;height: 23px; "><i
+                                    class="iconfont icon-daochu"></i>导出</button>
+                        </span>
+                        <div style="display: none;">
+                            <table id="data_export"></table>
+                        </div>
+                    </div>
+                </div>
+                <form class="layui-form deviceSerch" action="" lay-filter="deviceSerchFilter"
+                    style="background-color: #fff; padding-top: 5px; padding-left: 5px;">
+                    <div class="layui-inline">
+                        <span id="serchCondition_selcet_id" style="display: inline-block; margin-bottom: 5px;">
+                            <select name="serchCondition_selcet" type="text" lay-filter="serchCondition_select_filter">
+                                <option value="">查询条件</option>
+                                <option value="设备编号">设备编号</option>
+                                <option value="日期范围">日期范围</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="layui-inline hide" id="meterIDserchDiv_id">
+                        <span style="display: inline-block; margin-bottom: 5px;"><input name="meterIDserchInpt"
+                                type="text" placeholder="请输入设备编号"></span>
+                    </div>
+                    <div class="layui-inline hide" id="dateDiv_id">
+                        <div class="layui-inline" id="dateDIV">
+                            <div class="layui-inline" name="date_range" id="ID-laydate-range"
+                                style="height: 24px; margin-top: -4px;">
+                                <div class="layui-input-inline" style=" width: 85px; margin-right: 0;">
+                                    <input name="date" type="text" id="ID-laydate-range-year"
+                                       class="layui-input" placeholder=" - " style="height: 23px; padding-left: 3px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <span style="display: inline-block; position: relative;"><button type="button"
+                                class="layui-btn layui-btn-xs" id="deviceSerchBt"
+                                style="position: absolute; top: -19px; height: 23px; "><i
+                                    class="iconfont icon-fangdajing"></i>查询</button>
+                        </span>
+                    </div>
+                </form>
+                 <!-- 查询提示 -->
+                 <div id="selectTips"> </div>
+                <div id="workStatusDIV" style="background-color: #fff;  border-top: 3px solid var(--blue-color);">
+                    <div style=" border-bottom: 1px solid var(--grey-color);">
+                        <div style="width:100%">
+                            <div style="display: inline-block; width:100%; height: 20%; min-width: 355px;">
+                                <div style="padding-left: 0PX; width: 100%;">
+                                    <div class="layui-card">
+                                        <div class="layui-card-body">
+                                            <div id="bar_waterConsumption"
+                                                style="min-height:200px; margin-left: 10px;margin-right: 10px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../sources/lib/iconfont/iconfont.js"></script>
+    <script src="../../sources/lib/template-web.js"></script>
+    <script src="../../pearadmin/component/layui/layui.js"></script>
+    <script src="../../pearadmin/component/pear/pear.js"></script>
+    <script src="../../sources/js/annual_waterConsumption.js"></script>
+    <script></script>
+</body>
+
+</html>

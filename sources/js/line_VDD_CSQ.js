@@ -1,3 +1,5 @@
+ var meterID = location.search.split('=')[1] = location.search.split('=')[1]
+
 var VDD = []
     ,CSQ = []
 	,UploadTime = []
@@ -5,7 +7,7 @@ $.ajax({
 	type:'get'
 	,url:'../../api/deviceStatusShow.php'
 	,data:{
-		meterID:'12345678'
+		meterID:meterID
 	}
 	,success:function(res) {
 		VDD=res.data.VDD

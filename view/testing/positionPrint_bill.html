@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>positionPrint_bill</title>
+    <link href="../../sources/lib/hiprint.io/Content/hiprint/css/hiprint.css" rel="stylesheet" />
+    <link href="../../sources/lib/hiprint.io/Content/hiprint/css/print-lock.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/layui.js">
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/css/layui.css">
+    <link rel="stylesheet" href="../../sources/lib/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../../sources/lib/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../sources/css/base.css">
+    <link rel="stylesheet" href="../../pearadmin/component/pear/css/pear.css">
+    <link rel="stylesheet" href="../../sources/css/positionPrint_bill.css">
+    <style>
+        .layui-layer-page .layui-layer-content {
+            overflow: visible!important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- testing主界面 -->
+    <div class="pannel">
+        <header class="title">收据打印</header>
+        <div class="content">
+            <div>
+                <div class="dropdown" style="display: inline-block; padding: 10px 5px;">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        打印设置
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="../../sources/lib/hiprint.io/view/positionPrint.html">打印模板编辑</a></li>
+                        <li id="selectTemplate_id"><a href="#">设置打印模板</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div style="display: inline-block; padding: 10px 5px; ">
+                    <form class="layui-form deviceSerch" action="" lay-filter="deviceSerchFilter">
+                        <div id="Template_selcet_div" class="layui-inline hide"
+                            style="margin-left: 20px; margin-top: 20px;">
+                            <span>
+                                <select id="Template_selcet_id" name="Template_selcet" type="text"
+                                    lay-filter="serchCondition_select_filter">
+
+                                </select>
+                            </span>
+                        </div>
+                        <div class="layui-inline">
+                            <span id="serchCondition_selcet_id" style="display: inline-block;">
+                                <select name="serchCondition_selcet" type="text"
+                                    lay-filter="serchCondition_select_filter">
+                                    <option value="">查询条件</option>
+                                    <option value="设备编号">设备编号</option>
+                                    <option value="所属厂商">所属厂商</option>
+                                    <option value="备注">备注</option>
+
+                                </select>
+                            </span>
+                        </div>
+                        <div class="layui-inline hide" id="meterIDserchDiv_id">
+                            <span style="display: inline-block;"><input name="meterIDserchInpt" type="text"
+                                    placeholder="请输入设备编号"></span>
+                        </div>
+                        <div class="layui-inline hide" id="transferorDiv_id">
+                            <span style="display: inline-block;">
+                                <select id="transferor" name="transferorSerchInpt" type="text">
+                                    <option value="">请选择所属厂商</option>
+                                    <select>
+                            </span>
+                        </div>
+                        <div class="layui-inline hide" id="menoDiv_id">
+                            <span style="display: inline-block;"><input name="menoSerchInpt" type="text"
+                                    placeholder="请输入备注"></span>
+                        </div>
+                        <div class="layui-inline">
+                            <span style="display: inline-block; position: relative;"><button type="button"
+                                    class="layui-btn layui-btn-xs" id="deviceSerchBt"
+                                    style="position: absolute; top: -21px; height: 32px; "><i
+                                        class="iconfont icon-fangdajing"></i>查询</button></span>
+                        </div>
+                    </form>
+                </div>
+                <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>
+            </div>
+        </div>
+    </div>
+
+     <!-- 测试详情按钮templet -->
+     <script type="text/html" id="tpl-specificsBt">
+        <a class="layui-btn l layui-btn-sm" lay-event="print">打印</a>
+    </script>
+    <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../sources/lib/iconfont/iconfont.js"></script>
+    <script src="../../sources/lib/template-web.js"></script>
+    <script src="../../pearadmin/component/layui/layui.js"></script>
+    <script src="../../pearadmin/component/pear/pear.js"></script>
+    <script src="../../sources/lib/xlsx.full.min.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/hiprint.bundle.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/hiprint.config.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/custom-etype-provider.js"></script>
+
+    <!-- 请求默认模板JS -->
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/custom-print-json.js"></script>
+    <!-- <script src="../../sources/lib/hiprint.io/Content/hiprint/print-data.js"></script> -->
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/socket.io.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/polyfill.min.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/plugins/jquery.hiwprint.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/plugins/JsBarcode.all.min.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/plugins/qrcode.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/plugins/jquery.minicolors.min.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/plugins/jspdf/canvas2image.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/plugins/jspdf/canvg.min.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/plugins/jspdf/html2canvas.min.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/plugins/jspdf/jspdf.min.js"></script>
+    <script src="../../sources/lib/hiprint.io/Content/hiprint/socket.io.js"></script>
+    <script src="../../sources/js/positionPrint_bill.js"></script>
+</body>
+
+</html>

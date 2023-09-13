@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>batchMeterIDsearch</title>
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/layui.js">
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/css/layui.css">
+    <link rel="stylesheet" href="../../sources/lib/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../../sources/lib/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../sources/css/base.css">
+    <link rel="stylesheet" href="../../pearadmin/component/pear/css/pear.css">
+    <link rel="stylesheet" href="../../sources/css/batchMeterIDsearch.css">
+</head>
+<body>
+    <!-- testing主界面 -->
+    <div class="pannel">   
+        <header class="title">批量表号信息查询</header>
+        <div class="content ">
+           <div class="box-header pannel">
+                <div class="introduction">
+                    <i class="iconfont icon-xinxi"></i>  请点击下载模板文件： 
+                    <span style="margin-left: 5px;"><a href="../../excels/设备信息导入模板.xls">点击下载Excel模板</a></span>
+                </div>
+                <form class="layui-form deviceSerch" action="" lay-filter="deviceSerchFilter" style="border-bottom: 1px solid var(--grey-color); padding: 10px 0;"> 
+                    <div   class="layui-input-inline " style="text-align: left;">
+                        <span class="layui-input-inline" style=" font-size: 18px;"><button type="button" class="layui-btn layui-btn-sm" id="importBt"><i class="iconfont icon-daoru"></i>批量表号导入</button></span> 
+                    </div>                                   
+                    <div   class="layui-input-inline" style="text-align: left;">
+                        <span style=" font-size: 18px; "><button type="button" class="layui-btn layui-btn-sm" id="exportBt"><i class="iconfont icon-daochu"></i>导出</button></span> 
+                        <div style="display: none;"><table id="data_export"></table></div>
+                    </div>              
+                </form>
+           </div>
+           <div style="margin-left: 15px;"><strong> </strong><span id="excelNameSpan"></span></div> 
+           <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>   
+           <div style="margin-left: 20px;" id="demo-laypage-all"></div>
+        </div> 
+    </div>
+    <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../sources/lib/iconfont/iconfont.js"></script>
+    <script src="../../sources/lib/template-web.js"></script>
+    <script src="../../pearadmin/component/layui/layui.js"></script>
+    <script src="../../pearadmin/component/pear/pear.js"></script>
+    <script src="../../sources/lib/xlsx.full.min.js"></script>
+    <script src="../../sources/js/batchMeterIDsearch.js"></script>
+</body>
+</html>
