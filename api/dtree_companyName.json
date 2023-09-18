@@ -1,0 +1,32 @@
+{
+	"status": {
+		"code": 200,
+		"message": "操作成功"
+	},
+	"data": [
+		{
+			"id": "0001",
+			"title": "连云港连利福思特表业有限公司 连云港连利福思特表业有限公司",
+			"last":true,
+			"parentId": "0"			
+		}
+		,{
+			"id": "0002",
+			"title": "连云港福瑞希表业有限公司",
+			"last":true,
+			"parentId": "0"	
+		}
+		,{
+			"id": "0003",
+			"title": "点点滴滴表业有限公司",
+			"last":true,
+			"parentId": "0"	
+		}
+		,{
+			"id": "0004",
+			"title": "爱护环境表业有限公司",
+			"last":true,
+			"parentId": "0"	
+		}
+	]
+}

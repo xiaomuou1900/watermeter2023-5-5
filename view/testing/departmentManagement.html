@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%!important;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>departmentManagement</title>
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/css/layui.css">
+    <link rel="stylesheet" href="../../sources/lib/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../sources/lib/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../../sources/css/base.css">
+    <link rel="stylesheet" href="../../pearadmin/component/pear/css/pear.css">
+    <link rel="stylesheet" href="../../pearadmin/admin/css/other/result.css">
+    <link rel="stylesheet" href="../../sources/css/departmentManagement.css">
+</head>
+
+<body>
+    <!-- 主界面 -->
+    <header class="title" style="margin: 10px 5px 0 5px; border-bottom: 3px solid var(--blue-color);">部门管理</header>
+    <div class="row sonHeightAsFathter" style="margin: 0;  ">
+        <div class="col-xs-12 col-sm-2" style="padding: 0; margin-top: 5px; border:5px solid  rgb(225, 230, 236); border-top: 0; border-bottom: 0; background-color: #fff;">
+                <div style="margin: 5px;  background-color: white; display: flex; height: 19px;">
+                    <span style="flex: 6; margin-left: 5px; color: rgb(97, 96, 96);"><strong>公司信息</strong></span>
+                </div>
+                <div style="margin: 0 5px 5px 5px;  background-color: white; display: flex; border-top: 1px solid var(--grey-color);">
+                    <ul id="demoTree" class="dtree changeWidth" data-id="0" style=" white-space: nowrap; overflow-x:scroll "></ul>
+                </div>
+        </div>
+        <div class="col-xs-12 col-sm-10" style="padding: 0; margin-top: 5px; background-color: #fff;">
+            <div style="margin: 0 5px;">
+                <div style="display: flex; padding: 5px 0; background-color: #fff; height: 30px; border-bottom: 1px solid var(--grey-color);">
+                    <span style="flex:1 ;padding-left: 10px; color: rgb(97, 96, 96);" ><strong><span id="companySpanId">未选择公司</span> - 部门信息</strong></span>
+                </div>
+                <form class="layui-form deviceSerch" action="" lay-filter="deviceSerchFilter" style="background-color: #fff; padding-bottom: 10px;">
+                    <span style="display: inline-block; margin-left: 10px;"><input name="serchInpt" type="text" placeholder="查询部门名称关键字" style=" padding: 0 2px; height: 23px; color: rgb(109, 108, 108); font-size: 13px;"></span> 
+                    <span style="display: inline-block; position: relative; width: 48px; height: 22px;"><button type="button" class="layui-btn layui-btn-xs" id="SerchBt" style="position: absolute; top:6px"><i class="iconfont icon-fangdajing"></i>查询</button></span> 
+                    <span style="display: inline-block; position: relative; width: 48px; height: 22px;"><button type="button" class="layui-btn layui-btn-xs" id="newlyAddedBt" style="position: absolute; top:6px"><i class="iconfont icon-xinzeng"></i>新增</button></span> 
+                    <span style="display: inline-block; position: relative; width: 48px; height: 22px;"><button type="button" class="layui-btn layui-btn-xs" id="editBt" style="position: absolute; top:6px"><i class="iconfont icon-bianji"></i>编辑</button></span> 
+                    <span style="display: inline-block; position: relative; width: 48px; height: 22px;"><button type="button" class="layui-btn layui-btn-xs" id="deleteBt" style="position: absolute; top:6px"><i class="iconfont icon-shanchu"></i>删除</button></span>                  
+                </form>
+                <div style="border-bottom: 1px solid rgb(236, 233, 233);">
+                    <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test" ></table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 新增 弹出层 templet -->    
+    <script type="text/html" id="tpl-newlyAdded">
+        <div style="margin-top:20px; margin-left:20px;margin-bottom: 20px;margin-right: 20px;">
+            <div style="margin-top:20px;">
+               <span style=" font-size:14px"> 部门名称：</span>
+               <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
+                 <input  class="nameInpt" id="newNameInptId" type="text" placeholder=" * 请输入部门名称" style=" height: 16px; border: none;font-size: 13px; margin-left: 5px;">
+               </span>
+            </div>
+            <div style="margin-top:20px;">
+                <span style=" font-size:14px"> 部门编号：</span>
+                <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
+                  <input  class="numberInpt" id="newNumberInptId" type="text" placeholder=" * 请输入部门编号" style=" height: 16px; border: none;font-size: 13px; margin-left: 5px;">
+                </span>
+             </div>
+            <div style="margin-top:20px;">
+                <span style="font-size:14px"> 备注：</span>
+                <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
+                  <input  class="menoInpt" id="newMenoInptId" type="text" placeholder="请输入备注" style="height: 16px; border: none;font-size: 13px; margin-left: 5px;">
+                </span>
+             </div>
+        </div>
+     </script>  
+     <!-- 编辑 弹出层 templet -->    
+     <script type="text/html" id="tpl-edit">
+        <div style="margin-top:20px; margin-left:20px;margin-bottom: 20px;margin-right: 20px;">
+            <div style="margin-top:20px;">
+               <span style=" font-size:14px"> 部门名称：</span>
+               <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
+                 <input class="nameInpt" id="editNameInptId" type="text"  style=" height: 16px; border: none;font-size: 13px; margin-left: 5px;"  value={{departmentName}}>
+               </span>
+            </div>
+            <div style="margin-top:20px;">
+                <span style=" font-size:14px"> 部门编号：</span>
+                <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
+                  <input class="numberInpt" id="editNumberInptId" type="text"  style=" height: 16px; border: none;font-size: 13px; margin-left: 5px;"  value={{departmentNumber}}>
+                </span>
+             </div>
+            <div style="margin-top:20px;">
+                <span style="font-size:14px"> 备注：</span>
+                <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
+                  <input class="menoInpt" id="editMenoInptId" type="text" style="height: 16px; border: none;font-size: 13px; margin-left: 5px;"  value={{meno}}>
+                </span>
+             </div>
+        </div>
+     </script>  
+      <!-- 删除 弹出层 templet -->    
+      <script type="text/html" id="tpl-delete">
+        <div style="margin-left: 20px; margin-top: 20px; font-size: 15px; height: 30px;"><i class="iconfont icon-xinxi" ></i><span style="margin-left: 10px;">是否确认删除该项！</span></div>
+     </script>  
+    <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../sources/lib/iconfont/iconfont.js"></script>
+    <script src="../../sources/lib/template-web.js"></script>
+    <script src="../../pearadmin/component/layui/layui.js"></script>
+    <script src="../../pearadmin/component/pear/pear.js"></script>
+    <script src="../../sources/js/departmentManagement.js"></script>
+    <script></script>
+</body>
+
+</html>

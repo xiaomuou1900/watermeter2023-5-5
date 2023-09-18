@@ -1,0 +1,83 @@
+@media(max-width:768px) {
+  #newlyAddeLayerId,#editLayerId {
+    width: 390px!important;
+    height: 125px;
+  }
+  .companyInpt {
+   width: 222px;
+   }
+   .menoInpt {
+   width: 250px;
+   }
+}
+
+@media(min-width:768px) {
+   #newlyAddeLayerId,#editLayerId {
+     width: 500px;
+     height: 125px;
+   }
+   .companyInpt {
+   width: 377px;
+   }
+   .menoInpt {
+   width: 405px;
+   }
+ }
+
+ .icon-xinxi:before {
+   font-size: 30px!important;
+   vertical-align:middle;
+   color:orange
+ }
+
+ .layui-table {
+   color:#464545
+ }
+
+.box-header .operate {
+    text-align: right;
+    margin: 3px;
+}
+ 
+ .testSum tr td{
+    width: 21%;
+    padding-left: 10px;
+    padding-top: 5px;
+ }  
+
+ #paging {
+    background-color: #fff;
+    padding-left: 5px;
+ }
+
+ #deviceSerchBt {
+    margin-bottom: 2px;
+ }
+
+ .layui-icon-close:hover {
+   color: rgb(255, 0, 0);
+   cursor: pointer;
+}
+
+.btn-warning {
+   color: #fff;
+   background-color: #f19d26;
+   border-color: #f19d26;
+}
+
+.layui-table-cell {
+   height: auto !important;
+   line-height: 18px;
+   padding: 6px 15px;
+   position: relative;
+   overflow: visible;
+   text-overflow: inherit;
+   white-space: normal;
+   box-sizing: border-box;
+}
+
+#serchCondition_selcet_id .layui-input{
+   height: 24px;
+   width: 100px;
+   border: 1px solid rgb(94, 92, 92);
+}
