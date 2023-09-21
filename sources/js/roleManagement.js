@@ -1,15 +1,16 @@
 var table_data = []
-layui.use(['laypage', 'layer', 'table', 'form'], function () {
+layui.use(['laypage', 'layer', 'table', 'form','tree'], function () {
   var table = layui.table
     , laypage = layui.laypage
     , layer = layui.layer
+    , tree = layui.tree
     , form = layui.form;
 
   table.render({       //渲染正在测试界面表格
     elem: '#testDevice'
-    , url: '../../api/companyManagement.php'
+    , url: '../../api/roleManagement.php'
     , where: {
-      requestData: "allCompany"
+      requestData: "allrole"
     }
     , parseData: function (res) { //res 即为原始返回的数据
       return {
@@ -22,8 +23,11 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
     , cols: [[
       { field: 'id', title: '序号', type: 'numbers', minWidth: 50 }
-      , { field: 'companyName', title: '公司名称', minWidth: 120 } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-      , { field: 'meno', title: '备注', minWidth: 160 }
+      , { field: 'roleNumber', title: '角色编号', minWidth: 120 } 
+      , { field: 'roleName', title: '角色名称', minWidth: 120 } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+      , { field: 'time', title: '创建时间', minWidth: 120 } 
+      , { field: 'creator', title: '创建人', minWidth: 120 } 
+      , { field: 'meno', title: '角色描述', minWidth: 160 }
     ]]
     , even: true
     , done: function (res, curr, count) {                                 //表格渲染完后触发该函数
@@ -45,7 +49,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     if (serch_data.serchInpt === "") {
       table.reloadData('testDevice', {
         where: {
-          requestData: "allCompany"
+          requestData: "allrole"
         }
       })
     }
@@ -62,7 +66,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     layer.open({
       type: 1
       , id: "newlyAddeLayerId"
-      , title: ['添加公司', 'font-size:15px']
+      , title: ['添加角色', 'font-size:15px']
       , content: template('tpl-newlyAdded', {})
       // , area: ['500px', '250px']
       // ,area:'auto'
@@ -72,8 +76,8 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
       , btn: ['确定', '取消']
       , yes: function (index, layero) {
         //按钮【确定】的回调
-        if ($('#newCompanyNameInptId').val() == null || $('#newCompanyNameInptId').val() == '') {
-          layer.alert('公司名称不能为空')
+        if ($('#newroleNameInptId').val() == null || $('#newroleNameInptId').val() == '' || $('#newRoleNumberInptId').val() == null || $('#newRoleNumberInptId').val() == '') {
+          layer.alert('角色编号和角色名称不能为空！')
           return
         }
         layer.close(index)
@@ -81,14 +85,15 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           type: 'post'
           , url: '../../api/transfer_devices.php'
           , data: {
-            addCompanyNanme: $('#newCompanyNameInptId').val()
+            addRoleNumber: $('#newRoleNumberInptId').val()
+            ,addroleNanme: $('#newroleNameInptId').val()
             , addMeno: $('#newMenoInptId').val()
           }
           , success: function (res) {
               // if(res.status=="0") {     //如果post成功要重新加载表格
               // table.reloadData('testDevice', {
               //   where: {
-              //     requestData: "allCompany"
+              //     requestData: "allrole"
               //   }
               // })
               // }
@@ -105,7 +110,7 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     })
   })
 
-  var companyName = ""
+  var roleName = ""
   var meno = ""
   // 行单击事件
   table.on('row(test)', function (obj) {
@@ -114,23 +119,24 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     var index = obj.index; // 得到当前行索引
     var tr = obj.tr; // 得到当前行 <tr> 元素的 jQuery 对象
     var options = obj.config; // 获取当前表格基础属性配置项
-    // console.log(data.companyName); // 查看对象所有成员
-    companyName = data.companyName
+    // console.log(data.roleName); // 查看对象所有成员
+    roleNumber = data.roleNumber
+    roleName = data.roleName
     meno = data.meno
     $(".layui-table-body .layui-table tr").attr({ "style": "background:#FFF" });    //其它tr恢复原样（必须在前）
     $(obj.tr.selector).attr({ "style": "background:#b8e1dd" });    //改变当前tr颜色（必须在后）
   });
 
   $('#editBt').on('click', function () {     //...编辑 按钮...//
-    if (companyName == "") {
-      layer.alert('您没有选中任何公司，请选中后再操作！')
+    if (roleName == "") {
+      layer.alert('您没有选中任何角色，请选中后再操作！')
     }
     else {
       layer.open({
         type: 1
         , id: "editLayerId"
-        , title: ['编辑公司', 'font-size:15px']
-        , content: template('tpl-edit', { companyName: companyName, meno: meno })
+        , title: ['编辑角色', 'font-size:15px']
+        , content: template('tpl-edit', {roleNumber:roleNumber, roleName: roleName, meno: meno })
         // , area: ['500px', '250px']
         // ,area:'auto'
         // ,maxWidth:'500'
@@ -139,25 +145,27 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
         , btn: ['确定', '取消']
         , yes: function (index, layero) {
           //按钮【确定】的回调
-          if ($('#editCompanyNameInptId').val() == null || $('#editCompanyNameInptId').val() == '') {
-            layer.alert('公司名称不能为空')
+          if ($('#editRoleNumberInptId').val() == null || $('#editRoleNumberInptId').val() == '' || $('#editRoleNameInptId').val() == null || $('#editRoleNameInptId').val() == '') {
+            layer.alert('角色编号和角色名称不能为空')
             return
           }
           layer.close(index)
           $.ajax({
             type: 'post'
-            , url: '../../api/companyManagement.php'
+            , url: '../../api/roleManagement.php'
             , data: {
-              originalCompanyName: companyName
+              originalroleNumber: roleNumber
+              , originalroleName: roleName
               , originalMeno: meno
-              , newCompanyName: $('#editCompanyNameInptId').val()
+              , newRoleNumber: $('#editRoleNumberInptId').val()
+              , newRoleName: $('#editRoleNameInptId').val()
               , newMeno: $('#editMenoInptId').val()
             }
             , success: function (res) {
               // if(res.status=="0") {     //如果post成功要重新加载表格
               // table.reloadData('testDevice', {
               //   where: {
-              //     requestData: "allCompany"
+              //     requestData: "allrole"
               //   }
               // })
               // }
@@ -176,8 +184,8 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
   })
 
   $('#deleteBt').on('click', function () {     //...删除 按钮...//
-    if (companyName == "") {
-      layer.alert('您没有选中任何公司，请选中后再操作！')
+    if (roleName == "") {
+      layer.alert('您没有选中任何角色，请选中后再操作！')
     }
     else {
       layer.open({
@@ -195,18 +203,78 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
           layer.close(index)
           $.ajax({
             type: 'post'
-            , url: '../../api/companyManagement.php'
+            , url: '../../api/roleManagement.php'
             , data: {
-              deleteCompanyName: companyName
+              deleteroleName: roleName
             }
             , success: function (res) {
               if (res.status == "0") {
                 table.reloadData('testDevice', {
                   where: {
-                    // requestData: "allCompany"
-                    deleteCompanyName: companyName
+                    // requestData: "allrole"
+                    deleteroleName: roleName
                   }
                 })
+              }
+            }
+          })
+        }
+        , btn2: function (index, layero) {
+          //按钮【取消】的回调
+          //return false 开启该代码可禁止点击该按钮关闭
+        }
+      })
+    }
+  })
+
+  $('#empowerBt').on('click', function () {     //...功能授权 按钮...//
+    if (roleName == "") {
+      layer.alert('您没有选中任何角色，请选中后再操作！')
+    }
+    else {
+      $.ajax({
+        type: 'get'
+        , url: '../../api/roleManagement.php'
+        , data: {
+          getEmpower: roleName
+        }
+        , success: function (res) {
+          if (res.status == "0") {
+            tree.render({                 //...渲染树组件
+              elem: '#ID-tree-demo-showCheckbox',
+              id:'tree',
+              data: res.data,
+              showCheckbox: true,
+              // edit: ['add', 'update', 'del'] // 开启节点的右侧操作图标
+            });
+          }
+        }
+      })
+      layer.open({
+        type: 1
+        , id: "empowerLayerId"
+        , title: ['功能授权 - ' + roleName, 'font-size:15px']
+        , content: template('tpl-empower', {})
+        // , area: ['300px', '170px']
+        // ,area:'auto'
+        // ,maxWidth:'500'
+        // ,maxHeight:'250'
+        , offset: 'auto'
+        , btn: ['确定', '取消']
+        , yes: function (index, layero) {
+          //按钮【确定】的回调
+          layer.close(index)
+          var checkData = tree.getChecked('tree');
+          $.ajax({
+            type: 'post'
+            , url: '../../api/roleManagement.php'
+            , data: {
+              roleName: roleName,
+              empower: checkData
+            }
+            , success: function (res) {
+              if (res.status == "0") {
+               
               }
             }
           })

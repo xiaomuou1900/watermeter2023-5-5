@@ -21,6 +21,32 @@
                 "departmentNumber":"003",
                 "meno":"测试"
             }
+            ,{
+                "departmentName":"生产部",
+                "departmentNumber":"002",
+                "meno":"测试"
+            }
+            ,{
+                "departmentName":"生产部",
+                "departmentNumber":"002",
+                "meno":"测试"
+            }
+            ,{
+                "departmentName":"生产部",
+                "departmentNumber":"002",
+                "meno":"测试"
+            }
+            ,{
+                "departmentName":"生产部",
+                "departmentNumber":"002",
+                "meno":"测试"
+            }
+            ,{
+                "departmentName":"生产部",
+                "departmentNumber":"002",
+                "meno":"测试"
+            }
+            
         ]
     }';
 }
