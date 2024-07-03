@@ -60,9 +60,9 @@ layui.use(['layer', 'table', 'form', 'dtree'], function () {
     // console.log(1) 
     // console.log(e.target)  //e.target点击谁 返回谁
     // console.log(this)
+    account = ""
     departmentName = ""
     departmentNumber = ""
-    meno = ""
     companyName = e.target.innerText
     data_id = e.target.getAttribute('data-id');
     document.getElementById("companySpanId").innerHTML = companyName;
@@ -318,7 +318,7 @@ layui.use(['layer', 'table', 'form', 'dtree'], function () {
             }
             $("#edit_roleSelect_id").append(html)
           })
-          form.render($('#edit_roleSelect_id'));                              //....渲染所有选择框
+          form.render($('#edit_roleSelect_id'));                              //....渲染选择框
         }
       })
       $.ajax({  
@@ -341,7 +341,7 @@ layui.use(['layer', 'table', 'form', 'dtree'], function () {
             }
             $("#edit_departmentSelcet_id").append(html)
           })
-          form.render($('#edit_departmentSelcet_id'));                              //....渲染所有选择框
+          form.render($('#edit_departmentSelcet_id'));                              //....渲染选择框
         }
       })
     }

@@ -49,10 +49,6 @@
     #editLayerId .layui-select-title .layui-input {
         width: 255px!important;
     }
-
-    #serchSpanId {
-        margin-left: 10px;
-    }
   }
 
 @media screen and (max-width: 450px) {

@@ -1,0 +1,79 @@
+
+.layui-select-title input {
+    height: 34px;
+}
+
+.btn-warning {
+    color: #fff;
+    background-color: #f19d26;
+    border-color: #f19d26;
+ }
+
+ .layui-table-cell {
+    height: auto !important;
+    line-height: 18px;
+    padding: 6px 15px;
+    position: relative;
+    overflow: visible;
+    text-overflow: inherit;
+    white-space: normal;
+    box-sizing: border-box;
+ }
+
+ /* 滚动条样式 */
+body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #858586;
+    border-radius: 7.5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #727171;
+}
+
+
+ .layui-table-body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.layui-table-body::-webkit-scrollbar-thumb {
+    background: #868585;
+    border-radius: 7.5px;
+}
+
+.layui-table-body::-webkit-scrollbar-thumb:hover {
+    background: #727171;
+}
+/* 滚动条样式 */
+
+#dateDIV .layui-input, #freezeStartTimeId {
+    height: 26px;
+    line-height: 1.3;
+    line-height: 38px\9;
+    border-width: 1px;
+    border-style: solid;
+    background-color: fff(235, 233, 233);
+    color: rgba(0,0,0,.85);
+    border-radius: 2px;
+    margin-top: 6px;
+    border-color: rgb(133, 129, 129);
+}
+
+#freezeStartTimeId .layui-select-title input {
+    height: 23px;
+}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: none;
+    outline-offset: none;
+}
+
+.layui-icon-close:hover {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+ }

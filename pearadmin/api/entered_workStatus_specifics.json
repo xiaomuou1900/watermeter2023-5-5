@@ -1,0 +1,23 @@
+{
+	"createTime": null,
+	"createBy": null,
+	"updateTime": null,
+	"updateBy": null,
+	"remark": null,
+	"code": 0,
+	"msg": null,
+	"count": 100,
+	"data": [
+		{
+			"recordTime": "2023-05-10 03:41:21",
+			"VDD": "3.77V",
+			"CSQ":"25",
+			"recordType": "阀门上报"
+		},{
+			"recordTime": "2023-05-10 03:41:21",
+			"VDD": "3.67V",
+			"CSQ":"20",
+			"recordType": "注册"
+		}
+	]
+}

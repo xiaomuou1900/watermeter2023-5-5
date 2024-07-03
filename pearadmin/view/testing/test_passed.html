@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test_passed</title>
+    <link rel="stylesheet" href="../../sources/lib/layui-v2.7.6/layui/css/layui.css">
+    <link rel="stylesheet" href="../../sources/lib/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../sources/lib/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../../sources/css/base.css">
+    <link rel="stylesheet" href="../../sources/css/test_passed.css">
+</head>
+
+<body>
+    <!-- testing主界面 -->
+    <div class="pannel">
+        <header class="title">测试通过</header>
+        <div id="deviceControlDIV" style="display: none; background-color: #fff;  border-top: 3px solid orange;">
+            <div style="font-size: 20px; padding: 10px"><i class="iconfont icon-spanner-fill"
+                    style="font-size: 20px; padding-right: 10px;"></i>设备控制</div>
+            <div style="padding-left: 10px; padding-bottom: 10px; margin-bottom: 20px;">
+                <span>当前选中<span id="selectingNumSpan">1</span>个设备</span>
+                <a href="#" class="btn btn-warning" role="button" id="retestBt">重新测试</a>
+                <span>或</span>
+                <span style="display: inline-block; height:30px;  vertical-align:auto">
+                    <form class="layui-form" action="" lay-filter="inboundInfo">
+                        <div class="layui-input-inline" id="selectDNdiv_2" style="text-align: left;">
+                            <select name="selectDNinpt_2" id="selectDNinpt_2">
+                                <option value="">请选择基表口径</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" id="selectValveDiv_2" style="text-align: left;">
+                            <select name="selectValveInpt_2">
+                                <option value="">请选择有无阀门</option>
+                                <option value="true">有阀门</option>
+                                <option value="false">无阀门</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" id="memoDiv_2">
+                            <span
+                                style="display: inline-block; height:35px; border:1px solid #eee; vertical-align:bottom;">
+                                <input type="text" placeholder="请输入备注信息（0-20个任意字符）" name="memoInpt_2"
+                                    style="width:220px; border:none ; margin-top: 6px; margin-left: 8px">
+                            </span>
+                        </div>
+                        <div class="layui-input-inline">
+                            <a href="#" class="btn btn-warning" role="button" id="inboundBt">入库</a>
+                        </div>
+                    </form>
+                </span>
+            </div>
+        </div>
+        <div class="content ">
+            <div class="box-header pannel">
+                <div class="introduction">
+                    <i class="iconfont icon-xinxi"></i>
+                    您可以通过点击“查询”按钮进行筛选，点击复选框按钮可以进行单个或多个设备的重新测试或入库操作。
+                </div>
+                <div class="box-header operate"
+                    style="padding-bottom: 8px; border-bottom: 1px solid var(--grey-color);">
+                    <a href="#" class="btn btn-success" id="exportBt" role="button">导出</a>
+                    <!--导出表 不展示-->
+                    <div style="display: none;">
+                        <table id="data_export"></table>
+                    </div>
+                    <a href="#" class="btn btn-warning" role="button" id="retestAllBt">全部重测</a>
+                    <span style="display: inline-block; height:30px;  vertical-align:auto">
+                        <form class="layui-form" action="" lay-filter="inboundAllInfo">
+                            <div class="layui-input-inline" id="selectDNdiv" style="text-align: left;">
+                                <select name="selectDNinpt" id="selectDNinpt" lay-filter="selectDNfilter"
+                                    lay-verify="selectDNverfy">
+                                    <option value="">请选择基表口径</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline" id="selectValveDiv" style="text-align: left;">
+                                <select name="selectValveInpt" id="selectValveInpt" lay-filter="selectValveFilter">
+                                    <option value="">请选择有无阀门</option>
+                                    <option value="true">有阀门</option>
+                                    <option value="false">无阀门</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline" id="memoDiv">
+                                <span
+                                    style="display: inline-block; height:35px; border:1px solid #eee; vertical-align:bottom;">
+                                    <input type="text" placeholder="请输入备注信息（0-20个任意字符）" name="memoInpt" id="memoInpt"
+                                        style="width:220px; border:none ; margin-top: 6px; margin-left: 8px">
+                                </span>
+                            </div>
+                            <div class="layui-input-inline">
+                                <a href="#" class="btn btn-warning" role="button" id="inboundAllBt">全部入库</a>
+                            </div>
+                        </form>
+                    </span>
+                </div>
+                <!-- 查询提示 -->
+                <div id="selectTips" style="padding-top:5px ;"> </div>
+                <form class="layui-form deviceSerch" action="" lay-filter="deviceSerchFilter"
+                    style="border-bottom: 1px solid var(--grey-color);">
+                    <span style="display: inline-block; margin-top: 5px;">设备编号：</span>
+                    <span style="display: inline-block; margin-top: 5px;"><input name="meterIDserchInpt"
+                            type="text"></span>
+                    <span style="display: inline-block; margin-left: 20px; margin-top: 5px;">IMEI：</span>
+                    <span style="display: inline-block; margin-top: 5px;"><input name="IMEIserchInpt"
+                            type="text"></span>
+                    <span style="display: inline-block; margin-left: 20px; margin-top: 5px;">ICCID：</span>
+                    <span style="display: inline-block; margin-top: 5px;"><input name="ICCIDserchInpt"
+                            type="text"></span>
+                    <div class="layui-inline" id="dateDIV">
+                        <label class="layui-form-label" style="width: 90px;">日期范围</label>
+                        <div class="layui-inline" name="date_range" id="ID-laydate-range">
+                            <div class="layui-input-inline">
+                                <input name="startDate" type="text" autocomplete="off" id="ID-laydate-start-date"
+                                    lay-key="ID-laydate-start-date" class="layui-input" placeholder="开始日期">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline">
+                                <input name="endDate" type="text" autocomplete="off" id="ID-laydate-end-date"
+                                    class="layui-input" placeholder="结束日期">
+                            </div>
+                        </div>
+                    </div>
+                    <span style="display: inline-block; "><button type="button" class="layui-btn layui-btn-xs"
+                            id="deviceSerchBt"><i class="iconfont icon-fangdajing"></i>查询</button></span>
+                </form>
+            </div>
+            <table class="testSum" id="testSum">
+                <tbody></tbody>
+            </table>
+            <table class="layui-hide" id="testDevice" lay-data="{id: 'testDevice'}" lay-filter="test"></table>
+        </div>
+        <!-- <div id="paging"></div>   -->
+    </div>
+
+    <!-- 测试数量templet -->
+    <script type="text/html" id="tpl-testSum">
+        <tr>
+            <td>测试通过总数：{{testPassedNum}}</td>
+            <td>当前筛选条件下的设备数：{{serchNum}}</td>
+        </tr>
+    </script>
+    <!-- 测试详情按钮templet -->
+    <script type="text/html" id="tpl-specificsBt">
+        <a class="layui-btn l layui-btn-sm" lay-event="specifics">测试详情</a>
+    </script>
+    <!-- 测试详情内容DIV templet -->
+    <script type="text/html" id="tpl-specificsDIV">
+        <div class="pannel">   
+            <div class="content ">
+                设备编号：{{meterID}}
+                <table class="layui-hide" id="specificsTable" lay-filter="test"></table>   
+            </div> 
+        </div>
+    </script>
+    <script src="../../sources/lib/layui-v2.7.6/layui/layui.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/jquery.js"></script>
+    <script src="../../sources/lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../sources/lib/iconfont/iconfont.js"></script>
+    <script src="../../sources/lib/template-web.js"></script>
+    <script src="../../sources/js/test_passed.js"></script>
+
+</body>
+
+</html>

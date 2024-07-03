@@ -1,8 +1,20 @@
+.layui-table-page {
+    margin-bottom: 0 !important;
+}
+
+#areaDiv {
+    border-right: 0px;
+}
+
 /* 当屏幕大于768px时.sonHeightAsFathter类的高度和父盒子一样高*/
 @media(min-width:768px) {    
     .sonHeightAsFathter {
        display: flex; 
        align-items: stretch;
+    }
+
+    #areaDiv {
+        border-right: 5px solid var(--grey-color) ;
     }
 }
 

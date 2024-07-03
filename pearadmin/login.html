@@ -1,71 +1,131 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>登录</title>
-		<!-- 样 式 文 件 -->
-		<link rel="stylesheet" href="component/pear/css/pear.css" />
-		<link rel="stylesheet" href="admin/css/other/login.css" />
-	</head>
-    <!-- 代 码 结 构 -->
-	<body background="admin/images/background.svg" style="background-size: cover;">
-		<form class="layui-form" action="javascript:void(0);">
-			<div class="layui-form-item">
-				<img class="logo" src="admin/images/logo.png" />
-				<div class="title">Pear Admin</div>
-				<div class="desc">
-					明 湖 区 最 具 影 响 力 的 设 计 规 范 之 一
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<input placeholder="账 户 : admin " lay-verify="required" hover class="layui-input"  />
-			</div>
-			<div class="layui-form-item">
-				<input placeholder="密 码 : admin " lay-verify="required" hover class="layui-input"  />
-			</div>
-			<div class="layui-form-item">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>物联网智慧云平台</title>
+    <!-- 样 式 文 件 -->
+    <link rel="stylesheet" href="component/pear/css/pear.css" />
+    <link rel="stylesheet" href="admin/css/other/login.css" />
+</head>
+<!-- 代 码 结 构 -->
+
+<body background="admin/images/background.svg" style="background-size: cover;">
+    <form class="layui-form" action="javascript:void(0);">
+        <div class="layui-form-item">
+            <img class="logo" src="admin/images/linkwan.png" />
+            <div class="title">物联网智慧云平台</div>
+            <div class="desc">
+                万 物 互 联 ，智 慧 服 务
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <input placeholder="账 户 :  " lay-verify="required" hover class="layui-input" onkeydown="showKeyCode()"
+                name="userName" id="name" />
+        </div>
+        <div class="layui-form-item">
+            <input placeholder="密 码 :  " lay-verify="required" hover class="layui-input" onkeydown="showKeyCodeLogin()"
+                name="passWord" id="pwd" />
+        </div>
+        <!-- <div class="layui-form-item">
 				<input placeholder="验证码 : "  hover  lay-verify="required" class="code layui-input layui-input-inline"  />
 				<img src="admin/images/captcha.gif" class="codeImage" />
-			</div>
-			<div class="layui-form-item">
-				<input type="checkbox" name="" title="记住密码" lay-skin="primary" checked>
-			</div>
-			<div class="layui-form-item">
-				<button type="button" class="pear-btn pear-btn-success login" lay-submit lay-filter="login">
-					登 入
-				</button>
-			</div>
-		</form>
-		<!-- 资 源 引 入 -->
-		<script src="component/layui/layui.js"></script>
-		<script src="component/pear/pear.js"></script>
-		<script>
-			layui.use(['form', 'button', 'popup'], function() {
-				var form = layui.form;
-				var button = layui.button;
-				var popup = layui.popup;
-				
-                // 登 录 提 交
-				form.on('submit(login)', function(data) {
-					
-					/// 验证
-					
-					/// 登录
-					
-					/// 动画
-					button.load({
-						elem: '.login',
-						time: 1500,
-						done: function() {
-							popup.success("登录成功", function() {
-								location.href = "index.html"
-							});
-						}
-					})
-					return false;
-				});
-			})
-		</script>
-	</body>
+			</div> -->
+        <!-- <div class="layui-form-item">
+            <input type="checkbox" name="" title="记住密码" lay-skin="primary" checked>
+        </div> -->
+        <div class="layui-form-item">
+            <button type="button" class="pear-btn pear-btn-success login" lay-submit lay-filter="login" name="btn">
+                登 录
+            </button>
+        </div>
+    </form>
+    <!-- 资 源 引 入 -->
+    <script src="component/layui/layui.js"></script>
+    <script src="component/pear/pear.js"></script>
+    <script>
+
+        window.localStorage.removeItem('user');
+        window.sessionStorage.removeItem('user');
+
+        layui.use(['form', 'jquery', 'button', 'popup', 'notice', 'encrypt'], function () {
+            var form = layui.form;
+            var jquery = layui.jquery;
+            var button = layui.button;
+            var popup = layui.popup;
+            var notice = layui.notice;
+            var encrypt = layui.encrypt;
+            var $ = layui.jquery;
+
+
+            // 登 录 提 交
+            form.on('submit(login)', function (data) {
+                var username = $('#name').val();
+                var password = $('#pwd').val();
+                password = encrypt.md5(encrypt.md5(password));
+                button.load({
+                    elem: '.login',
+                    time: 1500,
+                    done: function () {
+                        return false;
+                    }
+                })
+                $.ajax({
+                    url: "./api/login.php",
+                    type: "POST",
+                    async: true,
+                    data: {
+                        username: username,
+                        password: password
+                    },
+                    success: function (data) {
+                        if (data.name === username) {
+                            try {
+                                localStorage.setItem('user', JSON.stringify(data));
+                                window, sessionStorage.setItem('user', JSON.stringify(data));
+                            }
+                            catch (e) {
+                                alert("请取消隐私浏览模式！");
+                            }
+                            popup.success("登录成功", function () {
+                                window.location.replace("./index.html");
+                            })
+                            window.location.replace("./index.html");
+                        }
+                        else {
+                            popup.warning("登陆异常", function () {
+                                window.location.replace("./login.html");
+                            })
+                        }
+                    },
+                    error: function (a) {
+                        // alert("登陆失败，用户名或密码错误！");
+                        popup.failure("登陆失败，用户名或密码错误！");
+                    }
+                });
+                /// 验证
+
+                /// 登录
+            });
+        })
+
+        function showKeyCode(e) {
+            e = e || window.event;
+            if (e.keyCode == 13) {
+                document.getElementsByName("passWord")[0].focus();
+            }
+        }
+
+        function showKeyCodeLogin(e) {
+            e = e || window.event;
+            if (e.keyCode == 13) {
+                document.getElementsByName("btn")[0].click();
+            }
+        }
+
+    </script>
+</body>
+
 </html>

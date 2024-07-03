@@ -1,0 +1,42 @@
+.pannel{   
+    padding: 10px;
+}
+
+body {
+    background-color: var(--grey-color);
+}
+
+.title {
+    font-size: 25px;
+    padding-bottom: 10px;
+    background-color: var(--grey-color);
+    border-bottom: 3px solid var(--blue-color);
+}
+
+.content {
+    background-color: white;
+}
+
+/* .box-header {
+    border-bottom: solid 2px var(--grey-color);
+} */
+
+.box-header .operate {
+    text-align: right;
+    margin: 3px;
+}
+ 
+ .testSum tr td{
+    width: 21%;
+    padding-left: 10px;
+    padding-top: 5px;
+ }  
+
+ #paging {
+    background-color: #fff;
+    padding-left: 5px;
+ }
+
+ #deviceSerchBt {
+    margin-bottom: 2px;
+ }

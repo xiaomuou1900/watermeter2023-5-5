@@ -1,7 +1,7 @@
 @media(max-width:768px) {
   #newlyAddeLayerId,#editLayerId {
     width: 390px!important;
-    height: 150px;
+    height: 200px;
   }
   #empowerLayerId {
    width: 390px;

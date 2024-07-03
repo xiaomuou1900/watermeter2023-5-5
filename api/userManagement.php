@@ -1,5 +1,53 @@
 <?php 
- if(($_GET['data_id'] ==="0001") && ($_GET['requestData'] === "all"))
+if($_GET['requestData'] === "allUser") {
+    $data = '{
+        "status": 0, 
+        "msg": "成功", 
+        "data": [
+            {
+                "account":"a",
+                "name":"秦川",
+                "department":"生产部",
+                "roleNumber":"001",
+                "role":"超级管理员",
+                "phoneNumber":"1381234567",
+                "meno":"玉树临风",
+                "password":"123456"
+            }
+            , {
+                "account":"b",
+                "name":"宛如",
+                "department":"电子技术研发部",
+                "roleNumber":"002",
+                "role":"上线测试员",
+                "phoneNumber":"1381234567",
+                "meno":"美若天仙",
+                "password":"123456"
+            }
+            , {
+                "account":"c",
+                "name":"张三",
+                "department":"质检部",
+                "roleNumber":"003",
+                "role":"抄表员",
+                "phoneNumber":"1381234567",
+                "meno":"幽默",
+                "password":"123456"
+            }
+            , {
+                "account":"d",
+                "name":"张三",
+                "department":"质检部",
+                "roleNumber":"004",
+                "role":"收费员",
+                "phoneNumber":"1381234567",
+                "meno":"幽默",
+                "password":"123456"
+            }
+        ]
+    }';
+}
+else if(($_GET['data_id'] ==="0001") && ($_GET['requestData'] === "all"))
 {
     $data = '{
         "status": 0, 
@@ -18,7 +66,7 @@
             , {
                 "account":"lueluelue",
                 "name":"宛如",
-                "department":"电子部",
+                "department":"电子技术研发部",
                 "role":"收费员",
                 "phoneNumber":"1381234567",
                 "meno":"美若天仙",
@@ -121,7 +169,7 @@ else if(($_GET['data_id'] ==="0004") && ($_GET['requestData'] === "all"))
                 "account":"abcd44",
                 "name":"秦川44",
                 "department":"月亮部",
-                "role":"超级管理员44",
+                "role":"超级管理员",
                 "phoneNumber":"1381234567",
                 "meno":"玉树临风",
                 "password":"123456"

@@ -148,38 +148,38 @@ layui.use(['laypage', 'layer', 'table', 'form'], function () {
     var html = '<label id="transferStatusLabel" class="label label-success" style="display: inline-block; background-color: var(--green-color); color:white; height: 22px; padding-top: 5px; margin-right:10px">转让状态：未转让<i class="layui-icon layui-icon-close" style="font-size: 12px; padding-left:10px"></i></label>'
     $('#selectTips').append(html)
   }
-  $("#transferStatusLabel i").off('click')
-    $("#transferStatusLabel i").on('click', function () {                     //...关闭查找提示
-      temp_transferStatus = 0
-      $("#transferStatusLabel").remove()
-      temp_data.transferStatus = ""
-      table.reloadData('deviceTable', {                                //...只重载表格数据      
-        where: {
-          meterID: temp_data.meterID
-          , IMEI: temp_data.IMEI
-          , ICCID: temp_data.ICCID
-          , transferStatus: temp_data.transferStatus
-          , transferor: temp_data.transferor
-          , meno: temp_data.meno
+  $("#transferStatusLabel i").off('click')                                    //绑定之前先解除之前绑定的事件，否则每次进来都会绑定一次事件
+  $("#transferStatusLabel i").on('click', function () {                     //...关闭查找提示
+    temp_transferStatus = 0
+    $("#transferStatusLabel").remove()
+    temp_data.transferStatus = ""
+    table.reloadData('deviceTable', {                                //...只重载表格数据      
+      where: {
+        meterID: temp_data.meterID
+        , IMEI: temp_data.IMEI
+        , ICCID: temp_data.ICCID
+        , transferStatus: temp_data.transferStatus
+        , transferor: temp_data.transferor
+        , meno: temp_data.meno
+      }
+    });
+    $.ajax({
+      type: "get"
+      , url: '../../api/transfer_devices.php'
+      , data: {
+        page: 1
+      }
+      , success: function (res) {
+        var deviceSumData = {
+          deviceSum: res.deviceSum
+          , transferSum: res.transferSum
+          , serchNum: res.serchNum
         }
-      });
-      $.ajax({
-        type: "get"
-        , url: '../../api/transfer_devices.php'
-        , data: {
-          page: 1
-        }
-        , success: function (res) {
-          var deviceSumData = {
-            deviceSum: res.deviceSum
-            , transferSum: res.transferSum
-            , serchNum: res.serchNum
-          }
-          var htmlTestSum = template('tpl-deviceSum', deviceSumData);
-          $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
-        }
-      })
+        var htmlTestSum = template('tpl-deviceSum', deviceSumData);
+        $('#deviceSum').html(htmlTestSum);                                                //...渲染设备总数 一栏...//
+      }
     })
+  })
   $('#deviceSerchBt').on('click', function () {                                                        //..查询按钮
     var data = form.val('deviceSerchForm')
     if (data.meterIDserchInpt === "" && data.IMEIserchInpt === "" && data.ICCIDserchInpt === "" && data.transferStatusSerchInpt === "" && data.transferorSerchInpt === "" && data.menoSerchInpt === "") {

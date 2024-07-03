@@ -1,0 +1,72 @@
+{
+  "id": "4068369",
+  "name": "lianliwm",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6898826",
+      "name": "系统配置",
+      "font_class": "xitongpeizhi",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "26721014",
+      "name": "资产转让",
+      "font_class": "zichanzhuanrang",
+      "unicode": "e6f8",
+      "unicode_decimal": 59128
+    },
+    {
+      "icon_id": "4730080",
+      "name": "AEP SaaS",
+      "font_class": "AEPSaaS",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "8898754",
+      "name": "onenet",
+      "font_class": "onenet",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "35344426",
+      "name": "财务管理",
+      "font_class": "caiwuguanli",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "19865560",
+      "name": "已出厂",
+      "font_class": "yichuchang",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "13723341",
+      "name": "IoT -IoTPlatform",
+      "font_class": "IoT-IoTPlatform",
+      "unicode": "e764",
+      "unicode_decimal": 59236
+    },
+    {
+      "icon_id": "13004473",
+      "name": "OneNET",
+      "font_class": "OneNET",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "16466376",
+      "name": "应用使能AEP",
+      "font_class": "yingyongshinengAEP",
+      "unicode": "e735",
+      "unicode_decimal": 59189
+    }
+  ]
+}

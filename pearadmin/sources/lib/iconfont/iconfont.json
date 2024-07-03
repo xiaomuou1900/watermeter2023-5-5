@@ -1,0 +1,100 @@
+{
+  "id": "3676694",
+  "name": "物联网计量云平台",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "521097",
+      "name": "节点连接",
+      "font_class": "jiedianlianjie",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "1251",
+      "name": "信息",
+      "font_class": "xinxi",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "741066",
+      "name": "转让",
+      "font_class": "zhuanrang",
+      "unicode": "e853",
+      "unicode_decimal": 59475
+    },
+    {
+      "icon_id": "880499",
+      "name": "设置",
+      "font_class": "setupb",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "1159905",
+      "name": "圆",
+      "font_class": "yuan",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "1166722",
+      "name": "放大镜",
+      "font_class": "fangdajing",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "1727474",
+      "name": "234日历",
+      "font_class": "rili",
+      "unicode": "e8cf",
+      "unicode_decimal": 59599
+    },
+    {
+      "icon_id": "4734161",
+      "name": "销售业绩",
+      "font_class": "ic_saleperformance",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "7978112",
+      "name": "异常",
+      "font_class": "yichang",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "25521820",
+      "name": "扳手",
+      "font_class": "spanner-fill",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "12770928",
+      "name": "失败",
+      "font_class": "shibai1",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "10793071",
+      "name": "user",
+      "font_class": "user1",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "10793064",
+      "name": "password",
+      "font_class": "password",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    }
+  ]
+}

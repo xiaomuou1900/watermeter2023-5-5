@@ -77,7 +77,7 @@ layui.use(['laypage', 'layer', 'table', 'form','tree'], function () {
       , yes: function (index, layero) {
         //按钮【确定】的回调
         if ($('#newroleNameInptId').val() == null || $('#newroleNameInptId').val() == '' || $('#newRoleNumberInptId').val() == null || $('#newRoleNumberInptId').val() == '') {
-          layer.alert('角色编号和角色名称不能为空！')
+          layer.alert('角色编号、角色名称 不能为空！')
           return
         }
         layer.close(index)
@@ -146,7 +146,7 @@ layui.use(['laypage', 'layer', 'table', 'form','tree'], function () {
         , yes: function (index, layero) {
           //按钮【确定】的回调
           if ($('#editRoleNumberInptId').val() == null || $('#editRoleNumberInptId').val() == '' || $('#editRoleNameInptId').val() == null || $('#editRoleNameInptId').val() == '') {
-            layer.alert('角色编号和角色名称不能为空')
+            layer.alert('角色编号、角色名称 不能为空')
             return
           }
           layer.close(index)

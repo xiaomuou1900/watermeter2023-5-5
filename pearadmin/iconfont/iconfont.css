@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4068369 */
+  src: url('iconfont.woff2?t=1684141859561') format('woff2'),
+       url('iconfont.woff?t=1684141859561') format('woff'),
+       url('iconfont.ttf?t=1684141859561') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xitongpeizhi:before {
+  content: "\e684";
+}
+
+.icon-zichanzhuanrang:before {
+  content: "\e6f8";
+}
+
+.icon-AEPSaaS:before {
+  content: "\e64f";
+}
+
+.icon-onenet:before {
+  content: "\e62b";
+}
+
+.icon-caiwuguanli:before {
+  content: "\e663";
+}
+
+.icon-yichuchang:before {
+  content: "\e600";
+}
+
+.icon-IoT-IoTPlatform:before {
+  content: "\e764";
+}
+
+.icon-OneNET:before {
+  content: "\e680";
+}
+
+.icon-yingyongshinengAEP:before {
+  content: "\e735";
+}
+

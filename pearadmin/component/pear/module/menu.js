@@ -39,7 +39,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 
 		if (option.async) {
 			if (option.method === "GET") {
-				getData(option.url).then(function (data) {
+				getData(option.url,option.data).then(function (data) {    // 后改
 					option.data = data;
 					renderMenu(option);
 				});
@@ -248,12 +248,22 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		}
 	}
 
-	function getData(url) {
+	function getData(url,data) {
 		var defer = $.Deferred();
 		var symbol = url.indexOf('?') !== -1 ? '&' : '?';
-		$.get(url + symbol + "fresh=" + Math.random(), function (result) {
-			defer.resolve(result)
-		});
+		// $.get(url + symbol + "fresh=" + Math.random(), function (result) {
+		// 	defer.resolve(result)
+		// });
+		$.ajax({
+			type:'GET',
+			url:url + symbol + "fresh=" + Math.random(),
+			data:{
+               userName : data
+			},
+			success:function(res) {
+			   defer.resolve(res.data)
+			}
+		})
 		return defer.promise();
 	}
 

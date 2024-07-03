@@ -1,0 +1,33 @@
+{
+	"createTime": null,
+	"createBy": null,
+	"updateTime": null,
+	"updateBy": null,
+	"remark": null,
+	"code": 0,
+	"msg": null,
+	"count": 100,
+	"data": [
+		{
+			"freezeTime": "2023-05-09 13:15:38",
+			"freezeType": "速冻",
+			"readData": "-18℃",
+			"pickUpTime": "2023-05-09 13:15:38"
+		},{
+			"freezeTime": "2023-05-09 13:15:38",
+			"freezeType": "速冻",
+			"readData": "-18℃",
+			"pickUpTime": "2023-05-09 13:15:38"
+		},{
+			"freezeTime": "2023-05-09 13:15:38",
+			"freezeType": "速冻",
+			"readData": "-18℃",
+			"pickUpTime": "2023-05-09 13:15:38"
+		},{
+			"freezeTime": "2023-05-09 13:15:38",
+			"freezeType": "速冻",
+			"readData": "-18℃",
+			"pickUpTime": "2023-05-09 13:15:38"
+		}
+	]
+}

@@ -1,0 +1,166 @@
+[
+    {
+        "id": "searchID",
+        "title": "表号查询",
+        "icon": "layui-icon layui-icon-search",
+        "type": 1,
+        "openType": "_iframe",
+        "href": "view/testing/meterID_test_info.html"
+    },
+    {
+        "id": "transfer",
+        "title": "设备转让",
+        "icon": "iconfont icon-zichanzhuanrang",
+        "type": 1,
+        "openType": "_iframe",
+        "href": "view/testing/transfer_devices.html"
+    },
+    {
+        "id": "productionTesting",
+        "title": "生产测试",
+        "icon": "layui-icon layui-icon-engine",
+        "type": 0,
+        "href": "",
+        "children": [
+            {
+                "id": 100,
+                "title": "当前测试批次",
+                "icon": "layui-icon layui-icon-transfer",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/testing/testing.html"
+            },
+            {
+                "id": 101,
+                "title": "测试通过",
+                "icon": "layui-icon layui-icon-vercode",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/testing/test_passed.html"
+            },
+            {
+                "id": 102,
+                "title": "测试失败",
+                "icon": "icon pear-icon pear-icon-warning",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/testing/test_failed.html"
+            },
+            {
+                "id": 103,
+                "title": "已入库",
+                "icon": "icon pear-icon pear-icon-survey",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/testing/entered_warehouse.html"
+            }
+        ]
+    },
+    {
+        "id": "systemConfig",
+        "title": "系统配置",
+        "icon": "iconfont icon-xitongpeizhi",
+        "type": 0,
+        "href": "",
+        "children": [
+            {
+                "id": 201,
+                "title": "厂商配置",
+                "icon": "layui-icon layui-icon-survey",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/testing/manufacturerConfig.html"
+            },
+            {
+                "id": 202,
+                "title": "测试配置",
+                "icon": "layui-icon layui-icon-cols",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/testing/testConfig.html"
+            },
+            {
+                "id": 203,
+                "title": "二级账户设置",
+                "icon": "layui-icon layui-icon-user",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/document/core.html"
+            }
+        ]
+    },
+    {
+        "id": "abnormal",
+        "title": "异常设备",
+        "icon": "icon pear-icon pear-icon-notification",
+        "type": 0,
+        "href": "",
+        "children": [
+            {
+                "id": 301,
+                "title": "所有异常设备",
+                "icon": "layui-icon layui-icon-form",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/testing/all_exception.html"
+            },
+            {
+                "id": 302,
+                "title": "正在维修设备",
+                "icon": "layui-icon layui-icon-util",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/console/testing.html"
+            },
+            {
+                "id": 303,
+                "title": "读数异常设备",
+                "icon": "layui-icon layui-icon-face-surprised",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/document/core.html"
+            },
+            {
+                "id": 304,
+                "title": "异常信息推送设置",
+                "icon": "layui-icon layui-icon-service",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/document/core.html"
+            }
+        ]
+    },
+    {
+        "id": "Registration",
+        "title": "设备注册解绑",
+        "icon": "icon pear-icon pear-icon-link",
+        "type": 0,
+        "href": "",
+        "children": [
+            {
+                "id": 401,
+                "title": "电信OC平台",
+                "icon": "iconfont icon-IoT-IoTPlatform",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/system/theme.html"
+            },
+            {
+                "id": 402,
+                "title": "电信AEP平台",
+                "icon": "iconfont icon-AEPSaaS",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/console/testing.html"
+            },
+            {
+                "id": 403,
+                "title": "移动OneNet平台",
+                "icon": "iconfont icon-onenet",
+                "type": 1,
+                "openType": "_iframe",
+                "href": "view/document/core.html"
+            }
+        ]
+    }
+]

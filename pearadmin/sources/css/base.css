@@ -1,0 +1,75 @@
+:root {
+    --grey-color: rgba(225, 230, 236);
+    --blue-color:  rgb(85, 155, 196);  
+    --green-color: rgb(11, 146, 72);
+
+}
+
+.pannel{   
+    padding: 10px;
+}
+
+body {
+    background-color: var(--grey-color);
+}
+
+.title {
+    font-size: 25px;
+    padding-bottom: 10px;
+    background-color: var(--grey-color);
+}
+
+.content {
+    border-top: 3px solid var(--blue-color);
+    background-color: white;
+}
+
+.icon-xinxi:before {
+    content: "\e600";
+    color: green;
+    font-size: 14px;
+}
+
+.warnBorder {
+    border: 2px solid rgb(253, 167, 7);
+}
+
+ /* 滚动条样式 */
+ body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #858586;
+    border-radius: 7.5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #727171;
+}
+
+
+ .layui-table-body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.layui-table-body::-webkit-scrollbar-thumb {
+    background: #868585;
+    border-radius: 7.5px;
+}
+
+.layui-table-body::-webkit-scrollbar-thumb:hover {
+    background: #727171;
+}
+/* 滚动条样式 */
+
+button {
+    color: rgb(73, 73, 73);
+}
+
+.layui-laypage button {
+    border: 1px solid rgb(119, 118, 118);
+}

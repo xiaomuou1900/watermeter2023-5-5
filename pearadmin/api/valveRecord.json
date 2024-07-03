@@ -1,0 +1,25 @@
+{
+	"createTime": null,
+	"createBy": null,
+	"updateTime": null,
+	"updateBy": null,
+	"remark": null,
+	"code": 0,
+	"msg": null,
+	"count": 100,
+	"data": [
+		{
+			"recordTime": "2023-05-09 13:15:38",
+			"valuveStatus": "开启"
+		},{
+			"recordTime": "2023-05-09 13:15:38",
+			"valuveStatus": "开启"
+		},{
+			"recordTime": "2023-05-09 13:15:38",
+			"valuveStatus": "开启"
+		},{
+			"recordTime": "2023-05-09 13:15:38",
+			"valuveStatus": "关闭"
+		}
+	]
+}

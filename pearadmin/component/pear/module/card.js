@@ -95,11 +95,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 					html += "<div id='cardpage'></div>";
 				}
 				else {
-				    if (data.code != option.response.statusCode) {
-					    html = "<p>" + data.msg + "</p>";
-				    } else {
-				    	html = "<p>没有数据</p>";
-				    }
+					html = "<p>没有数据</p>";
 				}
 				$(option.elem).html(html);
 				if (option.page) {
@@ -191,9 +187,6 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 		data.msg = tempData[option.response.msgName];
 		data.count = tempData[option.response.countName];
 		var dataList = tempData[option.response.dataName];
-        if(!dataList){
-            return data;
-        }
 		data.data = [];
 		for (var i = 0; i < dataList.length; i++) {
 			var item = dataList[i];

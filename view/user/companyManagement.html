@@ -37,13 +37,13 @@
      <script type="text/html" id="tpl-newlyAdded">
         <div style="margin-top:20px; margin-left:20px;margin-bottom: 20px;margin-right: 20px;">
             <div style="margin-top:20px;">
-               <span style=" font-size:14px"> 公司名称：</span>
+               <span style=" font-size:14px"> 公司名称<span style="vertical-align: bottom; color: red;">*</span></span>
                <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
-                 <input  class="companyInpt" id="newCompanyNameInptId" type="text" placeholder=" * 请输入公司名称" style=" height: 16px; border: none;font-size: 13px; margin-left: 5px;">
+                 <input  class="companyInpt" id="newCompanyNameInptId" type="text" placeholder="请输入公司名称" style=" height: 16px; border: none;font-size: 13px; margin-left: 5px;">
                </span>
             </div>
             <div style="margin-top:20px;">
-                <span style="font-size:14px"> 备注：</span>
+                <span style="font-size:14px; margin-right: 5px;"> 备注</span>
                 <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
                   <input  class="menoInpt" id="newMenoInptId" type="text" placeholder="请输入备注" style="height: 16px; border: none;font-size: 13px; margin-left: 5px;">
                 </span>
@@ -54,13 +54,13 @@
      <script type="text/html" id="tpl-edit">
         <div style="margin-top:20px; margin-left:20px;margin-bottom: 20px;margin-right: 20px;">
             <div style="margin-top:20px;">
-               <span style=" font-size:14px"> 公司名称：</span>
+               <span style=" font-size:14px"> 公司名称<span style="vertical-align: bottom; color: red;">*</span></span>
                <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
                  <input class="companyInpt" id="editCompanyNameInptId" type="text"  style=" height: 16px; border: none;font-size: 13px; margin-left: 5px;"  value={{companyName}}>
                </span>
             </div>
             <div style="margin-top:20px;">
-                <span style="font-size:14px"> 备注：</span>
+                <span style="font-size:14px; margin-right: 5px;"> 备注</span>
                 <span style="border:1px solid rgb(184, 180, 180); font-size: 22px">
                   <input class="menoInpt" id="editMenoInptId" type="text" style="height: 16px; border: none;font-size: 13px; margin-left: 5px;"  value={{meno}}>
                 </span>

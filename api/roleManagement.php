@@ -346,10 +346,12 @@ else if($_GET['getEmpower'] ==="抄表员")
             "id": 1,
             "children": [{
                 "title": "片区管理",
-                "id": 101
+                "id": 101,
+                "checked": true            
             }, {
                 "title": "业主档案管理",
-                "id": 102
+                "id": 102,
+                "checked": true
             }, {
                 "title": "业主换表",
                 "id": 103

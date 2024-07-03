@@ -1,7 +1,19 @@
+.layui-table-page {
+    margin-bottom: 0 !important;
+}
+
+#areaDiv {
+    border-right: 0px;
+}
+
 @media(min-width:768px) {
     .sonHeightAsFathter {
        display: flex; 
        align-items: stretch;
+    }
+
+    #areaDiv {
+        border-right: 5px solid var(--grey-color) ;
     }
 }
 @media screen and (max-width: 450px) {

@@ -1,0 +1,59 @@
+{
+	"createTime": null,
+	"createBy": null,
+	"updateTime": null,
+	"updateBy": null,
+	"remark": null,
+	"code": 0,
+	"msg": null,
+	"count": 100,
+	"all_exceptionNum": 200,
+	"serchNum": 8,
+	"data": [
+		{
+			"meterID": "12345678",
+			"exception_info": ["RTC异常","强磁干扰"],
+			"exception_reportTime": ["2023-05-09 13:15:38 ","2022-05-09 13:15:38 "],
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},
+		{
+			"meterID": "12345679",
+			"exception_info": ["RTC异常","强磁干扰"],
+			"exception_reportTime": ["2023-05-09 13:15:38 ","2022-05-09 13:15:38 "],
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},
+		{
+			"meterID": "00000001",
+			"exception_info": ["强磁干扰"],
+			"exception_reportTime": ["2022-05-09 13:15:38 "],
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},		{
+			"meterID": "00000002",
+			"exception_info": ["RTC异常"],
+			"exception_reportTime": ["2022-05-09 13:15:38 "],
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},		{
+			"meterID": "00000003",
+			"exception_info": ["RTC异常","强磁干扰"],
+			"exception_reportTime": ["2023-05-09 13:15:38 ","2022-05-09 13:15:38 "],
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		},		{
+			"meterID": "00000004",
+			"exception_info": ["RTC异常","强磁干扰"],
+			"exception_reportTime": ["2023-05-09 13:15:38 ","2022-05-09 13:15:38 "],
+			"transferor": "连利",
+		    "meno": "自来水公司",
+			"V": "v1.01" 
+		}
+	]
+}

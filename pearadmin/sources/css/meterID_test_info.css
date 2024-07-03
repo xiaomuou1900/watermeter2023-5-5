@@ -1,0 +1,16 @@
+.layui-select-title input {
+    height: 34px;
+}
+
+.btn-warning {
+    color: #fff;
+    background-color: #f19d26;
+    border-color: #f19d26;
+ }
+
+ .layui-btn-xs{
+    margin-left: 5px;
+    height: 28px;
+    width: 56px;
+    margin-top: -3px;
+ }

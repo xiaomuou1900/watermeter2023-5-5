@@ -113,11 +113,11 @@ layui.use(['layer', 'table', 'form', 'dtree'], function () {
       , yes: function (index, layero) {
         //按钮【确定】的回调
         if ($('#newNameInptId').val() == null || $('#newNameInptId').val() == '') {
-          layer.alert('部门名称和部门编号不能为空！')
+          layer.alert('部门名称、部门编号 不能为空！')
           return
         }
         if ($('#newNumberInptId').val() == null || $('#newNumberInptId').val() == '') {
-          layer.alert('部门名称和部门编号不能为空！')
+          layer.alert('部门名称、部门编号 不能为空！')
           return
         }
         layer.close(index)
@@ -187,7 +187,7 @@ layui.use(['layer', 'table', 'form', 'dtree'], function () {
         , yes: function (index, layero) {
           //按钮【确定】的回调
           if ($('#editNameInptId').val() == null || $('#editNameInptId').val() == '' || $('#editNumberInptId').val() == null || $('#editNumberInptId').val() == '') {
-            layer.alert('部门名称和部门编号不能为空！')
+            layer.alert('部门名称、部门编号 不能为空！')
             return
           }
           layer.close(index)
